@@ -31,7 +31,7 @@ export function pageHeaderConfig(): AdPageHeaderConfig {
   return Object.assign(new AdPageHeaderConfig(), { home_i18n: 'home' });
 }
 
-import { DelonAuthConfig } from '@delon/auth';
+import { DA_STORE_TOKEN,DelonAuthConfig, SessionStorageStore } from '@delon/auth';
 export function delonAuthConfig(): DelonAuthConfig {
   return Object.assign(new DelonAuthConfig(), <DelonAuthConfig>{
     login_url: '/passport/login',
@@ -71,6 +71,10 @@ export class DelonModule {
           provide: RouteReuseStrategy,
           useClass: ReuseTabStrategy,
           deps: [ReuseTabService],
+        },
+        {
+          provide: DA_STORE_TOKEN,
+          useClass: SessionStorageStore,
         },
         // TIPS：@delon/abc 有大量的全局配置信息，例如设置所有 `simple-table` 的页码默认为 `20` 行
         // { provide: SimpleTableConfig, useFactory: simpleTableConfig }
