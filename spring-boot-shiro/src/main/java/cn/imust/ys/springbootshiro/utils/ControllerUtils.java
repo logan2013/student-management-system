@@ -6,14 +6,13 @@ import java.util.Map;
 public class ControllerUtils {
     /**
      * 执行成功返回的 Map
-     * @param msg
      * @param obj
      * @return
      */
-    public static Map getSuccessMap(String msg, Object obj){
+    public static Map getSuccessMap(Object obj){
         Map map = new HashMap();
         map.put("code", 200);
-        map.put("msg",msg);
+        map.put("msg","请求成功");
         map.put("data", obj);
         return map;
     }
@@ -36,7 +35,7 @@ public class ControllerUtils {
      */
     public static Map getLoginMap(String msg){
         Map map = new HashMap();
-        map.put("code", 4327);
+        map.put("code", 401);
         map.put("msg", msg);
         return map;
     }
