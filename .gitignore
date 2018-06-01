@@ -11,12 +11,11 @@ ng-alain/node_modules
 
 # IDEs and editors
 ng-alain/.idea
+spring-boot-shiro/.idea
 ng-alain/.project
 ng-alain/.classpath
-ng-alain/.c9/
 ng-alain/*.launch
 ng-alain/.settings/
-ng-alain/*.sublime-workspace
 
 # e2e
 ng-alain/e2e/*.js
@@ -26,3 +25,4 @@ ng-alain/e2e/*.map
 .DS_Store
 Thumbs.db
 ng-alain/package-lock.json
+spring-boot-shiro/spring-boot-shiro.iml
