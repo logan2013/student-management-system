@@ -1,13 +1,20 @@
 import { NzMessageService } from 'ng-zorro-antd';
-import { Component, OnInit } from '@angular/core';
+import { Inject,Component, OnInit } from '@angular/core';
 import { _HttpClient } from '@delon/theme';
+import { Router } from '@angular/router';
+import { DA_SERVICE_TOKEN, ITokenService } from '@delon/auth';
 
 @Component({
   selector: 'app-dashboard-v1',
   templateUrl: './v1.component.html',
 })
 export class DashboardV1Component implements OnInit {
-  constructor(private http: _HttpClient, public msg: NzMessageService) {}
+  constructor(
+    private http: _HttpClient,
+    public msg: NzMessageService,
+    @Inject(DA_SERVICE_TOKEN) private tokenService: ITokenService,
+    private router: Router
+  ) {}
 
   todoData: any[] = [
     {
@@ -27,25 +34,7 @@ export class DashboardV1Component implements OnInit {
       avatar: '3',
       name: 'cipchk',
       content: `this world was never meant for one as beautiful as you.`,
-    },
-    {
-      completed: false,
-      avatar: '4',
-      name: 'Kent',
-      content: `my heart is beating with hers`,
-    },
-    {
-      completed: false,
-      avatar: '5',
-      name: 'Are you',
-      content: `They always said that I love beautiful girl than my friends`,
-    },
-    {
-      completed: false,
-      avatar: '6',
-      name: 'Forever',
-      content: `Walking through green fields ，sunshine in my eyes.`,
-    },
+    }
   ];
 
   webSite: any[] = [];
@@ -53,6 +42,15 @@ export class DashboardV1Component implements OnInit {
   offlineChartData: any[] = [];
 
   ngOnInit() {
+    const token = this.tokenService.get() || {
+      token: 'nothing',
+      name: 'YDeity',
+      avatar: './assets/img/zorro.svg',
+      email: 'cipchk@qq.com',
+    };
+    if (JSON.stringify(token) === '{}') {
+      this.router.navigateByUrl(this.tokenService.login_url);
+    }
     this.http.get('/chart').subscribe((res: any) => {
       this.webSite = res.visitData.slice(0, 10);
       this.salesData = res.salesData;
