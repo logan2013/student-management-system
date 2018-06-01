@@ -9,7 +9,7 @@ import javax.servlet.http.HttpServletResponse;
 
 @Configuration
 public class HeaderHttpSessionStrategy implements HttpSessionStrategy {
-    private String headerName = "x-auth-token";
+    private String headerName = "token";
 
     public String getRequestedSessionId(HttpServletRequest request) {
         return request.getHeader(headerName);
