@@ -64,5 +64,13 @@
   "pro-user": "账户",
   "pro-login": "登录",
   "pro-register": "注册",
-  "pro-register-result": "注册结果"
+  "pro-register-result": "注册结果",
+  "Student": "学生信息管理",
+  "student": "学生信息管理",
+  "student-info-detail": "学生基本信息详情",
+  "student-home-detail": "学生家庭信息详情",
+  "student-home-list": "学生家庭信息列表",
+  "permission-admin": "权限管理",
+  "role": "角色",
+  "permission": "权限管理"
 }

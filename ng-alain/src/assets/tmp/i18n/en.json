@@ -64,5 +64,13 @@
   "pro-user": "Account",
   "pro-login": "Login",
   "pro-register": "Register",
-  "pro-register-result": "Register Result"
+  "pro-register-result": "Register Result",
+  "Student": "Student Managment",
+  "student": "Student Managment",
+  "student-info-detail": "StudentInfo Detail",
+  "student-home-detail": "Student Homes Detail",
+  "student-home-list": "Student Homes List",
+  "permission-admin": "Permission Admin",
+  "role": "Role",
+  "permission": "Permission"
 }
