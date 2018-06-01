@@ -1,0 +1,119 @@
+<page-header [title]="'菜单管理'"></page-header>
+<nz-card [nzHoverable]="true" [nzExtra]="extraPermissionTemplate">
+  <nz-table #nzTable [nzData]="data">
+    <thead>
+    <tr>
+      <th>权限名称</th>
+      <th>权限编号(可国际化)</th>
+      <th>是否生成菜单</th>
+      <th>图标</th>
+      <th>是否添加到快捷菜单</th>
+      <th>是否分组</th>
+      <th>访问地址</th>
+      <th>是否隐藏面包屑</th>
+      <th>访问控制列表</th>
+    </tr>
+    </thead>
+    <tbody>
+    <ng-template ngFor let-data [ngForOf]="nzTable.data">
+      <ng-template ngFor let-item [ngForOf]="expandDataCache[data.id]">
+        <tr *ngIf="(item.parent&&item.parent.expand)||!(item.parent)">
+          <td [nzIndentSize]="item.level*20" [nzShowExpand]="!!item.children" [(nzExpand)]="item.expand" (nzExpandChange)="collapse(expandDataCache[data.id],item,$event)">
+            {{item.text}}
+          </td>
+          <td>{{ item.i18n }}</td>
+          <td>{{ item.generatemenu }}</td>
+          <td>{{ item.icon }}</td>
+          <td>{{ item.shortcut_root }}</td>
+          <td>{{ item.group }}</td>
+          <td>{{ item.link }}</td>
+          <td>{{ item.hideInBreadcrumb }}</td>
+          <td>{{ item.acl }}</td>
+        </tr>
+      </ng-template>
+    </ng-template>
+    </tbody>
+  </nz-table>
+</nz-card>
+<ng-template #extraPermissionTemplate>
+  <button nz-button nzSize="small" nzType="primary" (click)="add(modalContent)" style="margin-right: 8px">
+    <i class="anticon anticon-plus-square-o"></i>新增
+  </button>
+</ng-template>
+<ng-template #modalContent>
+  <div style="height: 360px; overflow-y:auto;">
+    <form nz-form [formGroup]="form">
+      <nz-form-item>
+        <nz-form-label nzXs="24" nzSm="7" nzRequired nzFor="title">名称</nz-form-label>
+        <nz-form-control nzXs="24" nzSm="12" nzMd="10">
+          <input nz-input [(ngModel)]="vo.text" formControlName="text" placeholder="请输入">
+        </nz-form-control>
+      </nz-form-item>
+      <nz-form-item>
+        <nz-form-label nzXs="24" nzSm="7" nzRequired nzFor="title">名称编号</nz-form-label>
+        <nz-form-control nzXs="24" nzSm="12" nzMd="10">
+          <input nz-input [(ngModel)]="vo.i18n" formControlName="i18n" placeholder="请输入">
+        </nz-form-control>
+      </nz-form-item>
+      <nz-form-item>
+        <nz-form-label nzXs="24" nzSm="7" nzRequired nzFor="title">图标</nz-form-label>
+        <nz-form-control nzXs="24" nzSm="12" nzMd="10">
+          <input nz-input [(ngModel)]="vo.icon" formControlName="icon" placeholder="请输入">
+        </nz-form-control>
+      </nz-form-item>
+      <nz-form-item>
+        <nz-form-label nzXs="24" nzSm="7" nzRequired nzFor="title">是否生成菜单</nz-form-label>
+        <nz-form-control nzXs="24" nzSm="12" nzMd="10">
+          <nz-select [(ngModel)]="vo.generatemenu" [compareWith]="_util.compareFn" formControlName="generatemenu">
+            <nz-option *ngFor="let option of _util._enum.isTrue" [nzLabel]="option.name" [nzValue]="option.id"></nz-option>
+          </nz-select>
+        </nz-form-control>
+      </nz-form-item>
+      <nz-form-item>
+        <nz-form-label nzXs="24" nzSm="7" nzRequired nzFor="title">是否加入快捷操作</nz-form-label>
+        <nz-form-control nzXs="24" nzSm="12" nzMd="10">
+          <nz-select [(ngModel)]="vo.shortcut_root" [compareWith]="_util.compareFn" formControlName="shortcut_root">
+            <nz-option *ngFor="let option of _util._enum.isTrue" [nzLabel]="option.name" [nzValue]="option.id"></nz-option>
+          </nz-select>
+        </nz-form-control>
+      </nz-form-item>
+      <nz-form-item>
+        <nz-form-label nzXs="24" nzSm="7" nzRequired nzFor="title">是否为组</nz-form-label>
+        <nz-form-control nzXs="24" nzSm="12" nzMd="10">
+          <nz-select [(ngModel)]="vo.group" [compareWith]="_util.compareFn" formControlName="group">
+            <nz-option *ngFor="let option of _util._enum.isTrue" [nzLabel]="option.name" [nzValue]="option.id"></nz-option>
+          </nz-select>
+        </nz-form-control>
+      </nz-form-item>
+      <nz-form-item>
+        <nz-form-label nzXs="24" nzSm="7" nzRequired nzFor="title">是否隐藏面包屑</nz-form-label>
+        <nz-form-control nzXs="24" nzSm="12" nzMd="10">
+          <nz-select [(ngModel)]="vo.hideInBreadcrumb" [compareWith]="_util.compareFn" formControlName="hideInBreadcrumb">
+            <nz-option *ngFor="let option of _util._enum.isTrue" [nzLabel]="option.name" [nzValue]="option.id"></nz-option>
+          </nz-select>
+        </nz-form-control>
+      </nz-form-item>
+
+      <nz-form-item>
+        <nz-form-label nzXs="24" nzSm="7" nzRequired nzFor="title">访问地址</nz-form-label>
+        <nz-form-control nzXs="24" nzSm="12" nzMd="10">
+          <input nz-input [(ngModel)]="vo.link" formControlName="link" placeholder="请输入">
+        </nz-form-control>
+      </nz-form-item>
+
+      <nz-form-item>
+        <nz-form-label nzXs="24" nzSm="7" nzRequired nzFor="title">访问控制</nz-form-label>
+        <nz-form-control nzXs="24" nzSm="12" nzMd="10">
+          <input nz-input [(ngModel)]="vo.acl" formControlName="acl" placeholder="请输入">
+        </nz-form-control>
+      </nz-form-item>
+      <nz-form-item>
+        <nz-form-label nzXs="24" nzSm="7" nzRequired nzFor="title">选择父级</nz-form-label>
+        <nz-form-control nzXs="24" nzSm="12" nzMd="10">
+          <input nz-input [(ngModel)]="vo.pid" formControlName="pid" placeholder="请输入">
+        </nz-form-control>
+      </nz-form-item>
+
+    </form>
+  </div>
+</ng-template>

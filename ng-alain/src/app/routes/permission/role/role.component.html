@@ -1,0 +1,45 @@
+<nz-card nzTitle="角色管理" [nzExtra]="extraRoleTemplate">
+  <simple-table [data]="url" [total]="total" [columns]="roleColumns"
+                [preDataChange]="dataChange" [resReName]="{list: 'data' }"
+                (checkboxChange)="checkboxChange($event)">
+  </simple-table>
+</nz-card>
+<ng-template #extraRoleTemplate>
+  <button nz-button nzSize="small" nzType="primary" (click)="add(modalContent)" style="margin-right: 8px">
+    <i class="anticon anticon-plus-square-o"></i>新增
+  </button>
+  <button nz-button nzSize="small" nzType="primary" (click)="editPre(permissionContent)" style="margin-right: 8px">
+    <i class="anticon anticon-plus-square-o"></i>分配权限
+  </button>
+</ng-template>
+
+<ng-template #modalContent>
+  <div style="overflow-y:auto;">
+    <form nz-form [formGroup]="form">
+      <nz-form-item>
+        <nz-form-label nzXs="24" nzSm="7" nzRequired nzFor="title">名称</nz-form-label>
+        <nz-form-control nzXs="24" nzSm="12" nzMd="10">
+          <input nz-input [(ngModel)]="vo.rname" formControlName="rname" placeholder="请输入">
+        </nz-form-control>
+      </nz-form-item>
+      <nz-form-item>
+        <nz-form-label nzXs="24" nzSm="7" nzRequired nzFor="title">别名</nz-form-label>
+        <nz-form-control nzXs="24" nzSm="12" nzMd="10">
+          <input nz-input [(ngModel)]="vo.alias" formControlName="alias" placeholder="请输入">
+        </nz-form-control>
+      </nz-form-item>
+    </form>
+  </div>
+</ng-template>
+
+<ng-template #permissionContent>
+  <nz-tree #ntn
+    [(ngModel)]="nodes"
+    [nzCheckable]="true"
+    [nzMultiple]="true"
+    (nzClick)="mouseAction('click',$event)"
+    (nzDblClick)="mouseAction('dblclick', $event)"
+  >
+  </nz-tree>
+
+</ng-template>
