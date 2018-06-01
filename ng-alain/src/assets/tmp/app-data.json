@@ -48,13 +48,6 @@
           "icon": "icon-rocket",
           "shortcut_root": true,
           "children": []
-        },
-        {
-          "text": "小部件",
-          "i18n": "widgets",
-          "link": "/widgets",
-          "icon": "icon-grid",
-          "badge": 2
         }
       ]
     },
@@ -63,29 +56,6 @@
       "group": true,
       "hideInBreadcrumb": true,
       "children": [
-        {
-          "text": "样式",
-          "i18n": "style",
-          "icon": "icon-chemistry",
-          "children": [
-            {
-              "text": "Typography",
-              "link": "/style/typography",
-              "i18n": "typography",
-              "shortcut": true
-            },
-            {
-              "text": "Grid Masonry",
-              "link": "/style/gridmasonry",
-              "i18n": "gridmasonry"
-            },
-            {
-              "text": "Colors",
-              "link": "/style/colors",
-              "i18n": "colors"
-            }
-          ]
-        },
         {
           "text": "Delon",
           "i18n": "delon",
@@ -153,6 +123,37 @@
       ]
     },
     {
+      "text": "Student",
+      "i18n": "student",
+      "group": true,
+      "hideInBreadcrumb": true,
+      "children":[
+        {
+          "text": "StudentInfo",
+          "i18n": "student",
+          "link": "/student/student",
+          "hideInBreadcrumb": true,
+          "children":[
+            {
+              "text": "StudentInfo",
+              "link": "/student/student",
+              "i18n": "student-info-detail"
+            },
+            {
+              "text": "StudentHome",
+              "link": "/student/student-home-detail",
+              "i18n": "student-home-detail"
+            },
+            {
+              "text": "StudentHome",
+              "link": "/student/student-home-list",
+              "i18n": "student-home-list"
+            }
+          ]
+        }
+      ]
+    },
+    {
       "text": "Pro",
       "i18n": "pro",
       "group": true,
@@ -170,11 +171,6 @@
               "link": "/pro/form/basic-form",
               "i18n": "basic-form",
               "shortcut": true
-            },
-            {
-              "text": "Step Form",
-              "link": "/pro/form/step-form",
-              "i18n": "step-form"
             },
             {
               "text": "Advanced Form",
@@ -199,115 +195,6 @@
               "text": "Basic List",
               "link": "/pro/list/basic-list",
               "i18n": "pro-basic-list"
-            },
-            {
-              "text": "Card List",
-              "link": "/pro/list/card-list",
-              "i18n": "pro-card-list"
-            },
-            {
-              "text": "Search List",
-              "i18n": "pro-search",
-              "children": [
-                {
-                  "link": "/pro/list/articles",
-                  "i18n": "pro-search-article"
-                },
-                {
-                  "link": "/pro/list/projects",
-                  "i18n": "pro-search-project",
-                  "shortcut": true
-                },
-                {
-                  "link": "/pro/list/applications",
-                  "i18n": "pro-search-app"
-                }
-              ]
-            }
-          ]
-        },
-        {
-          "text": "Profile",
-          "i18n": "pro-profile",
-          "icon": "icon-book-open",
-          "hideInBreadcrumb": true,
-          "children": [
-            {
-              "text": "Basic",
-              "link": "/pro/profile/basic",
-              "i18n": "pro-profile-basic"
-            },
-            {
-              "text": "Advanced",
-              "link": "/pro/profile/advanced",
-              "i18n": "pro-profile-advanced",
-              "shortcut": true
-            }
-          ]
-        },
-        {
-          "text": "Result",
-          "i18n": "pro-result",
-          "icon": "icon-check",
-          "hideInBreadcrumb": true,
-          "children": [
-            {
-              "text": "Success",
-              "link": "/pro/result/success",
-              "i18n": "pro-result-success"
-            },
-            {
-              "text": "Fail",
-              "link": "/pro/result/fail",
-              "i18n": "pro-result-fail"
-            }
-          ]
-        },
-        {
-          "text": "Exception",
-          "i18n": "pro-exception",
-          "link": "/",
-          "icon": "icon-fire",
-          "children": [
-            {
-              "text": "403",
-              "link": "/403",
-              "reuse": false
-            },
-            {
-              "text": "404",
-              "link": "/404",
-              "reuse": false
-            },
-            {
-              "text": "500",
-              "link": "/500",
-              "reuse": false
-            }
-          ]
-        },
-        {
-          "text": "User",
-          "i18n": "pro-user",
-          "icon": "icon-user",
-          "children": [
-            {
-              "text": "login",
-              "link": "/passport/login",
-              "i18n": "pro-login",
-              "reuse": false
-            },
-            {
-              "text": "register",
-              "link": "/passport/register",
-              "i18n": "pro-register",
-              "reuse": false
-            },
-            {
-              "text": "register result",
-              "link": "/passport/register-result",
-              "i18n": "pro-register-result",
-              "reuse": false
             }
           ]
         }
@@ -320,18 +207,26 @@
       "hideInBreadcrumb": true,
       "children": [
         {
-          "text": "Report",
-          "i18n": "report",
-          "icon": "anticon anticon-cloud-o",
+          "text": "Extras",
+          "i18n": "extras",
+          "link": "/extras",
+          "icon": "icon-cup",
           "children": [
             {
-              "text": "Relation",
-              "link": "/data-v/relation",
-              "i18n": "relation",
-              "reuse": false
+              "text": "Settings",
+              "link": "/extras/settings",
+              "i18n": "settings"
             }
           ]
-        },
+        }
+      ]
+    },
+    {
+      "text": "permission",
+      "i18n": "permission-admin",
+      "group": true,
+      "hideInBreadcrumb": true,
+      "children": [
         {
           "text": "Extras",
           "i18n": "extras",
@@ -339,19 +234,14 @@
           "icon": "icon-cup",
           "children": [
             {
-              "text": "Help Center",
-              "link": "/extras/helpcenter",
-              "i18n": "helpcenter"
+              "text": "Settings",
+              "link": "/permission/role",
+              "i18n": "role"
             },
             {
               "text": "Settings",
-              "link": "/extras/settings",
-              "i18n": "settings"
-            },
-            {
-              "text": "Poi",
-              "link": "/extras/poi",
-              "i18n": "poi"
+              "link": "/permission/permission",
+              "i18n": "permission"
             }
           ]
         }
