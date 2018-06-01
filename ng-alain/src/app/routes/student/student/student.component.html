@@ -1,0 +1,95 @@
+<page-header [title]="'学号：1467111304'">
+  <ng-template #logo>
+    <img src="https://gw.alipayobjects.com/zos/rmsportal/nxkuOJlFJuAUhzlMTCEe.png">
+  </ng-template>
+  <ng-template #action>
+    <nz-button-group>
+      <button nz-button>操作</button>
+      <button nz-button>操作</button>
+    </nz-button-group>
+    <nz-dropdown class="mx-sm">
+      <button nz-button nz-dropdown>
+        <i class="anticon anticon-ellipsis"></i>
+      </button>
+      <ul nz-menu>
+        <li nz-menu-item>选项一</li>
+        <li nz-menu-item>选项二</li>
+        <li nz-menu-item>选项三</li>
+      </ul>
+    </nz-dropdown>
+    <button nz-button [nzType]="'primary'">主操作</button>
+  </ng-template>
+  <ng-template #extra>
+    <div nz-row>
+      <div nz-col nzXs="24" nzSm="12">
+        <p class="text-grey">状态</p>
+        <p class="text-lg">毕业</p>
+      </div>
+      <div nz-col nzXs="24" nzSm="12">
+        <p class="text-grey">就业去向</p>
+        <p class="text-lg">北京</p>
+      </div>
+    </div>
+  </ng-template>
+  <desc-list size="small" col="2">
+    <desc-list-item term="姓名">刘源</desc-list-item>
+    <desc-list-item term="班级全称">计外一班</desc-list-item>
+    <desc-list-item term="性别">男</desc-list-item>
+    <desc-list-item term="宿舍号">15#507</desc-list-item>
+    <desc-list-item term="联系电话">
+      <a (click)="msg.success('yes')">15661479512</a>
+    </desc-list-item>
+    <desc-list-item term="QQ">1334112864</desc-list-item>
+    <desc-list-item term="备注">三好学生</desc-list-item>
+  </desc-list>
+</page-header>
+
+<nz-card [nzBordered]="false" nzTitle="学生信息" class="mb-lg">
+  <desc-list class="mb-lg">
+    <desc-list-item term="年级">14级</desc-list-item>
+    <desc-list-item term="专业">计算机科学与技术</desc-list-item>
+    <desc-list-item term="班级">计外一班</desc-list-item>
+    <desc-list-item term="班级全称">计算机科学级技术（服务外包方向）</desc-list-item>
+    <desc-list-item term="政治面貌">共青团员</desc-list-item>
+    <desc-list-item term="状态">未毕业</desc-list-item>
+    <desc-list-item term="名族">汉族</desc-list-item>
+    <desc-list-item term="出生日期">1996-03-27</desc-list-item>
+    <desc-list-item term="联系电话">15661479512</desc-list-item>
+    <desc-list-item term="宿舍号">15#507</desc-list-item>
+    <desc-list-item term="QQ号">1334112864</desc-list-item>
+    <desc-list-item term="微信号">liuyuan0327</desc-list-item>
+    <desc-list-item term="身份证号">152723199603275416</desc-list-item>
+    <desc-list-item term="备注">三好学生</desc-list-item>
+  </desc-list>
+</nz-card>
+
+<nz-card [nzBordered]="false" nzTitle="学生家庭信息" class="mb-lg">
+  <div class="no-data">
+    <i class="anticon anticon-frown-o"></i>暂无数据
+  </div>
+</nz-card>
+
+<nz-card [nzBordered]="false" nzTitle="学生获奖情况" class="mb-lg">
+  <div class="no-data">
+    <i class="anticon anticon-frown-o"></i>暂无数据
+  </div>
+</nz-card>
+
+<nz-card [nzBordered]="false" nzTitle="学生处分情况" class="mb-lg">
+  <div class="no-data">
+    <i class="anticon anticon-frown-o"></i>暂无数据
+  </div>
+</nz-card>
+
+<nz-card [nzBordered]="false" nzTitle="学生资助情况" class="mb-lg">
+  <div class="no-data">
+    <i class="anticon anticon-frown-o"></i>暂无数据
+  </div>
+</nz-card>
+
+<nz-card [nzBordered]="false" nzTitle="学生就业情况" class="mb-lg">
+  <div class="no-data">
+    <i class="anticon anticon-frown-o"></i>暂无数据
+  </div>
+</nz-card>
+
