@@ -3,6 +3,8 @@ package cn.imust.ys.springbootshiro.controller;
 import cn.imust.ys.springbootshiro.entity.User;
 import cn.imust.ys.springbootshiro.service.UserService;
 import cn.imust.ys.springbootshiro.utils.ControllerUtils;
+import cn.imust.ys.springbootshiro.utils.SessionUtils;
+import com.alibaba.fastjson.JSON;
 import org.apache.shiro.SecurityUtils;
 import org.apache.shiro.authc.UsernamePasswordToken;
 import org.apache.shiro.subject.Subject;
@@ -21,27 +23,28 @@ public class UserController {
     private UserService userService;
 
     @RequestMapping("/login")
-    public Map login(String username,
-                     String password,
-                     HttpSession session) {
-        userService.UserfindByUsernameAndPassword(username, password);
+    public Map login(@RequestBody String params) {
+        Map<String, Object> paramsMap = JSON.parseObject(params, Map.class);
+        String username = (String) paramsMap.get("username");
+        String password = (String) paramsMap.get("password");
         UsernamePasswordToken token = new UsernamePasswordToken(username, password);
         Subject subject = SecurityUtils.getSubject();
         try {
             subject.login(token);
             User user = (User) subject.getPrincipal();
+            HttpSession session = SessionUtils.getSession();
             session.setAttribute("user", user);
             Map map = new HashMap();
-            map.put("code",200);
-            map.put("msg","登陆成功");
-            map.put("data",new User(user.getUid(),user.getUsername()));
-            map.put("sessionID",session.getId());
+            map.put("code", 200);
+            map.put("msg", "登陆成功");
+            map.put("data", user);
+            map.put("sessionID", session.getId());
             return map;
         } catch (Exception e) {
             Map map = new HashMap();
-            map.put("code",500);
-            map.put("msg","登陆失败");
-            map.put("data",null);
+            map.put("code", 201);
+            map.put("msg", "登陆失败");
+            map.put("data", null);
             return map;
         }
     }
@@ -53,8 +56,8 @@ public class UserController {
             subject.logout();
         }
         Map map = new HashMap();
-        map.put("code",200);
-        map.put("msg","退出成功");
+        map.put("code", 200);
+        map.put("msg", "退出成功");
         return map;
     }
 
@@ -64,7 +67,7 @@ public class UserController {
     }
 
     @RequestMapping("redirtLogin")
-    public Map redirtLogin(){
+    public Map redirtLogin() {
         return ControllerUtils.getLoginMap("会话失效，请先登陆");
     }
 }

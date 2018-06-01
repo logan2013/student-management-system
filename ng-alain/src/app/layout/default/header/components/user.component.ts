@@ -1,4 +1,4 @@
-import { Component, Inject } from '@angular/core';
+import { Component, Inject, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
 import { SettingsService } from '@delon/theme';
 import { DA_SERVICE_TOKEN, ITokenService } from '@delon/auth';
@@ -20,12 +20,31 @@ import { DA_SERVICE_TOKEN, ITokenService } from '@delon/auth';
   </nz-dropdown>
   `,
 })
-export class HeaderUserComponent {
+export class HeaderUserComponent implements OnInit {
   constructor(
     public settings: SettingsService,
     private router: Router,
     @Inject(DA_SERVICE_TOKEN) private tokenService: ITokenService,
   ) {}
+
+  ngOnInit(): void {
+    this.tokenService.change().subscribe((res: any) => {
+      if(res !== null && res !== undefined) {
+        this.settings.setUser(res);
+        this.settings.user.name = res.user.username;
+        this.settings.user.avatar = './assets/tmp/img/avatar.jpg';
+        this.settings.user.email = '1122@qq.com';
+      }
+    });
+    // mock
+    const token = this.tokenService.get() || {
+      token: 'nothing',
+      name: 'YDeity',
+      avatar: './assets/logo-color.svg',
+      email: '1334112864@qq.com',
+    };
+    this.tokenService.set(token);
+  }
 
   logout() {
     this.tokenService.clear();

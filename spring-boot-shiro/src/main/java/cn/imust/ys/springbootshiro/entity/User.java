@@ -6,9 +6,11 @@ import java.util.Set;
 
 import javax.persistence.*;
 
+import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 import org.hibernate.annotations.Cascade;
 
 @Entity
+@JsonIgnoreProperties(value={"roles"})
 public class User implements Serializable {
 
     @Id @GeneratedValue
