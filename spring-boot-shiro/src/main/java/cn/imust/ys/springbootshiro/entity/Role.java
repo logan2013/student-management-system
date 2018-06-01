@@ -1,5 +1,6 @@
 package cn.imust.ys.springbootshiro.entity;
 
+import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 import org.hibernate.annotations.Cascade;
 
 import javax.persistence.*;
@@ -9,19 +10,24 @@ import java.util.HashSet;
 import java.util.Set;
 
 @Entity
+@JsonIgnoreProperties(value={"permissions","users"})
 public class Role implements Serializable {
 
     @Id
     @GeneratedValue
     private Integer rid;
-
     private String rname;
-
+    private String alias;
     private Date createTime;
-
     private Date updateTime;
+    @Transient
+    private int[] ps;
 
-    @OneToMany(targetEntity = Permission.class, fetch = FetchType.EAGER)//指定一对多关系
+    @ManyToMany(fetch=FetchType.EAGER)
+    @Cascade({org.hibernate.annotations.CascadeType.SAVE_UPDATE})//使用hibernate注解级联保存和更新
+    @JoinTable(name = "role_permission",
+            joinColumns = {@JoinColumn(name = "role_id")},//JoinColumns定义本方在中间表的主键映射
+            inverseJoinColumns = {@JoinColumn(name = "permission_id")})//inverseJoinColumns定义另一在中间表的主键映射
     private Set<Permission> permissions = new HashSet<>(0);
 
     @ManyToMany(mappedBy = "roles")
@@ -74,5 +80,27 @@ public class Role implements Serializable {
 
     public void setUpdateTime(Date updateTime) {
         this.updateTime = updateTime;
+    }
+
+    public String getAlias() {
+        return alias;
+    }
+
+    public void setAlias(String alias) {
+        this.alias = alias;
+    }
+
+    public Role(){}
+
+    public Role(Integer rid){
+        this.rid = rid;
+    }
+
+    public int[] getPs() {
+        return ps;
+    }
+
+    public void setPs(int[] ps) {
+        this.ps = ps;
     }
 }
