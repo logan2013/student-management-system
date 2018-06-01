@@ -30,6 +30,8 @@ import { UEditorModule } from 'ngx-ueditor';
 import { NgxTinymceModule } from 'ngx-tinymce';
 // @delon/form: JSON Schema form
 import { JsonSchemaModule } from '@shared/json-schema/json-schema.module';
+import { EnumService } from '@shared/config/enmu-service';
+import { UtilService } from '@shared/config/util-service';
 
 // AoT requires an exported function for factories
 export function HttpLoaderFactory(http: HttpClient) {
@@ -40,6 +42,10 @@ export function StartupServiceFactory(
   startupService: StartupService,
 ): Function {
   return () => startupService.load();
+}
+
+export function EnumServiceFactory(enumService:EnumService): Function {
+  return () => enumService.load();
 }
 
 @NgModule({
@@ -83,12 +89,23 @@ export function StartupServiceFactory(
     { provide: HTTP_INTERCEPTORS, useClass: SimpleInterceptor, multi: true },
     { provide: HTTP_INTERCEPTORS, useClass: DefaultInterceptor, multi: true },
     { provide: ALAIN_I18N_TOKEN, useClass: I18NService, multi: false },
+    { provide: HTTP_INTERCEPTORS, useClass: SimpleInterceptor, multi: true },
+    { provide: HTTP_INTERCEPTORS, useClass: DefaultInterceptor, multi: true },
+    { provide: ALAIN_I18N_TOKEN, useClass: I18NService, multi: false },
     StartupService,
+    EnumService,
+    UtilService,
+    {
+      provide: APP_INITIALIZER,
+      useFactory: EnumServiceFactory,
+      deps: [EnumService],
+      multi: true
+    },
     {
       provide: APP_INITIALIZER,
       useFactory: StartupServiceFactory,
       deps: [StartupService],
-      multi: true,
+      multi: true
     },
   ],
   bootstrap: [AppComponent],
