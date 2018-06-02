@@ -1,6 +1,6 @@
 <page-header [title]="'菜单管理'"></page-header>
 <nz-card [nzHoverable]="true" [nzExtra]="extraPermissionTemplate">
-  <nz-table #nzTable [nzData]="data">
+  <nz-table #nzTable [nzData]="data" nzSize="middle">
     <thead>
     <tr>
       <th>权限名称</th>
@@ -22,12 +22,12 @@
             {{item.text}}
           </td>
           <td>{{ item.i18n }}</td>
-          <td>{{ item.generatemenu }}</td>
+          <td>{{ item.generatemenu ? '是' : '否' }}</td>
           <td>{{ item.icon }}</td>
-          <td>{{ item.shortcut_root }}</td>
-          <td>{{ item.group }}</td>
+          <td>{{ item.shortcut_root ? '是' : '否' }}</td>
+          <td>{{ item.group ? '是' : '否' }}</td>
           <td>{{ item.link }}</td>
-          <td>{{ item.hideInBreadcrumb }}</td>
+          <td>{{ item.hideInBreadcrumb ? '是' : '否' }}</td>
           <td>{{ item.acl }}</td>
         </tr>
       </ng-template>

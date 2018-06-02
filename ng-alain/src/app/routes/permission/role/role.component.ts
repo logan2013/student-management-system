@@ -40,10 +40,7 @@ export class RoleComponent implements OnInit {
     { title: '别名', index: 'alias' },
     { title: '创建时间', type: 'date', index: 'createTime' },
     { title: '更新时间', type: 'date', index: 'updateTime' },
-    { title: '删除', buttons: [ { text: '删除', type: 'del' , click:(role: any)=> {
-          this._http.post('role/delete',{ ... role });
-          console.log('确定删除？' + role.rid);
-        }}]}
+    { title: '删除', buttons: [ { text: '删除', type: 'del' , click:(role: any)=> { this.delete(role); }}]}
   ];
 
 
@@ -121,9 +118,11 @@ export class RoleComponent implements OnInit {
     let treeNodes = this.ntn.nzTreeService.getCheckedNodeList();
     this.vo = role;
     this.vo.ps = [];
-    this.vo.ps.push(8);
+    treeNodes.forEach((node) => {
+      this.vo.ps.push(node.key);
+    });
     this._http.post('role/setPermission', { ...this.vo }).subscribe((response: any) => {
-      this._msg.success('保存成功');
+      this._msg.success('权限分配成功');
     });
   }
 
@@ -144,6 +143,11 @@ export class RoleComponent implements OnInit {
       this._msg.success('保存成功');
     });
     // this.refreshData();
+  }
+
+  delete(role: any) {
+    this._http.post('role/delete',{ ... role });
+    console.log('确定删除？' + role.rid);
   }
 
   refreshData() {

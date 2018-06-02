@@ -11,11 +11,13 @@ ng-alain/node_modules
 
 # IDEs and editors
 ng-alain/.idea
-spring-boot-shiro/.idea
 ng-alain/.project
 ng-alain/.classpath
 ng-alain/*.launch
 ng-alain/.settings/
+
+spring-boot-shiro/.idea
+spring-boot-shiro/target
 
 # e2e
 ng-alain/e2e/*.js

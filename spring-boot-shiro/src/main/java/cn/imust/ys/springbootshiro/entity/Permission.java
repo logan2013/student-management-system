@@ -44,6 +44,9 @@ public class Permission implements Serializable {
     @Cascade(org.hibernate.annotations.CascadeType.SAVE_UPDATE)//使用hibernate注解级联保存和更新
     private Set<Role> roles = new HashSet<>(0);
 
+    @Transient
+    private boolean isDown;
+
     public Integer getPid() {
         if(permission != null){
             return permission.getId();
@@ -162,5 +165,13 @@ public class Permission implements Serializable {
 
     public void setRoles(Set<Role> roles) {
         this.roles = roles;
+    }
+
+    public boolean isDown() {
+        return isDown;
+    }
+
+    public void setDown(boolean down) {
+        isDown = down;
     }
 }
