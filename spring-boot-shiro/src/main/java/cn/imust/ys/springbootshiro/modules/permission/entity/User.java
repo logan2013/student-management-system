@@ -1,4 +1,4 @@
-package cn.imust.ys.springbootshiro.entity;
+package cn.imust.ys.springbootshiro.modules.permission.entity;
 
 import java.io.Serializable;
 import java.util.HashSet;

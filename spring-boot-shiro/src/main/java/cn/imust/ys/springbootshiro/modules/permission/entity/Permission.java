@@ -1,8 +1,7 @@
-package cn.imust.ys.springbootshiro.entity;
+package cn.imust.ys.springbootshiro.modules.permission.entity;
 
 import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 import org.hibernate.annotations.Cascade;
-import org.hibernate.annotations.CascadeType;
 
 import javax.persistence.*;
 import java.io.Serializable;

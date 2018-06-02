@@ -1,7 +1,7 @@
-package cn.imust.ys.springbootshiro.controller;
+package cn.imust.ys.springbootshiro.modules.permission.controller;
 
-import cn.imust.ys.springbootshiro.entity.User;
-import cn.imust.ys.springbootshiro.service.UserService;
+import cn.imust.ys.springbootshiro.modules.permission.entity.User;
+import cn.imust.ys.springbootshiro.modules.permission.service.UserService;
 import cn.imust.ys.springbootshiro.utils.ControllerUtils;
 import cn.imust.ys.springbootshiro.utils.SessionUtils;
 import com.alibaba.fastjson.JSON;

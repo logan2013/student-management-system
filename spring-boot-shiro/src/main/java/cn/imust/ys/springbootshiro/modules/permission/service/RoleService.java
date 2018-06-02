@@ -1,14 +1,12 @@
-package cn.imust.ys.springbootshiro.service;
+package cn.imust.ys.springbootshiro.modules.permission.service;
 
-import cn.imust.ys.springbootshiro.entity.Permission;
-import cn.imust.ys.springbootshiro.entity.Role;
-import cn.imust.ys.springbootshiro.repository.PermissionRepository;
-import cn.imust.ys.springbootshiro.repository.RoleRepository;
+import cn.imust.ys.springbootshiro.modules.permission.entity.Permission;
+import cn.imust.ys.springbootshiro.modules.permission.entity.Role;
+import cn.imust.ys.springbootshiro.modules.permission.repository.PermissionRepository;
+import cn.imust.ys.springbootshiro.modules.permission.repository.RoleRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
-import org.springframework.web.bind.annotation.RequestMapping;
 
-import javax.transaction.Transactional;
 import java.util.Date;
 import java.util.List;
 import java.util.Set;

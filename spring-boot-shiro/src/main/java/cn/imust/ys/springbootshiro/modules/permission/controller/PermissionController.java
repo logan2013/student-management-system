@@ -1,15 +1,13 @@
-package cn.imust.ys.springbootshiro.controller;
+package cn.imust.ys.springbootshiro.modules.permission.controller;
 
-import cn.imust.ys.springbootshiro.entity.Permission;
-import cn.imust.ys.springbootshiro.service.PermissionService;
+import cn.imust.ys.springbootshiro.modules.permission.entity.Permission;
+import cn.imust.ys.springbootshiro.modules.permission.service.PermissionService;
 import cn.imust.ys.springbootshiro.utils.ControllerUtils;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
-import java.util.List;
 import java.util.Map;
 
 @RestController

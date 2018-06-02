@@ -1,9 +1,9 @@
 package cn.imust.ys.springbootshiro.shiro;
 
-import cn.imust.ys.springbootshiro.entity.Permission;
-import cn.imust.ys.springbootshiro.entity.Role;
-import cn.imust.ys.springbootshiro.entity.User;
-import cn.imust.ys.springbootshiro.repository.UserRepository;
+import cn.imust.ys.springbootshiro.modules.permission.entity.Permission;
+import cn.imust.ys.springbootshiro.modules.permission.entity.Role;
+import cn.imust.ys.springbootshiro.modules.permission.entity.User;
+import cn.imust.ys.springbootshiro.modules.permission.repository.UserRepository;
 import org.apache.commons.collections.CollectionUtils;
 import org.apache.shiro.authc.AuthenticationException;
 import org.apache.shiro.authc.AuthenticationInfo;

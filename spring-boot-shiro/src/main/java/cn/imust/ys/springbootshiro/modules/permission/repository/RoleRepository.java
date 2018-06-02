@@ -1,6 +1,6 @@
-package cn.imust.ys.springbootshiro.repository;
+package cn.imust.ys.springbootshiro.modules.permission.repository;
 
-import cn.imust.ys.springbootshiro.entity.Role;
+import cn.imust.ys.springbootshiro.modules.permission.entity.Role;
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.stereotype.Repository;
 

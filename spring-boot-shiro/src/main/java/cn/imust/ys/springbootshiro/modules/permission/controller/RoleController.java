@@ -1,7 +1,7 @@
-package cn.imust.ys.springbootshiro.controller;
+package cn.imust.ys.springbootshiro.modules.permission.controller;
 
-import cn.imust.ys.springbootshiro.entity.Role;
-import cn.imust.ys.springbootshiro.service.RoleService;
+import cn.imust.ys.springbootshiro.modules.permission.entity.Role;
+import cn.imust.ys.springbootshiro.modules.permission.service.RoleService;
 import cn.imust.ys.springbootshiro.utils.ControllerUtils;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;

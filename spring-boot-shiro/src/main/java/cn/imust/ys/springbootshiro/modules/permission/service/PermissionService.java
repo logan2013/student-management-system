@@ -1,7 +1,7 @@
-package cn.imust.ys.springbootshiro.service;
+package cn.imust.ys.springbootshiro.modules.permission.service;
 
-import cn.imust.ys.springbootshiro.entity.Permission;
-import cn.imust.ys.springbootshiro.repository.PermissionRepository;
+import cn.imust.ys.springbootshiro.modules.permission.entity.Permission;
+import cn.imust.ys.springbootshiro.modules.permission.repository.PermissionRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
