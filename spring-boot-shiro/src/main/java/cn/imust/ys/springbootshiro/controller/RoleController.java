@@ -26,7 +26,7 @@ public class RoleController {
     }
 
     @RequestMapping("delete")
-    public Map delete(Role role){
+    public Map delete(@RequestBody Role role){
         roleService.delete(role);
         return ControllerUtils.getSuccessMap(null);
     }
