@@ -19,9 +19,9 @@ import { UtilService } from '@shared/config/util-service';
 
 export class RoleComponent implements OnInit {
   @ViewChild('ntn') ntn: NzTreeComponent;
+  @ViewChild('stc') stc: SimpleTableComponent;
 
   url = `role/findAll`;
-  total = 2;
   form: FormGroup;
   vo = this.newVO();
   checkboxChangeList = [];
@@ -142,23 +142,14 @@ export class RoleComponent implements OnInit {
     this._http.post('role/save', { ...this.vo }).subscribe((response: any) => {
       this._msg.success('保存成功');
     });
-    // this.refreshData();
+    this.stc.load();
   }
 
   delete(role: any) {
-    this._http.post('role/delete',{ ... role });
-    console.log('确定删除？' + role.rid);
-  }
-
-  refreshData() {
-/*    this._http.get('permission/findAll').subscribe((res: any) => {
-      this.data = res.data;
-      if( this.data ){
-        this.data.forEach( (item) => {
-          this.expandDataCache[ item.id ] = this.convertTreeToList(item);
-        });
-      }
-    });*/
+    this._http.post('role/delete', { ... role }).subscribe((response: any) => {
+      this._msg.success('删除成功');
+      this.stc.load();
+    });
   }
 
   // 树形控件

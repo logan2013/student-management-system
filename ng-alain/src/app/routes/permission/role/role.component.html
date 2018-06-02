@@ -1,5 +1,5 @@
 <nz-card nzTitle="角色管理" [nzExtra]="extraRoleTemplate">
-  <simple-table [data]="url" [total]="total" [columns]="roleColumns"
+  <simple-table #stc [data]="url" [columns]="roleColumns"
                 [preDataChange]="dataChange" [resReName]="{list: 'data' }"
                 (checkboxChange)="checkboxChange($event)">
   </simple-table>
