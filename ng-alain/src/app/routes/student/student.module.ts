@@ -5,13 +5,15 @@ import { StudentRoutingModule } from './student-routing.module';
 import { StudentComponent } from './student/student.component';
 import { StudentHomeDetailComponent } from './student-home/student-home-detail.component';
 import { StudentHomeListComponent } from './student-home/student-home-list.component';
+import { StudentFormComponent } from './student/student-form.component';
 
 @NgModule({
   imports: [SharedModule, StudentRoutingModule],
   declarations: [
     StudentComponent,
     StudentHomeDetailComponent,
-    StudentHomeListComponent
+    StudentHomeListComponent,
+    StudentFormComponent
   ],
 })
 export class StudentModule {}
