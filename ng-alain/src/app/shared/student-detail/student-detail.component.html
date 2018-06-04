@@ -1,0 +1,101 @@
+<page-header [title]="'学号：' + student.sno">
+  <ng-template #logo>
+    <img src="https://gw.alipayobjects.com/zos/rmsportal/nxkuOJlFJuAUhzlMTCEe.png">
+  </ng-template>
+  <ng-template #action>
+    <nz-button-group>
+      <button nz-button (click)="back()">返回</button>
+      <button nz-button>操作</button>
+    </nz-button-group>
+    <nz-dropdown class="mx-sm">
+      <button nz-button nz-dropdown>
+        <i class="anticon anticon-ellipsis"></i>
+      </button>
+      <ul nz-menu>
+        <li nz-menu-item>选项一</li>
+        <li nz-menu-item>选项二</li>
+        <li nz-menu-item>选项三</li>
+      </ul>
+    </nz-dropdown>
+    <button nz-button [nzType]="'primary'">主操作</button>
+  </ng-template>
+  <ng-template #extra>
+    <div nz-row>
+      <div nz-col nzXs="24" nzSm="12">
+        <p class="text-grey">状态</p>
+        <p class="text-lg">{{ student.status }}</p>
+      </div>
+      <div nz-col nzXs="24" nzSm="12">
+        <p class="text-grey">就业去向</p>
+        <p class="text-lg">{{ student.jobwhere }}</p>
+      </div>
+    </div>
+  </ng-template>
+  <desc-list size="small" col="2">
+    <desc-list-item term="姓名">{{ student.sname }}</desc-list-item>
+    <desc-list-item term="班级全称">{{ student.sysClassAllName }}</desc-list-item>
+    <desc-list-item term="性别">{{ student.gender }}</desc-list-item>
+    <desc-list-item term="宿舍号">{{ student.dorm }}</desc-list-item>
+    <desc-list-item term="联系电话">
+      <a (click)="msg.success('yes')">{{ student.phoneNum }}</a>
+    </desc-list-item>
+    <desc-list-item term="QQ">{{ student.qqNum }}</desc-list-item>
+    <desc-list-item term="备注">{{ student.remark }}</desc-list-item>
+  </desc-list>
+</page-header>
+
+<nz-card [nzBordered]="false" nzTitle="学生信息" class="mb-lg">
+  <desc-list class="mb-lg">
+    <desc-list-item term="年级">{{ student.grade }}</desc-list-item>
+    <desc-list-item term="专业">{{ student.major }}</desc-list-item>
+    <desc-list-item term="班级">{{ student.sysClassName }}</desc-list-item>
+    <desc-list-item term="班级全称">{{ student.sysClassAllName }}</desc-list-item>
+    <desc-list-item term="政治面貌">{{ student.politicalStatus }}</desc-list-item>
+    <desc-list-item term="状态">{{ student.status }}</desc-list-item>
+    <desc-list-item term="名族">{{ student.nation }}</desc-list-item>
+    <desc-list-item term="出生日期">{{ student.birthday }}</desc-list-item>
+    <desc-list-item term="联系电话">{{ student.phoneNum }}</desc-list-item>
+    <desc-list-item term="宿舍号">{{ student.dorm }}</desc-list-item>
+    <desc-list-item term="QQ号">{{ student.qqNum }}</desc-list-item>
+    <desc-list-item term="微信号">{{ student.wechat }}</desc-list-item>
+    <desc-list-item term="身份证号">{{ student.idcard }}</desc-list-item>
+    <desc-list-item term="备注">{{ student.remark }}</desc-list-item>
+  </desc-list>
+</nz-card>
+
+<nz-card [nzBordered]="false" nzTitle="学生家庭信息" class="mb-lg">
+  <simple-table #stc [data]="student.homes" [columns]="homesColumns" [noResult]="noResultTemplate"
+                [resReName]="{list: 'data' }" >
+  </simple-table>
+</nz-card>
+
+<nz-card [nzBordered]="false" nzTitle="学生获奖情况" class="mb-lg">
+  <simple-table #stc [data]="student.awards" [columns]="awardColumns" [noResult]="noResultTemplate"
+                [resReName]="{list: 'data' }" >
+  </simple-table>
+</nz-card>
+
+<nz-card [nzBordered]="false" nzTitle="学生处分情况" class="mb-lg">
+  <simple-table #stc [data]="student.punishments" [columns]="punishmentColumns" [noResult]="noResultTemplate"
+                [resReName]="{list: 'data' }" >
+  </simple-table>
+</nz-card>
+
+<nz-card [nzBordered]="false" nzTitle="学生资助情况" class="mb-lg">
+  <simple-table #stc [data]="student.subsidizes" [columns]="subsidizeColumns" [noResult]="noResultTemplate"
+                [resReName]="{list: 'data' }" >
+  </simple-table>
+</nz-card>
+
+<nz-card [nzBordered]="false" nzTitle="学生就业情况" class="mb-lg">
+  <simple-table #stc [data]="student.jobs" [columns]="jobColumns" [noResult]="noResultTemplate"
+                [resReName]="{list: 'data' }" >
+  </simple-table>
+</nz-card>
+
+<ng-template #noResultTemplate>
+  <div class="no-data">
+    <i class="anticon anticon-frown-o"></i>暂无数据
+  </div>
+</ng-template>
+
