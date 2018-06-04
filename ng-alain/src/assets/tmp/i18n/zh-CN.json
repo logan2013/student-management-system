@@ -66,11 +66,20 @@
   "pro-register": "注册",
   "pro-register-result": "注册结果",
   "Student": "学生信息管理",
-  "student": "学生信息管理",
+  "student": "学生信息",
   "student-info-detail": "学生基本信息详情",
   "student-home-detail": "学生家庭信息详情",
   "student-home-list": "学生家庭信息列表",
   "permission-admin": "权限管理",
   "role": "角色",
-  "permission": "权限管理"
+  "permission": "权限管理",
+  "student-form": "学生添加表单",
+  "student-job": "就业信息",
+  "student-award": "获奖信息",
+  "student-punishment": "违纪信息",
+  "student-subsidize": "资助情况",
+  "system": "系统管理",
+  "system data": "系统数据",
+  "system-grade": "年级",
+  "student-list": "学生信息"
 }

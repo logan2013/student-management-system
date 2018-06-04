@@ -72,5 +72,14 @@
   "student-home-list": "Student Homes List",
   "permission-admin": "Permission Admin",
   "role": "Role",
-  "permission": "Permission"
+  "permission": "Permission",
+  "student-form": "Student Form",
+  "student-job": "Student Job",
+  "student-award": "Student Award",
+  "student-punishment": "Student Punishment",
+  "student-subsidize": "Student Subsidize",
+  "system": "System Managen",
+  "system data": "System Data",
+  "system-grade": "System Grade",
+  "student-list": "Student List"
 }
