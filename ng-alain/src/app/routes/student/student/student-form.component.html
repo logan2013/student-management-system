@@ -8,7 +8,7 @@
         <nz-form-item>
           <nz-form-label>姓名</nz-form-label>
           <nz-form-control>
-            <input nz-input formControlName="sname" placeholder="请输入学生姓名">
+            <input nz-input [(ngModel)]="vo.sname" formControlName="sname" placeholder="请输入学生姓名">
           </nz-form-control>
         </nz-form-item>
       </nz-col>
@@ -16,7 +16,7 @@
         <nz-form-item>
           <nz-form-label>学号</nz-form-label>
           <nz-form-control>
-            <input nz-input formControlName="sno" placeholder="请输入学生学号">
+            <input nz-input [(ngModel)]="vo.sno" formControlName="sno" placeholder="请输入学生学号">
           </nz-form-control>
         </nz-form-item>
       </nz-col>
@@ -24,7 +24,7 @@
         <nz-form-item>
           <nz-form-label>联系电话</nz-form-label>
           <nz-form-control>
-            <input nz-input formControlName="phoneNum" placeholder="联系电话">
+            <input nz-input [(ngModel)]="vo.phoneNum" formControlName="phoneNum" placeholder="联系电话">
           </nz-form-control>
         </nz-form-item>
       </nz-col>
@@ -34,7 +34,7 @@
         <nz-form-item>
           <nz-form-label>性别</nz-form-label>
           <nz-form-control>
-            <input nz-input formControlName="gender" placeholder="性别">
+            <input nz-input [(ngModel)]="vo.gender" formControlName="gender" placeholder="性别">
           </nz-form-control>
         </nz-form-item>
       </nz-col>
@@ -42,7 +42,7 @@
         <nz-form-item>
           <nz-form-label>班级</nz-form-label>
           <nz-form-control>
-            <input nz-input formControlName="className" placeholder="班级">
+            <input nz-input [(ngModel)]="vo.className" formControlName="className" placeholder="班级">
           </nz-form-control>
         </nz-form-item>
       </nz-col>
@@ -54,7 +54,7 @@
                           <nz-option *ngFor="let i of users" [nzLabel]="i.label" [nzValue]="i.value">
                           </nz-option>
                         </nz-select>-->
-            <input nz-input formControlName="classAllName" placeholder="班级全称">
+            <input nz-input [(ngModel)]="vo.classAllName"  formControlName="classAllName" placeholder="班级全称">
           </nz-form-control>
         </nz-form-item>
       </nz-col>
@@ -65,7 +65,7 @@
         <nz-form-item>
           <nz-form-label>QQ</nz-form-label>
           <nz-form-control>
-            <input nz-input formControlName="qqNum" placeholder="QQ">
+            <input nz-input [(ngModel)]="vo.qqNum"  formControlName="qqNum" placeholder="QQ">
           </nz-form-control>
         </nz-form-item>
       </nz-col>
@@ -73,7 +73,7 @@
         <nz-form-item>
           <nz-form-label>宿舍号</nz-form-label>
           <nz-form-control>
-            <input nz-input formControlName="dorm" placeholder="宿舍号">
+            <input nz-input [(ngModel)]="vo.dorm" formControlName="dorm" placeholder="宿舍号">
           </nz-form-control>
         </nz-form-item>
       </nz-col>
@@ -81,7 +81,7 @@
         <nz-form-item>
           <nz-form-label>备注</nz-form-label>
           <nz-form-control>
-            <input nz-input formControlName="remark" placeholder="备注">
+            <input nz-input [(ngModel)]="vo.remark" formControlName="remark" placeholder="备注">
           </nz-form-control>
         </nz-form-item>
       </nz-col>
@@ -94,7 +94,7 @@
         <nz-form-item>
           <nz-form-label>年级</nz-form-label>
           <nz-form-control>
-            <input nz-input formControlName="gradeName" placeholder="年级">
+            <input nz-input [(ngModel)]="vo.gradeName" formControlName="gradeName" placeholder="年级">
           </nz-form-control>
         </nz-form-item>
       </nz-col>
@@ -102,7 +102,7 @@
         <nz-form-item>
           <nz-form-label>专业</nz-form-label>
           <nz-form-control>
-            <input nz-input formControlName="majorName" placeholder="专业">
+            <input nz-input [(ngModel)]="vo.majorName" formControlName="majorName" placeholder="专业">
           </nz-form-control>
         </nz-form-item>
       </nz-col>
@@ -110,7 +110,7 @@
         <nz-form-item>
           <nz-form-label>政治面貌</nz-form-label>
           <nz-form-control>
-            <input nz-input formControlName="politicalStatus" placeholder="政治面貌">
+            <input nz-input [(ngModel)]="vo.politicalStatus" formControlName="politicalStatus" placeholder="政治面貌">
           </nz-form-control>
         </nz-form-item>
       </nz-col>
@@ -120,7 +120,7 @@
         <nz-form-item>
           <nz-form-label>状态</nz-form-label>
           <nz-form-control>
-            <input nz-input formControlName="status" placeholder="status">
+            <input nz-input [(ngModel)]="vo.status" formControlName="status" placeholder="status">
           </nz-form-control>
         </nz-form-item>
       </nz-col>
@@ -128,7 +128,7 @@
         <nz-form-item>
           <nz-form-label>名族</nz-form-label>
           <nz-form-control>
-            <input nz-input formControlName="nation" placeholder="名族">
+            <input nz-input [(ngModel)]="vo.nation" formControlName="nation" placeholder="名族">
           </nz-form-control>
         </nz-form-item>
       </nz-col>
@@ -136,7 +136,7 @@
         <nz-form-item>
           <nz-form-label>身份证号</nz-form-label>
           <nz-form-control>
-            <input nz-input formControlName="idcard" placeholder="身份证号">
+            <input nz-input [(ngModel)]="vo.idcard" formControlName="idcard" placeholder="身份证号">
           </nz-form-control>
         </nz-form-item>
       </nz-col>
@@ -147,25 +147,13 @@
         <nz-form-item>
           <nz-form-label>出生日期</nz-form-label>
           <nz-form-control>
-            <nz-date-picker formControlName="birthday" nzShowTime></nz-date-picker>
+            <nz-date-picker [(ngModel)]="vo.birthday" formControlName="birthday" nzShowTime></nz-date-picker>
           </nz-form-control>
         </nz-form-item>
       </nz-col>
       <nz-col [nzXl]="{span:6, offset:2}" [nzLg]="{span:8}" [nzMd]="{span:12}" nzSm="24">
-<!--        <nz-form-item>
-          <nz-form-label>宿舍号</nz-form-label>
-          <nz-form-control>
-            <input nz-input formControlName="dorm" placeholder="宿舍号">
-          </nz-form-control>
-        </nz-form-item>-->
       </nz-col>
       <nz-col [nzXl]="{span:8, offset:2}" [nzLg]="{span:10}" [nzMd]="{span:24}" nzSm="24">
-        <!--<nz-form-item>
-          <nz-form-label>备注</nz-form-label>
-          <nz-form-control>
-            <input nz-input formControlName="remark" placeholder="备注">
-          </nz-form-control>
-        </nz-form-item>-->
       </nz-col>
     </nz-row>
   </nz-card>

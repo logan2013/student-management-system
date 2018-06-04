@@ -13,31 +13,32 @@ export class StudentFormComponent implements OnInit {
   form: FormGroup;
   editIndex = -1;
   editObj = {};
+  vo = this.newVO();
 
   constructor(
     private fb: FormBuilder,
-    public msg: NzMessageService,
-    private http: _HttpClient
+    public _msg: NzMessageService,
+    private _http: _HttpClient
   ) {}
 
   ngOnInit() {
     this.form = this.fb.group({
       sname: [null,[Validators.required]],
-      sno: [null],
-      className: [null],
-      classAllName: [null],
-      gender: [null],
+      sno: [null,[Validators.required]],
+      className: [null,[Validators.required]],
+      classAllName: [null,[Validators.required]],
+      gender: [null,[Validators.required]],
       dorm: [null],
-      phoneNum: [null],
+      phoneNum: [null,[Validators.required]],
       qqNum: [null],
       remark: [null],
       gradeName: [null],
-      majorName: [null],
+      majorName: [null,[Validators.required]],
       politicalStatus: [null],
       status: [null],
       nation: [null],
       birthday: [null],
-      idcard: [null],
+      idcard: [null,[Validators.required]],
       homes: this.fb.array([]),
     });
   }
@@ -89,12 +90,22 @@ export class StudentFormComponent implements OnInit {
     this.editIndex = -1;
   }
 
+  newVO() {
+    const vo: any = {};
+    return vo;
+  }
+
   _submitForm() {
     for (const i in this.form.controls) {
       this.form.controls[i].markAsDirty();
       this.form.controls[i].updateValueAndValidity();
     }
     if (this.form.invalid) return;
+    this.vo.homes = this.form.controls.homes.value;
+    this._http.post('student/save', { ...this.vo }).subscribe((response: any) => {
+      this._msg.success('保存成功');
+    });
   }
+
 
 }
