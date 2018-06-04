@@ -22,18 +22,18 @@ public class RoleController {
     @RequestMapping("save")
     public Map save(@RequestBody Role role){
         roleService.save(role);
-        return ControllerUtils.getSuccessMap(null);
+        return ControllerUtils.getSuccessMap();
     }
 
     @RequestMapping("delete")
     public Map delete(@RequestBody Role role){
         roleService.delete(role);
-        return ControllerUtils.getSuccessMap(null);
+        return ControllerUtils.getSuccessMap();
     }
 
     @RequestMapping("setPermission")
     public Map setPermission(@RequestBody Role role){
         roleService.setPermission(role);
-        return ControllerUtils.getSuccessMap(null);
+        return ControllerUtils.getSuccessMap();
     }
 }

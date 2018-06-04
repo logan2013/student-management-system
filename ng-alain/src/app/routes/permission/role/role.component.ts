@@ -141,8 +141,8 @@ export class RoleComponent implements OnInit {
   save() {
     this._http.post('role/save', { ...this.vo }).subscribe((response: any) => {
       this._msg.success('保存成功');
+      this.stc.load();
     });
-    this.stc.load();
   }
 
   delete(role: any) {

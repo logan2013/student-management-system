@@ -5,7 +5,7 @@ import java.util.Map;
 
 public class ControllerUtils {
     /**
-     * 执行成功返回的 Map
+     * 执行成功返回的 Map 有参
      * @param obj
      * @return
      */
@@ -14,6 +14,17 @@ public class ControllerUtils {
         map.put("code", 200);
         map.put("msg","请求成功");
         map.put("data", obj);
+        return map;
+    }
+
+    /**
+     * 执行成功返回的 Map 无参
+     * @return
+     */
+    public static Map getSuccessMap(){
+        Map map = new HashMap();
+        map.put("code", 200);
+        map.put("msg","请求成功");
         return map;
     }
 
