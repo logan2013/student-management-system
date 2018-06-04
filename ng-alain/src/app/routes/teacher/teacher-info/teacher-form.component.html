@@ -1,0 +1,109 @@
+<page-header [title]="'老师录入表单'">
+  用于手工添加少量的老师信息表单
+</page-header>
+<form nz-form [formGroup]="form" (ngSubmit)="_submitForm()" [nzLayout]="'vertical'">
+  <nz-card [nzBordered]="false" nzTitle="主体信息">
+    <nz-row nzGutter="16">
+      <nz-col nzLg="6" nzMd="12" nzSm="24">
+        <nz-form-item>
+          <nz-form-label>职工号</nz-form-label>
+          <nz-form-control>
+            <input nz-input [(ngModel)]="vo.tno" formControlName="tno" placeholder="请输入职工号">
+          </nz-form-control>
+        </nz-form-item>
+      </nz-col>
+      <nz-col [nzXl]="{span:6, offset:2}" [nzLg]="{span:8}" [nzMd]="{span:12}" nzSm="24">
+        <nz-form-item>
+          <nz-form-label>姓名</nz-form-label>
+          <nz-form-control>
+            <input nz-input [(ngModel)]="vo.tname" formControlName="tname" placeholder="请输入老师姓名">
+          </nz-form-control>
+        </nz-form-item>
+      </nz-col>
+      <nz-col [nzXl]="{span:8, offset:2}" [nzLg]="{span:10}" [nzMd]="{span:24}" nzSm="24">
+        <nz-form-item>
+          <nz-form-label>性别</nz-form-label>
+          <nz-form-control>
+            <input nz-input [(ngModel)]="vo.gender" formControlName="gender" placeholder="联系电话">
+          </nz-form-control>
+        </nz-form-item>
+      </nz-col>
+    </nz-row>
+    <nz-row nzGutter="16">
+      <nz-col nzLg="6" nzMd="12" nzSm="24">
+        <nz-form-item>
+          <nz-form-label>名族</nz-form-label>
+          <nz-form-control>
+            <input nz-input [(ngModel)]="vo.nation" formControlName="nation" placeholder="请输入名族">
+          </nz-form-control>
+        </nz-form-item>
+      </nz-col>
+      <nz-col [nzXl]="{span:6, offset:2}" [nzLg]="{span:8}" [nzMd]="{span:12}" nzSm="24">
+        <nz-form-item>
+          <nz-form-label>政治面貌</nz-form-label>
+          <nz-form-control>
+            <input nz-input [(ngModel)]="vo.politicalStatus" formControlName="politicalStatus" placeholder="请输入老师政治面貌">
+          </nz-form-control>
+        </nz-form-item>
+      </nz-col>
+      <nz-col [nzXl]="{span:8, offset:2}" [nzLg]="{span:10}" [nzMd]="{span:24}" nzSm="24">
+        <nz-form-item>
+          <nz-form-label>学历</nz-form-label>
+          <nz-form-control>
+            <input nz-input [(ngModel)]="vo.schooling" formControlName="schooling" placeholder="请输入学历">
+          </nz-form-control>
+        </nz-form-item>
+      </nz-col>
+    </nz-row>
+    <nz-row nzGutter="16">
+      <nz-col nzLg="6" nzMd="12" nzSm="24">
+        <nz-form-item>
+          <nz-form-label>职称</nz-form-label>
+          <nz-form-control>
+            <input nz-input [(ngModel)]="vo.title" formControlName="title" placeholder="请输入职称">
+          </nz-form-control>
+        </nz-form-item>
+      </nz-col>
+      <nz-col [nzXl]="{span:6, offset:2}" [nzLg]="{span:8}" [nzMd]="{span:12}" nzSm="24">
+        <nz-form-item>
+          <nz-form-label>手机号码</nz-form-label>
+          <nz-form-control>
+            <input nz-input [(ngModel)]="vo.phoneNum" formControlName="phoneNum" placeholder="请输入老师手机号码">
+          </nz-form-control>
+        </nz-form-item>
+      </nz-col>
+      <nz-col [nzXl]="{span:8, offset:2}" [nzLg]="{span:10}" [nzMd]="{span:24}" nzSm="24">
+        <nz-form-item>
+          <nz-form-label>所在部门</nz-form-label>
+          <nz-form-control>
+            <input nz-input [(ngModel)]="vo.dept" formControlName="dept" placeholder="请输入所在部门">
+          </nz-form-control>
+        </nz-form-item>
+      </nz-col>
+    </nz-row>
+    <nz-row nzGutter="16">
+      <nz-col nzLg="6" nzMd="12" nzSm="24">
+        <nz-form-item>
+          <nz-form-label>参加工作时间</nz-form-label>
+          <nz-form-control>
+            <nz-date-picker [(ngModel)]="vo.inTime" formControlName="inTime" nzShowTime></nz-date-picker>
+          </nz-form-control>
+        </nz-form-item>
+      </nz-col>
+      <nz-col [nzXl]="{span:6, offset:2}" [nzLg]="{span:8}" [nzMd]="{span:12}" nzSm="24">
+        <nz-form-item>
+          <nz-form-label>出生年月</nz-form-label>
+          <nz-form-control>
+            <nz-date-picker [(ngModel)]="vo.birthday" formControlName="birthday" nzShowTime></nz-date-picker>
+          </nz-form-control>
+        </nz-form-item>
+      </nz-col>
+      <nz-col [nzXl]="{span:8, offset:2}" [nzLg]="{span:10}" [nzMd]="{span:24}" nzSm="24">
+      </nz-col>
+    </nz-row>
+  </nz-card>
+
+  <footer-toolbar errorCollect>
+    <button nz-button type="primary" nzType="primary">提交</button>
+  </footer-toolbar>
+</form>
