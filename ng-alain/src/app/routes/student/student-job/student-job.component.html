@@ -1,0 +1,63 @@
+<page-header [title]="'学生就业信息'"></page-header>
+
+<nz-card nzTitle="信息列表" [nzExtra]="extraRoleTemplate">
+  <simple-table #stc [data]="url" [columns]="jobColumns" [scroll]="{ x: '1500px' }"
+                [preDataChange]="dataChange" [resReName]="{ list: 'data' }"
+                (checkboxChange)="checkboxChange($event)">
+  </simple-table>
+</nz-card>
+
+<ng-template #extraRoleTemplate>
+  <button nz-button nzSize="small" nzType="primary" (click)="add(modalContent)" style="margin-right: 8px">
+    <i class="anticon anticon-plus-square-o"></i>新增
+  </button>
+  <button nz-button nzSize="small" nzType="primary" (click)="editPre(modalContent)" style="margin-right: 8px">
+    <i class="anticon anticon-edit"></i>修改
+  </button>
+</ng-template>
+
+<ng-template #modalContent>
+  <div style="overflow-y:auto;">
+    <form nz-form [formGroup]="form">
+      <nz-form-item>
+        <nz-form-label nzXs="24" nzSm="7" nzRequired nzFor="title">学号</nz-form-label>
+        <nz-form-control nzXs="24" nzSm="12" nzMd="10">
+          <input nz-input [(ngModel)]="vo.jobsno" formControlName="jobsno" placeholder="请输入" *ngIf="isDisable">
+          <input nz-input [(ngModel)]="vo.jobsno" formControlName="jobsno" placeholder="请输入" *ngIf="!isDisable" disabled>
+        </nz-form-control>
+      </nz-form-item>
+      <nz-form-item>
+        <nz-form-label nzXs="24" nzSm="7" nzRequired nzFor="title">就业时间</nz-form-label>
+        <nz-form-control nzXs="24" nzSm="12" nzMd="10">
+          <nz-date-picker [(ngModel)]="vo.jtime" formControlName="jtime" nzShowTime nzSize="large"></nz-date-picker>
+        </nz-form-control>
+      </nz-form-item>
+      <nz-form-item>
+        <nz-form-label nzXs="24" nzSm="7" nzRequired nzFor="title">就业单位</nz-form-label>
+        <nz-form-control nzXs="24" nzSm="12" nzMd="10">
+          <input nz-input [(ngModel)]="vo.jobunit" formControlName="jobunit" placeholder="请输入">
+        </nz-form-control>
+      </nz-form-item>
+      <nz-form-item>
+        <nz-form-label nzXs="24" nzSm="7" nzRequired nzFor="title">档案邮寄地址</nz-form-label>
+        <nz-form-control nzXs="24" nzSm="12" nzMd="10">
+          <input nz-input [(ngModel)]="vo.fileAddress" formControlName="fileAddress" placeholder="请输入">
+        </nz-form-control>
+      </nz-form-item>
+      <nz-form-item>
+        <nz-form-label nzXs="24" nzSm="7" nzRequired nzFor="title">就业去向</nz-form-label>
+        <nz-form-control nzXs="24" nzSm="12" nzMd="10">
+          <input nz-input [(ngModel)]="vo.jobwhere" formControlName="jobwhere" placeholder="请输入">
+        </nz-form-control>
+      </nz-form-item>
+      <nz-form-item>
+        <nz-form-label nzXs="24" nzSm="7" nzRequired nzFor="title">就业方式</nz-form-label>
+        <nz-form-control nzXs="24" nzSm="12" nzMd="10">
+          <nz-select [(ngModel)]="vo.mode" [compareWith]="_util.compareFn" formControlName="mode">
+            <nz-option *ngFor="let option of _util._enum.jobMode" [nzLabel]="option.name" [nzValue]="option.id"></nz-option>
+          </nz-select>
+        </nz-form-control>
+      </nz-form-item>
+    </form>
+  </div>
+</ng-template>
