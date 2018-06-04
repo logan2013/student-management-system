@@ -41,7 +41,6 @@ public class Teacher {
 	@Column(columnDefinition=("date default null comment '老师信息--> 参加工作时间'"))
 	private Date inTime;
 
-
 	@ManyToOne(targetEntity=SysClass.class)
 	@JoinColumn(name="sysclass_id",columnDefinition=("int default null comment '老师信息--> 添加班级外键列'"))
 	private SysClass sysClass;

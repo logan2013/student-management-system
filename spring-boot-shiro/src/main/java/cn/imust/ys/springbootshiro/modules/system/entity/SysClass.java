@@ -28,7 +28,7 @@ public class SysClass {
 	
 	@ManyToOne
 	@JoinColumn(name="teacher_id",columnDefinition=("int default null comment '班级信息--> 添加老师外键列'"))
-	private Teacher teacher;//班级负责老师
+	private Teacher teacher;// 班级负责老师
 
 	@ManyToMany(mappedBy = "sysClassSet")
 	@Cascade(org.hibernate.annotations.CascadeType.SAVE_UPDATE)//使用hibernate注解级联保存和更新

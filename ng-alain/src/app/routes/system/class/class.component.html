@@ -1,0 +1,56 @@
+<page-header [title]="'班级信息'"></page-header>
+
+<nz-card nzTitle="信息列表">
+  <nz-table #basicTable [nzData]="clazz" [nzShowPagination]="false">
+    <thead>
+    <tr>
+      <th>班级名称</th>
+      <th>班级全名</th>
+    </tr>
+    </thead>
+    <tbody>
+    <tr *ngFor="let data of basicTable.data;let i = index">
+      <td>{{ data.name }}</td>
+      <td>{{ data.allName }}</td>
+      <td>
+        <a (click)="edit(data)">编辑</a>
+        <nz-divider nzType="vertical"></nz-divider>
+        <nz-popconfirm (nzOnConfirm)="del(data)" [nzTitle]="'是否要删除此行？'">
+          <a nz-popconfirm>删除</a>
+        </nz-popconfirm>
+      </td>
+    </tr>
+    <tr *ngIf="editStatus != -1">
+      <td>
+        <span *ngIf="editStatus == 1">{{ vo.name }}</span>
+        <span *ngIf="editStatus == 0" nz-form-control>
+          <input nz-input type="hidden" [(ngModel)]="vo.id">
+          <input nz-input [(ngModel)]="vo.name" placeholder="请输入班级名称">
+        </span>
+      </td>
+      <td>
+        <span *ngIf="editStatus == 1">{{ vo.allName }}</span>
+        <span *ngIf="editStatus == 0" nz-form-control>
+          <input nz-input type="hidden" [(ngModel)]="vo.scid">
+          <input nz-input [(ngModel)]="vo.allName" placeholder="请输入班级全名">
+        </span>
+      </td>
+      <td>
+            <span *ngIf="editStatus == 0">
+              <a (click)="save()">保存</a>
+              <nz-divider nzType="vertical"></nz-divider>
+              <nz-popconfirm (nzOnConfirm)="cancel()" [nzTitle]="'是否要取消操作？'">
+                <a nz-popconfirm>取消</a>
+              </nz-popconfirm>
+            </span>
+      </td>
+    </tr>
+    </tbody>
+  </nz-table>
+  <button *ngIf="editStatus == -1" nz-button [nzType]="'dashed'" (click)="add()" class="ant-btn__block mt-md">
+    <i class="anticon anticon-plus"></i>
+    <span>新增专业</span>
+  </button>
+</nz-card>
+
+

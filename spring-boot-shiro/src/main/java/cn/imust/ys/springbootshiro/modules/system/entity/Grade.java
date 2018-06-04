@@ -6,7 +6,7 @@ import javax.persistence.*;
  * 年级信息
  * */
 @Entity
-@Table(name = "sysgrade")
+@Table(name = "sys_grade")
 public class Grade {
 	
 	@Id @GeneratedValue
