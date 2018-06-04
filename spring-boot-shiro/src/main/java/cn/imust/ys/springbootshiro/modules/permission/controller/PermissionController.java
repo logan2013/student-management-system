@@ -29,7 +29,7 @@ public class PermissionController {
     @RequestMapping("save")
     public Map save(@RequestBody Permission permission){
         permissionService.save(permission);
-        return ControllerUtils.getSuccessMap(null);
+        return ControllerUtils.getSuccessMap();
     }
 
     @RequestMapping("ref")
