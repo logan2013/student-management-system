@@ -22,6 +22,8 @@ import { Exception404Component } from './exception/404.component';
 import { Exception500Component } from './exception/500.component';
 import { StudentModule } from './student/student.module';
 import { PermissionModule } from './permission/permission.module';
+import { SystemModule } from './system/system.module';
+import { TeacherModule } from './teacher/teacher.module';
 
 const routes: Routes = [
   {
@@ -43,7 +45,9 @@ const routes: Routes = [
       { path: 'extras', loadChildren: './extras/extras.module#ExtrasModule' },
       { path: 'pro', loadChildren: './pro/pro.module#ProModule' },
       { path: 'student', loadChildren: './student/student.module#StudentModule' },
-      { path: 'permission', loadChildren: './permission/permission.module#PermissionModule' }
+      { path: 'permission', loadChildren: './permission/permission.module#PermissionModule' },
+      { path: 'system', loadChildren: './system/system.module#SystemModule' },
+      { path: 'teacher', loadChildren: './teacher/teacher.module#TeacherModule' }
     ],
   },
   // 全屏布局
