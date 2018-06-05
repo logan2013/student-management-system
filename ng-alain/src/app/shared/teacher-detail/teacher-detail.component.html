@@ -1,0 +1,58 @@
+<page-header [title]="'职工号：' + teacher.tno">
+  <ng-template #logo>
+    <img src="https://gw.alipayobjects.com/zos/rmsportal/nxkuOJlFJuAUhzlMTCEe.png">
+  </ng-template>
+  <ng-template #action>
+    <nz-button-group>
+      <button nz-button (click)="back()">返回</button>
+      <button nz-button>操作</button>
+    </nz-button-group>
+    <nz-dropdown class="mx-sm">
+      <button nz-button nz-dropdown>
+        <i class="anticon anticon-ellipsis"></i>
+      </button>
+      <ul nz-menu>
+        <li nz-menu-item>选项一</li>
+        <li nz-menu-item>选项二</li>
+        <li nz-menu-item>选项三</li>
+      </ul>
+    </nz-dropdown>
+    <button nz-button [nzType]="'primary'">主操作</button>
+  </ng-template>
+  <ng-template #extra>
+    <div nz-row>
+      <div nz-col nzXs="24" nzSm="12">
+        <p class="text-grey">学历</p>
+        <p class="text-lg">{{ teacher.schooling }}</p>
+      </div>
+      <div nz-col nzXs="24" nzSm="12">
+        <p class="text-grey">职称</p>
+        <p class="text-lg">{{ teacher.title }}</p>
+      </div>
+    </div>
+  </ng-template>
+  <desc-list size="small" col="2">
+    <desc-list-item term="姓名">{{ teacher.tname }}</desc-list-item>
+    <desc-list-item term="名族">{{ teacher.nation }}</desc-list-item>
+    <desc-list-item term="性别">{{ teacher.gender }}</desc-list-item>
+    <desc-list-item term="出生年月">{{ teacher.birthday }}</desc-list-item>
+    <desc-list-item term="联系电话">
+      <a (click)="msg.success('yes')">{{ teacher.phoneNum }}</a>
+    </desc-list-item>
+    <desc-list-item term="政治面貌">{{ teacher.politicalStatus }}</desc-list-item>
+    <desc-list-item term="所在部门">{{ teacher.dept }}</desc-list-item>
+    <desc-list-item term="参加工作时间">{{ teacher.inTime }}</desc-list-item>
+  </desc-list>
+</page-header>
+
+<nz-card nzTitle="老师带班信息">
+  <nz-timeline>
+    <nz-timeline-item>Create a services site 2015-09-01</nz-timeline-item>
+    <nz-timeline-item>Solve initial network problems 2015-09-01</nz-timeline-item>
+    <nz-timeline-item nzColor="red" [nzDot]="dotTemplate">Technical testing 2015-09-01</nz-timeline-item>
+    <nz-timeline-item>Network problems being solved 2015-09-01</nz-timeline-item>
+  </nz-timeline>
+  <ng-template #dotTemplate>
+    <i class="anticon anticon-clock-circle-o" style="font-size: 16px;"></i>
+  </ng-template>
+</nz-card>
