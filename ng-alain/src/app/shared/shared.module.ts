@@ -16,6 +16,8 @@ import { CountdownModule } from 'ngx-countdown';
 import { UEditorModule } from 'ngx-ueditor';
 import { NgxTinymceModule } from 'ngx-tinymce';
 import { StudentDetailComponent } from '@shared/student-detail';
+import { TeacherDetailComponent } from '@shared/teacher-detail';
+import { InputRefComponent } from '@shared/input-ref';
 
 const THIRDMODULES = [
   NgZorroAntdModule,
@@ -27,7 +29,9 @@ const THIRDMODULES = [
 
 // region: your componets & directives
 const COMPONENTS = [
-  StudentDetailComponent
+  StudentDetailComponent,
+  TeacherDetailComponent,
+  InputRefComponent
 ];
 const DIRECTIVES = [];
 // endregion
