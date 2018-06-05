@@ -37,6 +37,7 @@ export class StartupService {
       zip(
         this.httpClient.get(`assets/tmp/i18n/${this.i18n.defaultLang}.json`),
         this.httpClient.get('assets/tmp/app-data.json'),
+        // this.httpClient.get('permission/menu'),
       )
         .pipe(
           // 接收其他拦截器后产生的异常消息

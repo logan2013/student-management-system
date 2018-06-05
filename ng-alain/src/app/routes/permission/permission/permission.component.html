@@ -1,10 +1,10 @@
 <page-header [title]="'菜单管理'"></page-header>
 <nz-card [nzHoverable]="true" [nzExtra]="extraPermissionTemplate">
-  <nz-table #nzTable [nzData]="data" nzSize="middle">
+  <nz-table #nzTable [nzData]="data" nzSize="middle" [nzScroll]="{x:'1300px'}">
     <thead>
     <tr>
-      <th>权限名称</th>
-      <th>权限编号(可国际化)</th>
+      <th nzWidth="160px" nzLeft="0px">权限名称</th>
+      <th nzWidth="160px" nzLeft="160px">权限编号(可国际化)</th>
       <th>是否生成菜单</th>
       <th>图标</th>
       <th>是否添加到快捷菜单</th>
@@ -18,10 +18,14 @@
     <ng-template ngFor let-data [ngForOf]="nzTable.data">
       <ng-template ngFor let-item [ngForOf]="expandDataCache[data.id]">
         <tr *ngIf="(item.parent&&item.parent.expand)||!(item.parent)">
-          <td [nzIndentSize]="item.level*20" [nzShowExpand]="!!item.children" [(nzExpand)]="item.expand" (nzExpandChange)="collapse(expandDataCache[data.id],item,$event)">
+          <td nzLeft="0px"
+              [nzIndentSize]="item.level*20"
+              [nzShowExpand]="!!item.children"
+              [(nzExpand)]="item.expand"
+              (nzExpandChange)="collapse(expandDataCache[data.id],item,$event)">
             {{item.text}}
           </td>
-          <td>{{ item.i18n }}</td>
+          <td nzLeft="160px">{{ item.i18n }}</td>
           <td>{{ item.generatemenu ? '是' : '否' }}</td>
           <td>{{ item.icon }}</td>
           <td>{{ item.shortcut_root ? '是' : '否' }}</td>

@@ -1,6 +1,6 @@
 import { Component, OnInit, TemplateRef } from '@angular/core';
 import { NzMessageService, NzTabChangeEvent, NzModalService } from 'ng-zorro-antd';
-import { _HttpClient } from '@delon/theme';
+import { _HttpClient, MenuService } from '@delon/theme';
 import { SimpleTableColumn } from '@delon/abc';
 import { FormGroup, FormBuilder, Validators } from '@angular/forms';
 import { UtilService } from '@shared/config/util-service';
@@ -29,6 +29,7 @@ export class PermissionComponent implements OnInit {
   data = [];
 
   constructor(
+    private menuService: MenuService,
     private fb: FormBuilder,
     public _msg: NzMessageService,
     private modalSrv: NzModalService,
@@ -149,6 +150,12 @@ export class PermissionComponent implements OnInit {
           this.expandDataCache[ item.id ] = this.convertTreeToList(item);
         });
       }
+    });
+    // this.menuService.add(res.menu);
+    this._http.get('permission/menu').subscribe((res: any) => {
+      this.menuService.clear();
+      this.menuService.add(res.menu);
+      this.menuService.resume();
     });
   }
 
