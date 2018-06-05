@@ -3,6 +3,7 @@ import { NzMessageService, NzTabChangeEvent } from 'ng-zorro-antd';
 import { _HttpClient } from '@delon/theme';
 import { SimpleTableColumn } from '@delon/abc';
 import { FormGroup, FormBuilder, Validators, FormArray } from '@angular/forms';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'student-form',
@@ -18,7 +19,8 @@ export class StudentFormComponent implements OnInit {
   constructor(
     private fb: FormBuilder,
     public _msg: NzMessageService,
-    private _http: _HttpClient
+    private _http: _HttpClient,
+    private router: Router
   ) {}
 
   ngOnInit() {
@@ -104,6 +106,7 @@ export class StudentFormComponent implements OnInit {
     this.vo.homes = this.form.controls.homes.value;
     this._http.post('student/save', { ...this.vo }).subscribe((response: any) => {
       this._msg.success('保存成功');
+      this.router.navigate(['/student/student-list']);
     });
   }
 
