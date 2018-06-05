@@ -8,6 +8,7 @@ import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
+import java.util.List;
 import java.util.Map;
 
 @RestController
@@ -23,7 +24,8 @@ public class PermissionController {
 
     @RequestMapping("menu")
     public Map getMenuList(){
-        return null;
+        Map<String,Object> app = permissionService.getMenu();
+        return app;
     }
 
     @RequestMapping("save")

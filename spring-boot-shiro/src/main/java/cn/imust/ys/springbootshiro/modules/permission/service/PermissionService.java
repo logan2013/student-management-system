@@ -15,6 +15,11 @@ public class PermissionService {
 
     public List<Map<String,Object>> findAll() {
         List<Permission> all = permissionRepository.findAll();
+        List<Map<String, Object>> list = getMaps(all);
+        return list;
+    }
+
+    private List<Map<String, Object>> getMaps(List<Permission> all) {
         List<Map<String,Object>> list = new ArrayList();
         Map<String,Object> map = null;
         for(Permission permission : all){
@@ -103,5 +108,17 @@ public class PermissionService {
             childrens.add(children);
         }
         return childrens;
+    }
+
+    public Map<String,Object> getMenu() {
+        List<Permission> all = permissionRepository.findByGeneratemenu(true);
+        List<Map<String, Object>> list = getMaps(all);
+        Map<String,String> map = new HashMap<>();
+        map.put("name","Alain");
+        map.put("description","Ng-zorro admin panel front-end framework");
+        Map<String,Object> app = new HashMap<>();
+        app.put("app",map);
+        app.put("menu",list);
+        return app;
     }
 }
