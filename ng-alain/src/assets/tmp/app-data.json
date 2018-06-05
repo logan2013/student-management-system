@@ -37,7 +37,7 @@
       "children": [
         {
           "text": "Extras",
-          "i18n": "extras",
+          "i18n": "permission-admin",
           "link": "/extras",
           "icon": "icon-cup",
           "children": [
@@ -71,6 +71,7 @@
           "i18n": "student",
           "link": "/student/student",
           "hideInBreadcrumb": true,
+          "icon": "icon-user",
           "children":[
             {
               "text": "StudentForm",
@@ -117,12 +118,47 @@
         {
           "text": "系统数据信息",
           "i18n": "system data",
-          "icon": "icon-speedometer",
+          "icon": "icon-book-open",
           "children": [
             {
               "text": "年级",
               "link": "/system/grade",
               "i18n": "system-grade"
+            },
+            {
+              "text": "专业",
+              "link": "/system/major",
+              "i18n": "system-major"
+            },
+            {
+              "text": "班级",
+              "link": "/system/class",
+              "i18n": "system-class"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "text": "老师模块",
+      "i18n": "teacher",
+      "group": true,
+      "hideInBreadcrumb": true,
+      "children": [
+        {
+          "text": "老师信息",
+          "i18n": "teacher-info",
+          "icon": "icon-grid",
+          "children": [
+            {
+              "text": "老师信息",
+              "link": "/teacher/teacher-info",
+              "i18n": "teacher-info"
+            },
+            {
+              "text": "老师录入表单",
+              "link": "/teacher/teacher-form",
+              "i18n": "teacher-form"
             }
           ]
         }

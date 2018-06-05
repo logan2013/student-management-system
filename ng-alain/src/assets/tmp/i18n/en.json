@@ -81,5 +81,10 @@
   "system": "System Managen",
   "system data": "System Data",
   "system-grade": "System Grade",
-  "student-list": "Student List"
+  "student-list": "Student List",
+  "system-major": "System Grade",
+  "system-class": "System Class",
+  "teacher": "Teacher Info",
+  "teacher-info": "Teacher Info",
+  "teacher-form": "Teacher Form"
 }

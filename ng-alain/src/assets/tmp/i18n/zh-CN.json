@@ -72,7 +72,7 @@
   "student-home-list": "学生家庭信息列表",
   "permission-admin": "权限管理",
   "role": "角色",
-  "permission": "权限管理",
+  "permission": "权限",
   "student-form": "学生添加表单",
   "student-job": "就业信息",
   "student-award": "获奖信息",
@@ -81,5 +81,10 @@
   "system": "系统管理",
   "system data": "系统数据",
   "system-grade": "年级",
-  "student-list": "学生信息"
+  "student-list": "学生信息",
+  "system-major": "专业",
+  "system-class": "班级",
+  "teacher": "老师模块",
+  "teacher-info": "老师信息",
+  "teacher-form": "老师添加表单"
 }
