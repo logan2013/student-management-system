@@ -23,7 +23,6 @@ public class SysClass {
 	private String allName;
 	
 	@OneToMany(targetEntity=Student.class,mappedBy="sysClass")
-//	@JoinColumn(name="id",columnDefinition=("int default null comment '班级信息--> 往班级表中添加学生的主键'"))
 	private Set<Student> students = new HashSet<>(0);
 	
 	@ManyToOne
