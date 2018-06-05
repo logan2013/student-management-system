@@ -1,0 +1,46 @@
+<page-header [title]="'老师信息'"></page-header>
+
+<nz-card [nzExtra]="extraRoleTemplate" *ngIf="view=='list'">
+  <nz-table #nzTable [nzData]="dataSet" [nzPageSize]="10"
+  >
+    <thead>
+    <tr>
+      <th nzWidth="120px" nzLeft="0px">职工号</th>
+      <th nzWidth="100px" nzLeft="100px">姓名</th>
+      <th>性别</th>
+      <th>名族</th>
+      <th>出生年月</th>
+      <th>政治面貌</th>
+      <th>学历</th>
+      <th>职称</th>
+      <th>手机号</th>
+      <th>所在部门</th>
+      <th>参加工作时间</th>
+    </tr>
+    </thead>
+    <tbody>
+    <tr *ngFor="let data of nzTable.data">
+      <td nzLeft="0px"><a (click)="detail(data)">{{data.tno}}</a></td>
+      <td nzLeft="100px">{{data.tname}}</td>
+      <td>{{data.gender}}</td>
+      <td>{{data.nation}}</td>
+      <td>{{data.birthday}}</td>
+      <td>{{data.politicalStatus}}</td>
+      <td>{{data.schooling}}</td>
+      <td>{{data.title}}</td>
+      <td>{{data.phoneNum}}</td>
+      <td>{{data.dept}}</td>
+      <td>{{data.inTime}}</td>
+    </tr>
+    </tbody>
+  </nz-table>
+
+</nz-card>
+
+<ng-template #extraRoleTemplate>
+  <button nz-button nzSize="small" nzType="primary" (click)="add()" style="margin-right: 8px">
+    <i class="anticon anticon-plus-square-o"></i>新增
+  </button>
+</ng-template>
+
+<teacher-detail *ngIf="view=='teacherDetail'" [teacher]="teacher" [parentComponent]="this"></teacher-detail>
