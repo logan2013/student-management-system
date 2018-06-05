@@ -11,9 +11,9 @@ import springfox.documentation.spi.DocumentationType;
 import springfox.documentation.spring.web.plugins.Docket;
 import springfox.documentation.swagger2.annotations.EnableSwagger2;
 
-/*@Configuration
-@EnableSwagger2
-@EnableWebMvc*/
+//@Configuration
+//@EnableSwagger2
+//@EnableWebMvc
 public class Swagger2Configuration {
 
 //	@Bean
@@ -21,7 +21,7 @@ public class Swagger2Configuration {
         return new Docket(DocumentationType.SWAGGER_2)
                 .apiInfo(apiInfo())
                 .select()
-                .apis(RequestHandlerSelectors.basePackage("cn.imust.ys"))
+                .apis(RequestHandlerSelectors.basePackage("cn.imust.ys.springbootshiro"))
                 .paths(PathSelectors.any())
                 .build();
     }
