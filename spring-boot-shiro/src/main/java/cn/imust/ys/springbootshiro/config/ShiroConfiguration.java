@@ -38,6 +38,8 @@ public class ShiroConfiguration {
         filterChainDefinitionMap.put("/swagger-ui.html", "anon");
         filterChainDefinitionMap.put("/webjars/**", "anon");
         filterChainDefinitionMap.put("/v2/api-docs", "anon");
+        filterChainDefinitionMap.put("/swagger-resources", "anon");
+        filterChainDefinitionMap.put("/webjars/springfox-swagger-ui/**", "anon");
         filterChainDefinitionMap.put("/admin", "roles[admin]");
         filterChainDefinitionMap.put("/role/findAll", "roles[admin]");
         filterChainDefinitionMap.put("/edit", "perms[edit]");
