@@ -1,5 +1,5 @@
 # student-management-system
-学习管理系统
+学生信息管理系统
 
 
 
