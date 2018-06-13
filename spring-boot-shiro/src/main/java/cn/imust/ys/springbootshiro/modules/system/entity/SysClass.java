@@ -3,6 +3,7 @@ package cn.imust.ys.springbootshiro.modules.system.entity;
 import cn.imust.ys.springbootshiro.modules.student.entity.Student;
 import cn.imust.ys.springbootshiro.modules.teacher.entity.Teacher;
 import cn.imust.ys.springbootshiro.modules.teacher.entity.TeacherWithClass;
+import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 import org.hibernate.annotations.Cascade;
 
 import java.util.HashSet;
@@ -11,6 +12,7 @@ import java.util.Set;
 import javax.persistence.*;
 
 @Entity
+@JsonIgnoreProperties(value={"teacher","grade"})
 public class SysClass {
 	
 	@Id @GeneratedValue
@@ -28,6 +30,10 @@ public class SysClass {
 	@ManyToOne
 	@JoinColumn(name="teacher_id",columnDefinition=("int default null comment '班级信息--> 添加老师外键列'"))
 	private Teacher teacher;// 班级负责老师
+
+	@ManyToOne
+	@JoinColumn(name="grade_id",columnDefinition=("int default null comment '班级信息--> 添加年级外键列'"))
+	private Grade grade;
 
 	@ManyToMany(mappedBy = "sysClassSet")
 	@Cascade(org.hibernate.annotations.CascadeType.SAVE_UPDATE)//使用hibernate注解级联保存和更新
@@ -83,5 +89,13 @@ public class SysClass {
 
 	public void setWithClassSet(Set<TeacherWithClass> withClassSet) {
 		this.withClassSet = withClassSet;
+	}
+
+	public Grade getGrade() {
+		return grade;
+	}
+
+	public void setGrade(Grade grade) {
+		this.grade = grade;
 	}
 }

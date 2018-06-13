@@ -1,6 +1,11 @@
 package cn.imust.ys.springbootshiro.modules.system.entity;
 
+import cn.imust.ys.springbootshiro.modules.student.entity.Award;
+import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
+
 import javax.persistence.*;
+import java.util.HashSet;
+import java.util.Set;
 
 /**
  * 专业
@@ -13,6 +18,9 @@ public class Major {
 	private Integer id;
 	@Column(columnDefinition=("varchar(100) default null comment '专业信息--> 专业名称'"))
 	private String name;
+
+	@OneToMany(targetEntity=Grade.class,mappedBy="major")
+	private Set<Grade> grades = new HashSet<>(0);
 	public Integer getId() {
 		return id;
 	}
@@ -28,5 +36,14 @@ public class Major {
 	public Major() {
 		super();
 	}
+
+	public Set<Grade> getGrades() {
+		return grades;
+	}
+
+	public void setGrades(Set<Grade> grades) {
+		this.grades = grades;
+	}
+
 
 }
