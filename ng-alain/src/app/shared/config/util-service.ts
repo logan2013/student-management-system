@@ -13,6 +13,8 @@ export class UtilService {
 
   compareFn = (o1: any, o2: any) => o1 && o2 ? o1.id === o2.id : o1 === o2;
 
+  myCompareFn = (o1: any, o2: any) => o1 && o2 ? o1 === o2 : o1 === o2;
+
   getUUID(): string {
     const timeMillis: number = new Date().getTime();
     const s1 = timeMillis.toString(16).substring(0, 11);
