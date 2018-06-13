@@ -15,9 +15,9 @@ public class User implements Serializable {
 
     @Id @GeneratedValue
     private Integer uid;
-
+    @Column(length=30)
     private String username;
-
+    @Column(length=50)
     private String password;
 
     @ManyToMany(fetch=FetchType.EAGER)

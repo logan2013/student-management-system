@@ -16,7 +16,9 @@ public class Role implements Serializable {
     @Id
     @GeneratedValue
     private Integer rid;
+    @Column(length=20)
     private String rname;
+    @Column(length=20)
     private String alias;
     private Date createTime;
     private Date updateTime;
