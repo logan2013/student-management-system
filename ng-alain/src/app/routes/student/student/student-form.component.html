@@ -34,7 +34,9 @@
         <nz-form-item>
           <nz-form-label>性别</nz-form-label>
           <nz-form-control>
-            <input nz-input [(ngModel)]="vo.gender" formControlName="gender" placeholder="性别">
+            <nz-select [(ngModel)]="vo.gender" [compareWith]="_util.myCompareFn" formControlName="gender">
+              <nz-option *ngFor="let option of _util._enum.gender" [nzLabel]="option.name" [nzValue]="option"></nz-option>
+            </nz-select>
           </nz-form-control>
         </nz-form-item>
       </nz-col>
@@ -110,7 +112,9 @@
         <nz-form-item>
           <nz-form-label>政治面貌</nz-form-label>
           <nz-form-control>
-            <input nz-input [(ngModel)]="vo.politicalStatus" formControlName="politicalStatus" placeholder="政治面貌">
+            <nz-select [(ngModel)]="vo.politicalStatus" [compareWith]="_util.myCompareFn" formControlName="politicalStatus">
+              <nz-option *ngFor="let option of _util._enum.politicalStatus" [nzLabel]="option.name" [nzValue]="option.name"></nz-option>
+            </nz-select>
           </nz-form-control>
         </nz-form-item>
       </nz-col>
@@ -120,13 +124,15 @@
         <nz-form-item>
           <nz-form-label>状态</nz-form-label>
           <nz-form-control>
-            <input nz-input [(ngModel)]="vo.status" formControlName="status" placeholder="status">
+            <nz-select [(ngModel)]="vo.status" [compareWith]="_util.myCompareFn" formControlName="status">
+              <nz-option *ngFor="let option of _util._enum.status" [nzLabel]="option.name" [nzValue]="option.name"></nz-option>
+            </nz-select>
           </nz-form-control>
         </nz-form-item>
       </nz-col>
       <nz-col [nzXl]="{span:6, offset:2}" [nzLg]="{span:8}" [nzMd]="{span:12}" nzSm="24">
         <nz-form-item>
-          <nz-form-label>名族</nz-form-label>
+          <nz-form-label>民族</nz-form-label>
           <nz-form-control>
             <input nz-input [(ngModel)]="vo.nation" formControlName="nation" placeholder="名族">
           </nz-form-control>

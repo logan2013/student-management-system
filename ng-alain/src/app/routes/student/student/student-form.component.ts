@@ -4,6 +4,7 @@ import { _HttpClient } from '@delon/theme';
 import { SimpleTableColumn } from '@delon/abc';
 import { FormGroup, FormBuilder, Validators, FormArray } from '@angular/forms';
 import { Router } from '@angular/router';
+import { UtilService } from '@shared/config/util-service';
 
 @Component({
   selector: 'student-form',
@@ -20,7 +21,8 @@ export class StudentFormComponent implements OnInit {
     private fb: FormBuilder,
     public _msg: NzMessageService,
     private _http: _HttpClient,
-    private router: Router
+    private router: Router,
+    public _util: UtilService
   ) {}
 
   ngOnInit() {
