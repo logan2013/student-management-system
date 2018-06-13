@@ -6,22 +6,33 @@
   <nz-table #basicTable [nzData]="grades" [nzShowPagination]="false">
     <thead>
     <tr>
+      <th>所属专业</th>
       <th>年级</th>
       <th>操作</th>
     </tr>
     </thead>
     <tbody>
     <tr *ngFor="let data of basicTable.data;let i = index">
+      <td>{{ data.majorName }}</td>
       <td>{{ data.name }}</td>
       <td>
-         <a (click)="edit(data)">编辑</a>
-         <nz-divider nzType="vertical"></nz-divider>
-         <nz-popconfirm (nzOnConfirm)="del(data)" [nzTitle]="'是否要删除此行？'">
-            <a nz-popconfirm>删除</a>
-         </nz-popconfirm>
-       </td>
+        <a (click)="edit(data)">编辑</a>
+        <nz-divider nzType="vertical"></nz-divider>
+        <nz-popconfirm (nzOnConfirm)="del(data)" [nzTitle]="'是否要删除此行？'">
+          <a nz-popconfirm>删除</a>
+        </nz-popconfirm>
+      </td>
     </tr>
     <tr *ngIf="editStatus != -1">
+      <td>
+        <span *ngIf="editStatus == 1">{{ vo.name }}</span>
+        <span *ngIf="editStatus == 0" nz-form-control>
+          <nz-select style="width: 180px" [(ngModel)]="vo.major" [compareWith]="_util.myCompareFn">
+              <nz-option *ngFor="let option of majors" [nzLabel]="option.name"
+                         [nzValue]="option.id"></nz-option>
+          </nz-select>
+        </span>
+      </td>
       <td>
         <span *ngIf="editStatus == 1">{{ vo.name }}</span>
         <span *ngIf="editStatus == 0" nz-form-control>
