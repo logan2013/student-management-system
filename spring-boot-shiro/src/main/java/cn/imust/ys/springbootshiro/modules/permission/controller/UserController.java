@@ -11,6 +11,7 @@ import org.apache.shiro.subject.Subject;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 
+import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 import java.util.HashMap;
 import java.util.Map;
@@ -62,12 +63,13 @@ public class UserController {
     }
 
     @RequestMapping("unauthorized")
-    public Map unauthorized() {
+    public Map unauthorized(HttpServletResponse response) {
+        response.setStatus(403);
         return ControllerUtils.getUnauthorizedMap();
     }
 
     @RequestMapping("redirtLogin")
     public Map redirtLogin() {
-        return ControllerUtils.getLoginMap("会话失效，请先登陆");
+        return ControllerUtils.getLoginMap("会话失效，请重新登陆");
     }
 }
