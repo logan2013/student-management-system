@@ -28,7 +28,7 @@ export class HeaderUserComponent implements OnInit {
 
   ngOnInit(): void {
     this.tokenService.change().subscribe((res: any) => {
-      if(res) {
+      if(res && res.user) {
         this.settings.setUser(res);
         this.settings.user.name = res.user.username;
         this.settings.user.avatar = './assets/tmp/img/avatar.jpg';
