@@ -98,4 +98,29 @@ public class SysClass {
 	public void setGrade(Grade grade) {
 		this.grade = grade;
 	}
+
+	public String getGradeName(){
+		if(grade != null && grade.getMajor() != null) {
+			return grade.getMajor().getName() + "/" + grade.getName();
+		}else{
+			return "";
+		}
+	}
+
+	public void setClassGradeId(int classGradeId){
+		if(this.grade == null){
+			Grade grade = new Grade();
+			grade.setId(classGradeId);
+			this.grade = grade;
+		}
+	}
+
+	public int[] getClassGradeId(){
+		int[] arr = new int[2];
+		if(this.grade != null && grade.getMajor() != null){
+			arr[0] = grade.getMajor().getId();
+			arr[1] = grade.getId();
+		}
+		return arr;
+	}
 }

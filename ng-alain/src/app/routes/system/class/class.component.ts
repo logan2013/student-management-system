@@ -13,6 +13,8 @@ export class ClassComponent implements OnInit {
   status: number;
   clazz = [];
   vo = this.newVO();
+  nzOptions = [];
+  values: any;
 
   constructor(
     public _msg: NzMessageService,
@@ -22,6 +24,9 @@ export class ClassComponent implements OnInit {
   ngOnInit(): void {
     this._http.post('sysclass/findAll').subscribe((response: any) => {
       this.clazz = response.data;
+    });
+    this._http.post('major/classRef').subscribe((response: any) => {
+      this.nzOptions = response;
     });
   }
 
@@ -36,6 +41,7 @@ export class ClassComponent implements OnInit {
   }
 
   save(){
+    this.vo.classGradeId = this.vo.classGradeId[this.vo.classGradeId.length - 1];
     this._http.post('sysclass/save', { ...this.vo }).subscribe((response: any) => {
       this._msg.success('保存成功');
       this.editStatus = -1;
@@ -64,6 +70,7 @@ export class ClassComponent implements OnInit {
   edit(data: any){
     this.editStatus = 0;
     this.vo = data;
+    this.vo.classGradeId = data.classGradeId;
   }
 
 }

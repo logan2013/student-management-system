@@ -4,12 +4,15 @@
   <nz-table #basicTable [nzData]="clazz" [nzShowPagination]="false">
     <thead>
     <tr>
+      <th>所属年级</th>
       <th>班级名称</th>
       <th>班级全名</th>
+      <th>操作</th>
     </tr>
     </thead>
     <tbody>
     <tr *ngFor="let data of basicTable.data;let i = index">
+      <td>{{ data.gradeName }}</td>
       <td>{{ data.name }}</td>
       <td>{{ data.allName }}</td>
       <td>
@@ -21,6 +24,15 @@
       </td>
     </tr>
     <tr *ngIf="editStatus != -1">
+      <td>
+        <span *ngIf="editStatus == 1">{{ vo.name }}</span>
+        <span *ngIf="editStatus == 0" nz-form-control>
+          <nz-cascader
+            [nzOptions]="nzOptions"
+            [(ngModel)]="vo.classGradeId">
+          </nz-cascader>
+        </span>
+      </td>
       <td>
         <span *ngIf="editStatus == 1">{{ vo.name }}</span>
         <span *ngIf="editStatus == 0" nz-form-control>
