@@ -50,6 +50,14 @@ public class Grade {
 		this.major = major;
 	}
 
+	public void setGradeMajorId(int gradeMajorId){
+		if(this.major == null){
+			Major major = new Major();
+			major.setId(gradeMajorId);
+			this.major = major;
+		}
+	}
+
 	public Set<SysClass> getSysClazz() {
 		return sysClazz;
 	}

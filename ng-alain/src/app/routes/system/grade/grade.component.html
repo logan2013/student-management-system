@@ -27,7 +27,7 @@
       <td>
         <span *ngIf="editStatus == 1">{{ vo.name }}</span>
         <span *ngIf="editStatus == 0" nz-form-control>
-          <nz-select style="width: 180px" [(ngModel)]="vo.major" [compareWith]="_util.myCompareFn">
+          <nz-select style="width: 180px" [(ngModel)]="vo.gradeMajorId" [compareWith]="_util.myCompareFn">
               <nz-option *ngFor="let option of majors" [nzLabel]="option.name"
                          [nzValue]="option.id"></nz-option>
           </nz-select>

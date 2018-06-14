@@ -40,7 +40,7 @@ export class GradeComponent implements OnInit {
   }
 
   save(){
-    this.vo.major = { id: this.vo.major};
+    // this.vo.major = { id: this.vo.major};
     this._http.post('grade/save', { ...this.vo }).subscribe((response: any) => {
       this._msg.success('保存成功');
       this.editStatus = -1;
@@ -68,7 +68,7 @@ export class GradeComponent implements OnInit {
 
   edit(data: any){
     this.editStatus = 0;
-    data.major = data.majorId;
+    data.gradeMajorId = data.majorId;
     this.vo = data;
   }
 
