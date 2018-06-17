@@ -1,5 +1,6 @@
 package cn.imust.ys.springbootshiro.modules.student.controller;
 
+import cn.imust.ys.springbootshiro.exception.CustomException;
 import cn.imust.ys.springbootshiro.modules.student.entity.Job;
 import cn.imust.ys.springbootshiro.modules.student.repository.JobRepository;
 import cn.imust.ys.springbootshiro.modules.student.service.JobService;
@@ -59,7 +60,11 @@ public class JobController {
     @GetMapping("saveImport")
     public Map saveImport(){
         Map data = (Map)SessionUtils.getSession().getAttribute("data");
-        jobService.batchSave((List)data.get("listData"));
+        try {
+            jobService.batchSave((List)data.get("listData"));
+        }catch (CustomException e){
+            return ControllerUtils.getCustomException(e.getMessage());
+        }
         return ControllerUtils.getSuccessMap();
     }
 

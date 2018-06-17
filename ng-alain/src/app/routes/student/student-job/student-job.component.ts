@@ -1,5 +1,5 @@
 import { Component, OnInit, TemplateRef, ViewChild } from '@angular/core';
-import { NzMessageService, NzModalService, NzTabChangeEvent } from 'ng-zorro-antd';
+import { NzMessageService, NzModalService, NzNotificationService } from 'ng-zorro-antd';
 import { _HttpClient } from '@delon/theme';
 import { SimpleTableColumn, SimpleTableComponent, SimpleTableData, XlsxService } from '@delon/abc';
 import { FormGroup, FormBuilder, Validators } from '@angular/forms';
@@ -31,6 +31,7 @@ export class StudentJobComponent implements OnInit {
     private _http: _HttpClient,
     public _util: UtilService,
     private xlsx: XlsxService,
+    private notification: NzNotificationService
   ) {
   }
 
@@ -203,10 +204,10 @@ export class StudentJobComponent implements OnInit {
       sheets: [
         {
           data: data,
-          name: '学生就业信息',
+          name: name,
         },
       ],
-      filename: '学生就业信息.xlsx',
+      filename: name + '.xlsx',
     });
   }
 
@@ -246,6 +247,9 @@ export class StudentJobComponent implements OnInit {
           nzCancelText: '取消',
           nzOnOk: () => {
             this._http.get('job/saveImport', { ...res.Sheet1 }).subscribe((response: any) => {
+              if(response.code === 555){
+                this.notification.create('error', '错误信息', response.msg,{ nzDuration: 0 });
+              }
               this.refreshData();
               this.isImport = false;
             });
