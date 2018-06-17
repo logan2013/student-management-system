@@ -53,4 +53,11 @@ public class ControllerUtils {
         map.put("msg", msg);
         return map;
     }
+
+    public static Map getCustomException(String msg){
+        Map map = new HashMap();
+        map.put("code", 555);
+        map.put("msg", msg);
+        return map;
+    }
 }
