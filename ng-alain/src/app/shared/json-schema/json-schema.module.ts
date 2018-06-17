@@ -4,10 +4,12 @@ import { DelonFormModule, WidgetRegistry } from '@delon/form';
 
 import { TinymceWidget } from './widgets/tinymce/tinymce.widget';
 import { UeditorWidget } from './widgets/ueditor/ueditor.widget';
+import { CustomModalWidget } from '@shared/json-schema/widgets/custom-modal/custom-modal.widget';
 
 export const SCHEMA_THIRDS_COMPONENTS = [
     TinymceWidget,
-    UeditorWidget
+    UeditorWidget,
+    CustomModalWidget
 ];
 
 @NgModule({
@@ -25,5 +27,6 @@ export class JsonSchemaModule {
     constructor(widgetRegistry: WidgetRegistry) {
         widgetRegistry.register(TinymceWidget.KEY, TinymceWidget);
         widgetRegistry.register(UeditorWidget.KEY, UeditorWidget);
+        widgetRegistry.register(CustomModalWidget.KEY, CustomModalWidget);
     }
 }
