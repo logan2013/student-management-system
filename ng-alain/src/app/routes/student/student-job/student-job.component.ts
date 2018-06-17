@@ -1,11 +1,10 @@
 import { Component, OnInit, TemplateRef, ViewChild } from '@angular/core';
-import { NzMessageService, NzModalService, NzNotificationService } from 'ng-zorro-antd';
+import { NzMessageService, NzModalService } from 'ng-zorro-antd';
 import { _HttpClient } from '@delon/theme';
-import { SimpleTableColumn, SimpleTableComponent, SimpleTableData, XlsxService } from '@delon/abc';
+import { SimpleTableColumn, SimpleTableComponent, SimpleTableData } from '@delon/abc';
 import { FormGroup, FormBuilder, Validators } from '@angular/forms';
 import { UtilService } from '@shared/config/util-service';
 import { deepCopy } from '@delon/util';
-import { CustomModalWidget } from '@shared/json-schema/widgets/custom-modal/custom-modal.widget';
 
 @Component({
   selector: 'student-job',
@@ -22,20 +21,18 @@ export class StudentJobComponent implements OnInit {
   isDisable = true;
   data = [];
   name = '学生就业信息';
-  isImport = false;
+  moduleName = 'job';
 
   constructor(
     private fb: FormBuilder,
     public _msg: NzMessageService,
     private modalSrv: NzModalService,
     private _http: _HttpClient,
-    public _util: UtilService,
-    private xlsx: XlsxService,
-    private notification: NzNotificationService
+    public _util: UtilService
   ) {
   }
 
-  jobColumns: SimpleTableColumn[] = [
+  columns: SimpleTableColumn[] = [
     { title: '编号', index: 'jid', type: 'checkbox', fixed: 'left', width: '40px' },
     { title: '姓名', index: 'sname', fixed: 'left', width: '100px' },
     { title: '学号', index: 'sno', fixed: 'left', width: '120px' },
@@ -173,96 +170,6 @@ export class StudentJobComponent implements OnInit {
       this._msg.success('修改成功');
       this.stc.load();
     });
-  }
-
-  exportAll() {
-    const data = [this.jobColumns.map(i => i.exported !== false ? i.title : '')];
-    this.data.forEach(i =>
-      data.push(this.jobColumns.map(c => i[c.index as string])),
-    );
-    this.xlsx.export({
-      sheets: [
-        {
-          data: data,
-          name: '学生就业信息',
-        },
-      ],
-      filename: '学生就业信息.xlsx',
-    });
-  }
-
-  export() {
-    if (this.checkboxChangeList.length === 0 || this.checkboxChangeList.length > 1) {
-      this._msg.warning('请选择数据！');
-      return;
-    }
-    const data = [this.jobColumns.map(i => i.exported !== false ? i.title : '')];
-    this.checkboxChangeList.forEach(i =>
-      data.push(this.jobColumns.map(c => i[c.index as string])),
-    );
-    this.xlsx.export({
-      sheets: [
-        {
-          data: data,
-          name: name,
-        },
-      ],
-      filename: name + '.xlsx',
-    });
-  }
-
-  download() {
-    this._http.post('job/template', { ...this.vo }).subscribe((response: any) => {
-      const data = [response.data.map(i => i.title)];
-      this.xlsx.export({
-        sheets: [
-          {
-            data: data,
-            name: 'Sheet1',
-          },
-        ],
-        filename: this.name + '导入模板.xlsx',
-      });
-    });
-  }
-
-  import() {
-    this.isImport = !this.isImport;
-  }
-
-  change(e: Event) {
-    const node = e.target as HTMLInputElement;
-    this.xlsx.import(node.files[0]).then(res => {
-      // this.importData = res;
-      this._http.post('job/import', { ...res.Sheet1 }).subscribe((response: any) => {
-        this.modalSrv.create({
-          nzTitle: '预览',
-          nzContent: CustomModalWidget,
-          nzComponentParams: {
-            dataSet: response.data.listData,
-            columns: response.data.columns,
-          },
-          nzOkText: '确认导入',
-          nzWidth: 1200,
-          nzCancelText: '取消',
-          nzOnOk: () => {
-            this._http.get('job/saveImport', { ...res.Sheet1 }).subscribe((response: any) => {
-              if(response.code === 555){
-                this.notification.create('error', '错误信息', response.msg,{ nzDuration: 0 });
-              }
-              this.refreshData();
-              this.isImport = false;
-            });
-          },
-          nzOnCancel: () => {
-            this._http.get('job/cancelImport', { ...res.Sheet1 }).subscribe((response: any) => {
-
-            });
-          }
-        });
-      });
-    });
-    node.value = '';
   }
 
 }

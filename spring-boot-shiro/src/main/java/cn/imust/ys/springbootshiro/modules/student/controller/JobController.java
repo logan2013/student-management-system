@@ -51,7 +51,7 @@ public class JobController {
         return ControllerUtils.getSuccessMap(data);
     }
 
-    @PostMapping("template")
+    @GetMapping("template")
     public Map template(){
         List dt = jobService.getDownloadTemplate();
         return ControllerUtils.getSuccessMap(dt);
