@@ -18,6 +18,7 @@ import { NgxTinymceModule } from 'ngx-tinymce';
 import { StudentDetailComponent } from '@shared/student-detail';
 import { TeacherDetailComponent } from '@shared/teacher-detail';
 import { InputRefComponent } from '@shared/input-ref';
+import { ImportAndExportComponent } from '@shared/import-export';
 
 const THIRDMODULES = [
   NgZorroAntdModule,
@@ -31,7 +32,8 @@ const THIRDMODULES = [
 const COMPONENTS = [
   StudentDetailComponent,
   TeacherDetailComponent,
-  InputRefComponent
+  InputRefComponent,
+  ImportAndExportComponent
 ];
 const DIRECTIVES = [];
 // endregion
