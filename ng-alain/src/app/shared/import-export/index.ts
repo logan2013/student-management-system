@@ -1,5 +1,5 @@
 import { Component, Input } from '@angular/core';
-import { NzMessageService, NzModalService, NzNotificationService } from 'ng-zorro-antd';
+import { NzMessageService, NzModalService } from 'ng-zorro-antd';
 import { _HttpClient } from '@delon/theme';
 import { XlsxService } from '@delon/abc';
 import { CustomModalWidget } from '@shared/json-schema/widgets/custom-modal/custom-modal.widget';
@@ -16,10 +16,8 @@ export class ImportAndExportComponent {
   isImport = false;
 
   constructor(
-    private msg: NzMessageService,
     private _http: _HttpClient,
     private xlsx: XlsxService,
-    private notification: NzNotificationService,
     private modalSrv: NzModalService,
     private _msg: NzMessageService,
   ) {}
@@ -59,17 +57,13 @@ export class ImportAndExportComponent {
           nzWidth: 1200,
           nzCancelText: '取消',
           nzOnOk: () => {
-            this._http.get(this.moduleName + '/saveImport', { ...res.Sheet1 }).subscribe((response: any) => {
-              if(response.code === 555){
-                this.notification.create('error', '错误信息', response.msg,{ nzDuration: 0 });
-              }
+            this._http.get(this.moduleName + '/saveImport').subscribe((response: any) => {
               this.parentComponent.refreshData();
               this.isImport = false;
             });
           },
           nzOnCancel: () => {
-            this._http.get(this.moduleName + '/cancelImport', { ...res.Sheet1 }).subscribe((response: any) => {
-            });
+            this._http.get('student/cancelImport');
           }
         });
       });
