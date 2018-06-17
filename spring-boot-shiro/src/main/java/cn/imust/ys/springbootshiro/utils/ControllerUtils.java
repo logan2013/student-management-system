@@ -4,6 +4,9 @@ import java.util.HashMap;
 import java.util.Map;
 
 public class ControllerUtils {
+
+    private ControllerUtils(){}
+
     /**
      * 执行成功返回的 Map 有参
      * @param obj
