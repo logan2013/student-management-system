@@ -23,7 +23,7 @@ public class Punishment {
 	private String ptype;
 	@Column(columnDefinition=("varchar(255) default null comment '处分信息--> 发文号'"))	
 	private String pno;
-	@Column(columnDefinition=("varchar(255) default null comment '处分信息--> 收处分原因描述'"))
+	@Column(columnDefinition=("varchar(255) default null comment '处分信息--> 受处分原因描述'"))
 	private String info;
 	@Column(columnDefinition=("date default null comment '处分信息--> 解除处分时间'"))
 	private Date removeTime;

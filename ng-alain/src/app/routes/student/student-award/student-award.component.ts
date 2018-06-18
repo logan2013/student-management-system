@@ -19,6 +19,9 @@ export class StudentAwardComponent implements OnInit {
   vo = this.newVO();
   checkboxChangeList = [];
   isDisable = true;
+  data = [];
+  name = '学生获奖信息';
+  moduleName = 'award';
 
   constructor(
     private fb: FormBuilder,
@@ -29,7 +32,7 @@ export class StudentAwardComponent implements OnInit {
   ) {}
 
   columns: SimpleTableColumn[] = [
-    { title: '编号', index: 'aid.value', type: 'checkbox', fixed: 'left', width: '40px'},
+    { title: '编号', index: 'aid', type: 'checkbox', fixed: 'left', width: '40px'},
     { title: '姓名', index: 'sname' ,fixed: 'left', width: '100px'},
     { title: '学号', index: 'sno' ,fixed: 'left', width: '120px'},
     { title: '专业', index: 'majorName' },
@@ -41,6 +44,7 @@ export class StudentAwardComponent implements OnInit {
   ];
 
   ngOnInit() {
+    this.refreshData();
     this.form = this.fb.group({
       studentNum: [null, [Validators.required]],
       awardTime: [null, [Validators.required]],
@@ -99,14 +103,16 @@ export class StudentAwardComponent implements OnInit {
   save() {
     this._http.post('award/save', { ...this.vo }).subscribe((response: any) => {
       this._msg.success('保存成功');
-      this.stc.load();
+      // this.stc.load();
+      this.refreshData();
     });
   }
 
   delete(job: any) {
     this._http.post('award/delete', { ... job }).subscribe((response: any) => {
       this._msg.success('删除成功');
-      this.stc.load();
+      // this.stc.load();
+      this.refreshData();
     });
   }
 
@@ -142,7 +148,14 @@ export class StudentAwardComponent implements OnInit {
   edit(){
     this._http.post('award/update', { ...this.vo }).subscribe((response: any) => {
       this._msg.success('修改成功');
-      this.stc.load();
+      // this.stc.load();
+      this.refreshData();
+    });
+  }
+
+  refreshData(){
+    this._http.post('award/findAll').subscribe((response: any) => {
+      this.data = response.data;
     });
   }
 
