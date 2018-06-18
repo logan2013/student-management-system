@@ -1,41 +1,17 @@
 <page-header [title]="'学生信息列表'"></page-header>
 
 <nz-card [nzExtra]="extraRoleTemplate" *ngIf="view=='list'">
-  <nz-table #nzTable [nzData]="dataSet" [nzPageSize]="10"
-  >
-
-    <thead>
-    <tr>
-      <th nzWidth="120px" nzLeft="0px">学号</th>
-      <th nzWidth="100px" nzLeft="100px">姓名</th>
-      <th nzWidth="260px">班级全称</th>
-      <th>性别</th>
-      <th>宿舍号</th>
-      <th>联系电话</th>
-      <th>QQ 号</th>
-      <th>备注</th>
-    </tr>
-    </thead>
-    <tbody>
-    <tr *ngFor="let data of nzTable.data">
-      <td nzLeft="0px"><a (click)="detail(data)">{{data.sno}}</a></td>
-      <td nzLeft="100px">{{data.sname}}</td>
-      <td>{{data.sysClassAllName}}</td>
-      <td>{{data.gender}}</td>
-      <td>{{data.dorm}}</td>
-      <td>{{data.phoneNum}}</td>
-      <td>{{data.qqNum}}</td>
-      <td>{{data.remark}}</td>
-    </tr>
-    </tbody>
-  </nz-table>
-
+  <simple-table #stc [data]="data" [columns]="columns" [scroll]="{ x: '1400px' }"
+                [preDataChange]="dataChange" [resReName]="{ list: 'data' }"
+                (checkboxChange)="checkboxChange($event)">
+  </simple-table>
 </nz-card>
 
 <ng-template #extraRoleTemplate>
   <button nz-button nzSize="small" nzType="primary" (click)="add()" style="margin-right: 8px">
     <i class="anticon anticon-plus-square-o"></i>新增
   </button>
+  <import-export [name]="name" [moduleName]="moduleName" [parentComponent]="this"></import-export>
 </ng-template>
 
 <student-detail *ngIf="view=='studentDetail'" [student]="student" [parentComponent]="this"></student-detail>

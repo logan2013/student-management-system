@@ -37,7 +37,7 @@ public class Student {
     private String wechat;
     @Column(columnDefinition=("date default null comment '学生信息--> 出生日期'"))
     private Date birthday;
-    @Column(columnDefinition=("varchar(10) default null comment '学生信息--> 名族'"))
+    @Column(columnDefinition=("varchar(10) default null comment '学生信息--> 民族'"))
     private String nation;
     @Column(columnDefinition=("varchar(20) default null comment '学生信息--> 状态 表示的是学生的学籍状态，有“在校”，“休学”，“退学”，“降级”'"))
     private String status;// 状态 表示的是学生的学籍状态，有“在校”，“休学”，“退学”，“降级”

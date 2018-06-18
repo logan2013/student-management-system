@@ -4,7 +4,12 @@
 <button nz-button nzSize="small" nzType="primary" (click)="import()" style="margin-right: 8px">
   <i class="anticon anticon-file-add"></i>导入
 </button>
-<input *ngIf="isImport" type="file" (change)="change($event)" multiple="false" class="ml-sm" />
+<nz-cascader *ngIf="isImport && moduleName ==='student'" style="width: 260px"
+  [nzOptions]="nzOptions" [nzChangeOnSelect]="true" [nzShowArrow]="false" (nzSelect)="ngModelChange()"
+  [(ngModel)]="classId"
+>
+</nz-cascader>
+<input *ngIf="isImport" [disabled]="isDisabled" type="file" (change)="change($event)" multiple="false" class="ml-sm" />
 <nz-dropdown>
   <button nz-button nz-dropdown nzType="primary" nzSize="small">
     <i class="anticon anticon-export"></i>导出<i class="anticon anticon-down"></i></button>
