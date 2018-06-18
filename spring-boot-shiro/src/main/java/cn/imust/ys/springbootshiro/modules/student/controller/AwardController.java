@@ -59,7 +59,7 @@ public class AwardController {
         return ControllerUtils.getSuccessMap(dt);
     }
 
-    @GetMapping("saveImport")
+    @PostMapping("saveImport")
     public Map saveImport() {
         Map data = (Map) SessionUtils.getSession().getAttribute("data");
         awardService.batchSave((List) data.get("listData"));

@@ -56,7 +56,7 @@ public class PunishmentController {
         return ControllerUtils.getSuccessMap(dt);
     }
 
-    @GetMapping("saveImport")
+    @PostMapping("saveImport")
     public Map saveImport(){
         Map data = (Map)SessionUtils.getSession().getAttribute("data");
         punishmentService.batchSave((List)data.get("listData"));

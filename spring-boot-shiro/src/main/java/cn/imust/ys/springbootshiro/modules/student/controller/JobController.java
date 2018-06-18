@@ -60,7 +60,7 @@ public class JobController {
         return ControllerUtils.getSuccessMap(dt);
     }
 
-    @GetMapping("saveImport")
+    @PostMapping("saveImport")
     public Map saveImport() {
         Map data = (Map) SessionUtils.getSession().getAttribute("data");
         jobService.batchSave((List) data.get("listData"));
