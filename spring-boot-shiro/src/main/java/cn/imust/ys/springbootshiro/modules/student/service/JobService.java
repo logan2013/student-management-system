@@ -9,6 +9,8 @@ import cn.imust.ys.springbootshiro.utils.ImportUtils;
 import com.alibaba.fastjson.JSON;
 import com.alibaba.fastjson.JSONArray;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.data.domain.Example;
+import org.springframework.data.domain.ExampleMatcher;
 import org.springframework.stereotype.Service;
 
 import javax.transaction.Transactional;
@@ -22,6 +24,7 @@ public class JobService {
     private JobRepository jobRepository;
     @Autowired
     private StudentRepository studentRepository;
+    @Autowired private CommonService commonService;
 
     public void save(Job job) {
         String sno = job.getJobsno();
@@ -73,4 +76,32 @@ public class JobService {
         return templateMap;
     }
 
+    public List<Job> filter(String params) {
+        Student student = new Student();
+
+        Map<String, Object> paramsMap = JSON.parseObject(params, Map.class);
+        JSONArray classId = (JSONArray) paramsMap.get("classId");
+        commonService.swarpClass(student,classId);
+        String sno = (String) paramsMap.get("sno");
+        String sname = (String) paramsMap.get("sname");
+        String status = (String) paramsMap.get("status");
+        String jobMode = (String) paramsMap.get("jobMode");
+
+        student.setSno(sno);
+        student.setSname(sname);
+        student.setStatus(status);
+
+        Job job = new Job();
+        job.setStudent(student);
+        job.setMode(jobMode);
+
+        ExampleMatcher matcher = ExampleMatcher.matching()
+                .withMatcher("student.sname", ExampleMatcher.GenericPropertyMatchers.contains())
+                .withMatcher("student.sno", ExampleMatcher.GenericPropertyMatchers.contains());
+
+        Example<Job> ex = Example.of(job,matcher);
+
+        List<Job> all = jobRepository.findAll(ex);
+        return all;
+    }
 }

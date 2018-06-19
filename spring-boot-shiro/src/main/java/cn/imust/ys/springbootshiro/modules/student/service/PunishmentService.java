@@ -6,7 +6,11 @@ import cn.imust.ys.springbootshiro.modules.student.entity.Punishment;
 import cn.imust.ys.springbootshiro.modules.student.entity.Student;
 import cn.imust.ys.springbootshiro.modules.student.repository.PunishmentRepository;
 import cn.imust.ys.springbootshiro.modules.student.repository.StudentRepository;
+import com.alibaba.fastjson.JSON;
+import com.alibaba.fastjson.JSONArray;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.data.domain.Example;
+import org.springframework.data.domain.ExampleMatcher;
 import org.springframework.stereotype.Service;
 
 import java.util.LinkedHashMap;
@@ -18,6 +22,7 @@ public class PunishmentService {
 
     @Autowired private PunishmentRepository punishmentRepository;
     @Autowired private StudentRepository studentRepository;
+    @Autowired private CommonService commonService;
 
     public void update(Punishment punishment) {
         String sno = punishment.getStudentNum();
@@ -69,4 +74,34 @@ public class PunishmentService {
         return templateMap;
     }
 
+    public List<Punishment> filter(String params) {
+        Student student = new Student();
+
+        Map<String, Object> paramsMap = JSON.parseObject(params, Map.class);
+        JSONArray classId = (JSONArray) paramsMap.get("classId");
+        commonService.swarpClass(student,classId);
+        String sno = (String) paramsMap.get("sno");
+        String sname = (String) paramsMap.get("sname");
+        String status = (String) paramsMap.get("status");
+        String ptype = (String) paramsMap.get("ptype");
+        String ptime = (String) paramsMap.get("ptime");
+
+        student.setSno(sno);
+        student.setSname(sname);
+        student.setStatus(status);
+
+        Punishment punishment = new Punishment();
+        punishment.setStudent(student);
+        punishment.setPtype(ptype);
+        punishment.setPtime(ptime);
+
+        ExampleMatcher matcher = ExampleMatcher.matching()
+                .withMatcher("student.sname", ExampleMatcher.GenericPropertyMatchers.contains())
+                .withMatcher("student.sno", ExampleMatcher.GenericPropertyMatchers.contains());
+
+        Example<Punishment> ex = Example.of(punishment,matcher);
+
+        List<Punishment> all = punishmentRepository.findAll(ex);
+        return all;
+    }
 }

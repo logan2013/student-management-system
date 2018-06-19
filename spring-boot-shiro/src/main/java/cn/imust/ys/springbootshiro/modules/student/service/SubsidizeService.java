@@ -6,7 +6,11 @@ import cn.imust.ys.springbootshiro.modules.student.entity.Student;
 import cn.imust.ys.springbootshiro.modules.student.entity.Subsidize;
 import cn.imust.ys.springbootshiro.modules.student.repository.StudentRepository;
 import cn.imust.ys.springbootshiro.modules.student.repository.SubsidizeRepository;
+import com.alibaba.fastjson.JSON;
+import com.alibaba.fastjson.JSONArray;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.data.domain.Example;
+import org.springframework.data.domain.ExampleMatcher;
 import org.springframework.stereotype.Service;
 
 import java.util.LinkedHashMap;
@@ -16,13 +20,16 @@ import java.util.Map;
 @Service
 public class SubsidizeService {
 
-    @Autowired private SubsidizeRepository subsidizeRepository;
-    @Autowired private StudentRepository studentRepository;
+    @Autowired
+    private SubsidizeRepository subsidizeRepository;
+    @Autowired
+    private StudentRepository studentRepository;
+    @Autowired private CommonService commonService;
 
     public void save(Subsidize subsidize) {
         String sno = subsidize.getStudentNum();
         Student bySno = studentRepository.findBySno(sno);
-        if(bySno !=null){
+        if (bySno != null) {
             subsidize.setStudent(bySno);
             subsidizeRepository.save(subsidize);
         }
@@ -31,7 +38,7 @@ public class SubsidizeService {
     public void update(Subsidize subsidize) {
         String sno = subsidize.getStudentNum();
         Student bySno = studentRepository.findBySno(sno);
-        if(bySno !=null){
+        if (bySno != null) {
             subsidize.setStudent(bySno);
             subsidizeRepository.saveAndFlush(subsidize);
         }
@@ -65,5 +72,36 @@ public class SubsidizeService {
         templateMap.put("获得资助的详细情况", "info");
         templateMap.put("获得资助的时间", "stime");
         return templateMap;
+    }
+
+    public List<Subsidize> filterc(String params) {
+        Student student = new Student();
+
+        Map<String, Object> paramsMap = JSON.parseObject(params, Map.class);
+        JSONArray classId = (JSONArray) paramsMap.get("classId");
+        commonService.swarpClass(student,classId);
+        String sno = (String) paramsMap.get("sno");
+        String sname = (String) paramsMap.get("sname");
+        String stype = (String) paramsMap.get("stype");
+        String stime = (String) paramsMap.get("stime");
+        String slevel = (String) paramsMap.get("slevel");
+
+        student.setSno(sno);
+        student.setSname(sname);
+
+        Subsidize subsidize = new Subsidize();
+        subsidize.setStudent(student);
+        subsidize.setStime(stime);
+        subsidize.setType(stype);
+        subsidize.setLevel(slevel);
+
+        ExampleMatcher matcher = ExampleMatcher.matching()
+                .withMatcher("student.sname", ExampleMatcher.GenericPropertyMatchers.contains())
+                .withMatcher("student.sno", ExampleMatcher.GenericPropertyMatchers.contains());
+
+        Example<Subsidize> ex = Example.of(subsidize, matcher);
+
+        List<Subsidize> all = subsidizeRepository.findAll(ex);
+        return all;
     }
 }

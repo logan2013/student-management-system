@@ -1,12 +1,17 @@
 package cn.imust.ys.springbootshiro.modules.student.service;
 
 import cn.imust.ys.springbootshiro.exception.CustomException;
-import cn.imust.ys.springbootshiro.modules.student.entity.Job;
 import cn.imust.ys.springbootshiro.modules.student.entity.Student;
 import cn.imust.ys.springbootshiro.modules.student.repository.StudentRepository;
 import cn.imust.ys.springbootshiro.modules.system.entity.SysClass;
 import cn.imust.ys.springbootshiro.modules.system.repository.SysClassRepository;
+import cn.imust.ys.springbootshiro.modules.teacher.entity.Teacher;
+import cn.imust.ys.springbootshiro.modules.teacher.repository.TeacherRepository;
+import com.alibaba.fastjson.JSON;
+import com.alibaba.fastjson.JSONArray;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.data.domain.Example;
+import org.springframework.data.domain.ExampleMatcher;
 import org.springframework.stereotype.Service;
 
 import java.util.LinkedHashMap;
@@ -18,6 +23,8 @@ public class StudentService {
 
     @Autowired private StudentRepository studentRepository;
     @Autowired private SysClassRepository sysClassRepository;
+    @Autowired private TeacherRepository teacherRepository;
+    @Autowired private CommonService commonService;
 
     public void save(Student student){
         studentRepository.save(student);
@@ -80,6 +87,37 @@ public class StudentService {
         templateMap.put("在校状态", "status");
         templateMap.put("政治面貌", "politicalStatus");
         return templateMap;
+    }
+
+    public List<Student> filter(String params) {
+
+        Student student = new Student();
+
+        Map<String, Object> paramsMap = JSON.parseObject(params, Map.class);
+        JSONArray classId = (JSONArray) paramsMap.get("classId");
+        commonService.swarpClass(student,classId);
+        String sno = (String) paramsMap.get("sno");
+        String sname = (String) paramsMap.get("sname");
+        String status = (String) paramsMap.get("status");
+        String politicalStatus = (String) paramsMap.get("politicalStatus");
+
+        student.setSno(sno);
+        student.setSname(sname);
+        student.setStatus(status);
+        student.setPoliticalStatus(politicalStatus);
+        Integer tid = (Integer) paramsMap.get("tid");
+        if(tid !=null){
+            Teacher one = teacherRepository.findOne(tid);
+            student.setSysClass(new SysClass(one));
+        }
+
+        ExampleMatcher matcher = ExampleMatcher.matching()
+                .withMatcher("sname", ExampleMatcher.GenericPropertyMatchers.contains())
+                .withMatcher("sno", ExampleMatcher.GenericPropertyMatchers.contains());
+
+        Example<Student> ex = Example.of(student,matcher);
+        List<Student> all = studentRepository.findAll(ex);
+        return all;
     }
 }
 
