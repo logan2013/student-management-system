@@ -19,6 +19,7 @@ import { StudentDetailComponent } from '@shared/student-detail';
 import { TeacherDetailComponent } from '@shared/teacher-detail';
 import { InputRefComponent } from '@shared/input-ref';
 import { ImportAndExportComponent } from '@shared/import-export';
+import { DataFilterComponent } from '@shared/data-filter';
 
 const THIRDMODULES = [
   NgZorroAntdModule,
@@ -33,7 +34,8 @@ const COMPONENTS = [
   StudentDetailComponent,
   TeacherDetailComponent,
   InputRefComponent,
-  ImportAndExportComponent
+  ImportAndExportComponent,
+  DataFilterComponent
 ];
 const DIRECTIVES = [];
 // endregion

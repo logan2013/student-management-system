@@ -1,0 +1,136 @@
+<form nz-form [nzLayout]="'inline'" (ngSubmit)="getData()" class="search__form" [formGroup]="form">
+  <nz-row [nzGutter]="{ md: 8, lg: 24, xl: 48 }">
+    <nz-col nzMd="8" nzSm="24">
+      <nz-form-item>
+        <nz-form-label nzFor="no">所在班级</nz-form-label>
+        <nz-form-control>
+          <nz-cascader
+                       [nzOptions]="nzOptions" [nzChangeOnSelect]="true" [nzShowArrow]="false"
+                       [(ngModel)]="vo.classId" formControlName="classId"
+          >
+          </nz-cascader>
+        </nz-form-control>
+      </nz-form-item>
+    </nz-col>
+    <nz-col nzMd="8" nzSm="24">
+      <nz-form-item>
+        <nz-form-label nzFor="sno">学生学号</nz-form-label>
+        <nz-form-control>
+          <input nz-input id="sno" [(ngModel)]="vo.sno" formControlName="sno">
+        </nz-form-control>
+      </nz-form-item>
+    </nz-col>
+    <nz-col nzMd="8" nzSm="24" *ngIf="expandForm">
+      <nz-form-item>
+        <nz-form-label nzFor="sno">学生姓名</nz-form-label>
+        <nz-form-control>
+          <input nz-input [(ngModel)]="vo.sname" formControlName="sname">
+        </nz-form-control>
+      </nz-form-item>
+    </nz-col>
+    <nz-col nzMd="8" nzSm="24" *ngIf="expandForm">
+      <nz-form-item *ngIf="name != 'subsidize'">
+        <nz-form-label nzFor="status">学生状态</nz-form-label>
+        <nz-form-control>
+          <nz-select [nzPlaceHolder]="'请选择'" [compareWith]="_util.myCompareFn" [(ngModel)]="vo.status" formControlName="status">
+            <nz-option *ngFor="let option of _util._enum.status"
+                       [nzLabel]="option.name" [nzValue]="option.name"></nz-option>
+          </nz-select>
+        </nz-form-control>
+      </nz-form-item>
+      <nz-form-item *ngIf="name == 'subsidize'">
+        <nz-form-label nzFor="status">受助年度</nz-form-label>
+        <nz-form-control>
+          <nz-select [nzPlaceHolder]="'请选择'" [compareWith]="_util.myCompareFn" [(ngModel)]="vo.stime" formControlName="stime">
+            <nz-option *ngFor="let option of stimes"
+                       [nzLabel]="option" [nzValue]="option"></nz-option>
+          </nz-select>
+        </nz-form-control>
+      </nz-form-item>
+    </nz-col>
+    <nz-col nzMd="8" nzSm="24" *ngIf="expandForm">
+      <nz-form-item *ngIf="name == 'student'">
+        <nz-form-label nzFor="politicalStatus">政治面貌</nz-form-label>
+        <nz-form-control>
+          <nz-select [compareWith]="_util.myCompareFn" [(ngModel)]="vo.politicalStatus" formControlName="politicalStatus">
+            <nz-option *ngFor="let option of _util._enum.politicalStatus"
+                       [nzLabel]="option.name" [nzValue]="option.name"></nz-option>
+          </nz-select>
+        </nz-form-control>
+      </nz-form-item>
+      <nz-form-item *ngIf="name == 'award'">
+        <nz-form-label nzFor="tid">获奖时间</nz-form-label>
+        <nz-form-control>
+          <nz-select [compareWith]="_util.myCompareFn" [(ngModel)]="vo.awardTime" formControlName="awardTime">
+            <nz-option *ngFor="let option of atimes"
+                       [nzLabel]="option" [nzValue]="option"></nz-option>
+          </nz-select>
+        </nz-form-control>
+      </nz-form-item>
+      <nz-form-item *ngIf="name == 'job'">
+        <nz-form-label nzFor="politicalStatus">就业方式</nz-form-label>
+        <nz-form-control>
+          <nz-select [compareWith]="_util.myCompareFn" [(ngModel)]="vo.jobMode" formControlName="jobMode">
+            <nz-option *ngFor="let option of _util._enum.jobMode"
+                       [nzLabel]="option.name" [nzValue]="option.name"></nz-option>
+          </nz-select>
+        </nz-form-control>
+      </nz-form-item>
+      <nz-form-item *ngIf="name == 'punishment'">
+        <nz-form-label nzFor="politicalStatus">违纪种类</nz-form-label>
+        <nz-form-control>
+          <nz-select [compareWith]="_util.myCompareFn" [(ngModel)]="vo.ptype" formControlName="ptype">
+            <nz-option *ngFor="let option of _util._enum.ptype"
+                       [nzLabel]="option.name" [nzValue]="option.name"></nz-option>
+          </nz-select>
+        </nz-form-control>
+      </nz-form-item>
+      <nz-form-item *ngIf="name == 'subsidize'">
+        <nz-form-label nzFor="politicalStatus">资助等级</nz-form-label>
+        <nz-form-control>
+          <nz-select [compareWith]="_util.myCompareFn" [(ngModel)]="vo.slevel" formControlName="slevel">
+            <nz-option *ngFor="let option of _util._enum.slevel"
+                       [nzLabel]="option.name" [nzValue]="option.name"></nz-option>
+          </nz-select>
+        </nz-form-control>
+      </nz-form-item>
+    </nz-col>
+    <nz-col nzMd="8" nzSm="24" *ngIf="expandForm">
+      <nz-form-item *ngIf="name == 'student'">
+        <nz-form-label nzFor="tid">带班老师</nz-form-label>
+        <nz-form-control>
+          <nz-select [compareWith]="_util.myCompareFn" [(ngModel)]="vo.tid" formControlName="tid">
+            <nz-option *ngFor="let option of teachers"
+                       [nzLabel]="option.tname" [nzValue]="option.tid"></nz-option>
+          </nz-select>
+        </nz-form-control>
+      </nz-form-item>
+      <nz-form-item *ngIf="name == 'subsidize'">
+        <nz-form-label nzFor="politicalStatus">资助类型</nz-form-label>
+        <nz-form-control>
+          <nz-select [compareWith]="_util.myCompareFn" [(ngModel)]="vo.stype" formControlName="stype">
+            <nz-option *ngFor="let option of _util._enum.stype"
+                       [nzLabel]="option.name" [nzValue]="option.name"></nz-option>
+          </nz-select>
+        </nz-form-control>
+      </nz-form-item>
+      <nz-form-item *ngIf="name == 'punishment'">
+        <nz-form-label nzFor="politicalStatus">违纪时间</nz-form-label>
+        <nz-form-control>
+          <nz-select [compareWith]="_util.myCompareFn" [(ngModel)]="vo.ptime" formControlName="ptime">
+            <nz-option *ngFor="let option of ptimes"
+                       [nzLabel]="option" [nzValue]="option"></nz-option>
+          </nz-select>
+        </nz-form-control>
+      </nz-form-item>
+    </nz-col>
+    <nz-col [nzSpan]="expandForm ? 24 : 8" [class.text-right]="expandForm">
+      <button nz-button type="submit" [nzType]="'primary'" [nzLoading]="loading">查询</button>
+      <button nz-button type="reset" (click)="getData()" class="mx-sm">重置</button>
+      <a (click)="expandForm=!expandForm">
+        {{expandForm ? '收起' : '展开'}}
+        <i class="anticon" [class.anticon-down]="!expandForm" [class.anticon-up]="expandForm"></i>
+      </a>
+    </nz-col>
+  </nz-row>
+</form>
