@@ -17,7 +17,7 @@ public class Award {
 	@Id @GeneratedValue
 	private Integer aid; // 表的主键 id
 	@Column(columnDefinition=("date default null comment '获奖信息--> 获奖时间'"))
-	private Date awardTime;
+	private String awardTime;
 	@Column(columnDefinition=("varchar(255) default null comment '获奖信息--> 获奖详情'"))
 	private String info;
 
@@ -36,11 +36,11 @@ public class Award {
 		this.aid = aid;
 	}
 
-	public Date getAwardTime() {
+	public String getAwardTime() {
 		return awardTime;
 	}
 
-	public void setAwardTime(Date awardTime) {
+	public void setAwardTime(String awardTime) {
 		this.awardTime = awardTime;
 	}
 
@@ -62,13 +62,6 @@ public class Award {
 
 	public Award() {
 		super();
-	}
-
-	public Award(Date awardTime, String info, Student student) {
-		super();
-		this.awardTime = awardTime;
-		this.info = info;
-		this.student = student;
 	}
 
 	public String getStudentNum() {

@@ -18,7 +18,7 @@ public class Subsidize {
 	private Integer sid;  //资助情况主键 id
 	
 	@Column(columnDefinition=("date default null comment '资助信息--> 获得资助的时间'"))
-	private Date stime;
+	private String stime;
 	@Column(columnDefinition=("varchar(255) default null comment '资助信息--> 获得资助的详细情况'"))
 	private String info;
 	@Column(columnDefinition=("varchar(255) default null comment '资助信息--> 受助类型'"))
@@ -37,15 +37,6 @@ public class Subsidize {
 		super();
 	}
 
-	public Subsidize(Date stime, String info, String type, String level, Student student) {
-		super();
-		this.stime = stime;
-		this.info = info;
-		this.type = type;
-		this.level = level;
-		this.student = student;
-	}
-
 	public Integer getSid() {
 		return sid;
 	}
@@ -54,11 +45,11 @@ public class Subsidize {
 		this.sid = sid;
 	}
 
-	public Date getStime() {
+	public String getStime() {
 		return stime;
 	}
 
-	public void setStime(Date stime) {
+	public void setStime(String stime) {
 		this.stime = stime;
 	}
 

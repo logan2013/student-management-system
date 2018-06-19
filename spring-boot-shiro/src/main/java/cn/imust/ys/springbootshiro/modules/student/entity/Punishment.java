@@ -18,7 +18,7 @@ public class Punishment {
 	private Integer pid; // 处分信息表的主键 ID
 	
 	@Column(columnDefinition=("date default null comment '处分信息--> 处分时间'"))
-	private Date ptime;
+	private String ptime;
 	@Column(columnDefinition=("varchar(255) default null comment '处分信息--> 处分种类'"))
 	private String ptype;
 	@Column(columnDefinition=("varchar(255) default null comment '处分信息--> 发文号'"))	
@@ -41,12 +41,15 @@ public class Punishment {
 	public void setPid(Integer pid) {
 		this.pid = pid;
 	}
-	public Date getPtime() {
+
+	public String getPtime() {
 		return ptime;
 	}
-	public void setPtime(Date ptime) {
+
+	public void setPtime(String ptime) {
 		this.ptime = ptime;
 	}
+
 	public String getPtype() {
 		return ptype;
 	}
@@ -79,15 +82,6 @@ public class Punishment {
 	}
 	public Punishment() {
 		super();
-	}
-	public Punishment(Date ptime, String ptype, String pno, String info, Date removeTime, Student student) {
-		super();
-		this.ptime = ptime;
-		this.ptype = ptype;
-		this.pno = pno;
-		this.info = info;
-		this.removeTime = removeTime;
-		this.student = student;
 	}
 
 	public String getStudentNum() {
