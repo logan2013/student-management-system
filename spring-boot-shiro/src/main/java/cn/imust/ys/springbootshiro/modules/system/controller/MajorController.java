@@ -81,14 +81,14 @@ public class MajorController {
         if (majors != null && majors.size() > 0) {
             for (Major major : majors) {
                 map = new HashMap();
-                map.put("value", major.getId());
+                map.put("value", major.getName());
                 map.put("label", major.getName());
                 Set<Grade> grades = major.getGrades();
                 if (grades != null && grades.size() > 0) {
                     majorChildrens = new ArrayList();
                     for (Grade grade : grades) {
                         hmap = new HashMap();
-                        hmap.put("value", grade.getId());
+                        hmap.put("value", grade.getName());
                         hmap.put("label", grade.getName());
                         Set<SysClass> sysClazz = grade.getSysClazz();
                         if (sysClazz != null && sysClazz.size() > 0) {
