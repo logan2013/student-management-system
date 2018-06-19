@@ -2,6 +2,7 @@ package cn.imust.ys.springbootshiro.modules.permission.controller;
 
 import cn.imust.ys.springbootshiro.modules.permission.entity.User;
 import cn.imust.ys.springbootshiro.modules.permission.service.UserService;
+import cn.imust.ys.springbootshiro.modules.teacher.entity.Teacher;
 import cn.imust.ys.springbootshiro.utils.ControllerUtils;
 import cn.imust.ys.springbootshiro.utils.SessionUtils;
 import com.alibaba.fastjson.JSON;
@@ -20,9 +21,6 @@ import java.util.Map;
 @RequestMapping("/user")
 public class UserController {
 
-    @Autowired
-    private UserService userService;
-
     @RequestMapping("/login")
     public Map login(@RequestBody String params) {
         Map<String, Object> paramsMap = JSON.parseObject(params, Map.class);
@@ -32,13 +30,13 @@ public class UserController {
         Subject subject = SecurityUtils.getSubject();
         try {
             subject.login(token);
-            User user = (User) subject.getPrincipal();
+            Teacher teacher = (Teacher) subject.getPrincipal();
             HttpSession session = SessionUtils.getSession();
-            session.setAttribute("user", user);
+            session.setAttribute("user", teacher);
             Map map = new HashMap();
             map.put("code", 200);
             map.put("msg", "登陆成功");
-            map.put("data", user);
+            map.put("data", teacher);
             map.put("sessionID", session.getId());
             return map;
         } catch (Exception e) {
