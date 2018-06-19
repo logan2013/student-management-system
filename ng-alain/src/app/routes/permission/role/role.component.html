@@ -1,4 +1,6 @@
-<nz-card nzTitle="角色管理" [nzExtra]="extraRoleTemplate">
+<page-header [title]="'角色管理'"></page-header>
+
+<nz-card [nzExtra]="extraRoleTemplate">
   <simple-table #stc [data]="url" [columns]="roleColumns"
                 [preDataChange]="dataChange" [resReName]="{list: 'data' }"
                 (checkboxChange)="checkboxChange($event)">
