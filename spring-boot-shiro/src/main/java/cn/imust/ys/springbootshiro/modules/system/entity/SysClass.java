@@ -39,6 +39,10 @@ public class SysClass {
 	@Cascade(org.hibernate.annotations.CascadeType.SAVE_UPDATE)//使用hibernate注解级联保存和更新
 	private Set<TeacherWithClass> withClassSet = new HashSet<>(0);
 
+	public SysClass(Teacher teacher) {
+		this.teacher = teacher;
+	}
+
 	public Integer getScid() {
 		return scid;
 	}
