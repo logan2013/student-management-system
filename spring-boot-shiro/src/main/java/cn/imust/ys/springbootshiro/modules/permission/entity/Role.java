@@ -1,5 +1,6 @@
 package cn.imust.ys.springbootshiro.modules.permission.entity;
 
+import cn.imust.ys.springbootshiro.modules.teacher.entity.Teacher;
 import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 import org.hibernate.annotations.Cascade;
 
@@ -34,7 +35,7 @@ public class Role implements Serializable {
 
     @ManyToMany(mappedBy = "roles")
     @Cascade(org.hibernate.annotations.CascadeType.SAVE_UPDATE)//使用hibernate注解级联保存和更新
-    private Set<User> users = new HashSet<>();
+    private Set<Teacher> teachers = new HashSet<>();
 
     public Integer getRid() {
         return rid;
@@ -60,12 +61,12 @@ public class Role implements Serializable {
         this.permissions = permissions;
     }
 
-    public Set<User> getUsers() {
-        return users;
+    public Set<Teacher> getTeachers() {
+        return teachers;
     }
 
-    public void setUsers(Set<User> users) {
-        this.users = users;
+    public void setTeachers(Set<Teacher> teachers) {
+        this.teachers = teachers;
     }
 
     public Date getCreateTime() {

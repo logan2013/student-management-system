@@ -1,8 +1,14 @@
 package cn.imust.ys.springbootshiro.modules.teacher.entity;
 
+import cn.imust.ys.springbootshiro.modules.permission.entity.Role;
 import cn.imust.ys.springbootshiro.modules.system.entity.SysClass;
+import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
+import org.hibernate.annotations.Cascade;
 
+import java.io.Serializable;
 import java.util.Date;
+import java.util.HashSet;
+import java.util.Set;
 
 import javax.persistence.*;
 
@@ -11,7 +17,8 @@ import javax.persistence.*;
  * */
 @Entity
 @Table(name = "ys_teacher")
-public class Teacher {
+@JsonIgnoreProperties(value={"roles","sysClass"})
+public class Teacher implements Serializable {
 	@Id @GeneratedValue
 	private Integer tid; 
 //	@Column(columnDefinition=("varchar(50) default null comment '老师信息--> 职工号'"))
@@ -36,6 +43,16 @@ public class Teacher {
 	private String dept;
 //	@Column(columnDefinition=("date default null comment '老师信息--> 参加工作时间'"))
 	private Date inTime;
+
+	@Column(length=50)
+	private String password;
+
+	@ManyToMany(fetch=FetchType.EAGER)
+	@Cascade({org.hibernate.annotations.CascadeType.SAVE_UPDATE})//使用hibernate注解级联保存和更新
+	@JoinTable(name = "teacher_role",
+			joinColumns = {@JoinColumn(name = "teacher_id")},//JoinColumns定义本方在中间表的主键映射
+			inverseJoinColumns = {@JoinColumn(name = "role_id")})//inverseJoinColumns定义另一在中间表的主键映射
+	private Set<Role> roles = new HashSet<>();
 
 	@ManyToOne(targetEntity=SysClass.class)
 	// ,columnDefinition=("int default null comment '资助信息--> 添加学生外键列'")
@@ -122,5 +139,20 @@ public class Teacher {
 	public Teacher() {
 		super();
 	}
-	
+
+	public String getPassword() {
+		return password;
+	}
+
+	public void setPassword(String password) {
+		this.password = password;
+	}
+
+	public Set<Role> getRoles() {
+		return roles;
+	}
+
+	public void setRoles(Set<Role> roles) {
+		this.roles = roles;
+	}
 }
