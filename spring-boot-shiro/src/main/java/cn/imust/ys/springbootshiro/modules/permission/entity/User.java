@@ -9,8 +9,8 @@ import javax.persistence.*;
 import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 import org.hibernate.annotations.Cascade;
 
-@Entity
-@Table(name="auth_user")
+//@Entity
+//@Table(name="auth_user")
 @JsonIgnoreProperties(value={"roles"})
 public class User implements Serializable {
 
