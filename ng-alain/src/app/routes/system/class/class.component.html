@@ -29,6 +29,8 @@
         <span *ngIf="editStatus == 0" nz-form-control>
           <nz-cascader
             [nzOptions]="nzOptions"
+            [nzAllowClear]="false"
+            (ngModelChange)="majorGradeChange($event)"
             [(ngModel)]="vo.classGradeId">
           </nz-cascader>
         </span>
@@ -37,14 +39,18 @@
         <span *ngIf="editStatus == 1">{{ vo.name }}</span>
         <span *ngIf="editStatus == 0" nz-form-control>
           <input nz-input type="hidden" [(ngModel)]="vo.id">
-          <input nz-input [(ngModel)]="vo.name" placeholder="请输入班级名称">
+          <nz-select [nzPlaceHolder]="'请选择班级名称'" style="width: 120px" [compareWith]="_util.myCompareFn"
+                     [(ngModel)]="vo.name" (ngModelChange)="changeName()">
+            <nz-option *ngFor="let option of _util._enum.clazz"
+                       [nzLabel]="option.name" [nzValue]="option.name"></nz-option>
+          </nz-select>
         </span>
       </td>
       <td>
         <span *ngIf="editStatus == 1">{{ vo.allName }}</span>
         <span *ngIf="editStatus == 0" nz-form-control>
           <input nz-input type="hidden" [(ngModel)]="vo.scid">
-          <input nz-input [(ngModel)]="vo.allName" placeholder="请输入班级全名">
+          <input nz-input [(ngModel)]="vo.allName" disabled>
         </span>
       </td>
       <td>

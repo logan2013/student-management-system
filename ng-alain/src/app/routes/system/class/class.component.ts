@@ -1,6 +1,9 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, ViewChild } from '@angular/core';
 import { NzMessageService } from 'ng-zorro-antd';
 import { _HttpClient } from '@delon/theme';
+import { UtilService } from '@shared/config/util-service';
+import { SimpleTableComponent } from '@delon/abc';
+import { NzCascaderComponent } from 'ng-zorro-antd/src/cascader/nz-cascader.component';
 
 @Component({
   selector: 'system-class',
@@ -15,10 +18,12 @@ export class ClassComponent implements OnInit {
   vo = this.newVO();
   nzOptions = [];
   values: any;
+  majorGrade;
 
   constructor(
     public _msg: NzMessageService,
-    private _http: _HttpClient
+    private _http: _HttpClient,
+    private _util: UtilService
   ) {}
 
   ngOnInit(): void {
@@ -71,6 +76,19 @@ export class ClassComponent implements OnInit {
     this.editStatus = 0;
     this.vo = data;
     this.vo.classGradeId = data.classGradeId;
+  }
+
+  changeName(){
+    this.vo.allName = (this.majorGrade ? this.majorGrade + '-': '') + (this.vo.name ? this.vo.name : '');
+  }
+
+  majorGradeChange(values: any){
+    this.vo.allName = this.vo.classGradeId + this.vo.name;
+    let id = values[values.length - 1];
+    this._http.post('grade/findOne', { id: id }).subscribe((response: any) => {
+      this.majorGrade = response.majorName + '-' + response.name;
+      this.vo.allName = this.majorGrade + '-' + (this.vo.name ? this.vo.name : '');
+    });
   }
 
 }
