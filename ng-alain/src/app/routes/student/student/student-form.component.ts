@@ -5,6 +5,7 @@ import { SimpleTableColumn } from '@delon/abc';
 import { FormGroup, FormBuilder, Validators, FormArray } from '@angular/forms';
 import { Router } from '@angular/router';
 import { UtilService } from '@shared/config/util-service';
+import { isIdCard, isMobile } from '@delon/util';
 
 @Component({
   selector: 'student-form',

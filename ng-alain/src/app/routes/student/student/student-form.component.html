@@ -35,7 +35,7 @@
           <nz-form-label>性别</nz-form-label>
           <nz-form-control>
             <nz-select [(ngModel)]="vo.gender" [compareWith]="_util.myCompareFn" formControlName="gender">
-              <nz-option *ngFor="let option of _util._enum.gender" [nzLabel]="option.name" [nzValue]="option"></nz-option>
+              <nz-option *ngFor="let option of _util._enum.gender" [nzLabel]="option.name" [nzValue]="option.name"></nz-option>
             </nz-select>
           </nz-form-control>
         </nz-form-item>
