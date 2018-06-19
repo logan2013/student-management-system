@@ -50,11 +50,6 @@
               "text": "Settings",
               "link": "/permission/permission",
               "i18n": "permission"
-            },
-            {
-              "text": "Settings",
-              "link": "/extras/settings",
-              "i18n": "settings"
             }
           ]
         }
@@ -159,6 +154,11 @@
               "text": "老师录入表单",
               "link": "/teacher/teacher-form",
               "i18n": "teacher-form"
+            },
+            {
+              "text": "Settings",
+              "link": "/teacher/teacher-setting",
+              "i18n": "settings"
             }
           ]
         }
