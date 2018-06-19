@@ -1,0 +1,176 @@
+<nz-row [nzGutter]="24" class="py-lg">
+  <nz-col [nzSpan]="6">
+    <nz-card nzTitle="个人设置" class="ant-card__body-nopadding">
+      <a (click)="active=1" class="d-block py-sm px-md" [ngClass]="{'bg-primary-light text-white':active===1}">个人信息</a>
+      <a (click)="active=2" class="d-block py-sm px-md" [ngClass]="{'bg-primary-light text-white':active===2}">设置密码</a>
+    </nz-card>
+    <nz-card nzTitle="带班信息" class="ant-card__body-nopadding">
+      <a (click)="active=3" class="d-block py-sm px-md"
+         [ngClass]="{'bg-primary-light text-white':active===3}">所带班级设置</a>
+      <a (click)="active=4" class="d-block py-sm px-md" [ngClass]="{'bg-primary-light text-white':active===4}">带班历程</a>
+    </nz-card>
+  </nz-col>
+  <nz-col [nzSpan]="18">
+    <nz-card nzTitle="个人资料" *ngIf="active===1">
+      <nz-row [nzGutter]="64">
+        <nz-col [nzSpan]="16">
+          <form nz-form [formGroup]="profileForm" (ngSubmit)="profileSave($event, profileForm.value)"
+                [nzLayout]="'vertical'">
+            <nz-form-item>
+              <nz-form-label nzFor="name" nzRequired>姓名</nz-form-label>
+              <nz-form-control>
+                <input nz-input [(ngModel)]="vo.tname" formControlName="tname" placeholder="请输入老师姓名">
+              </nz-form-control>
+            </nz-form-item>
+            <nz-form-item>
+              <nz-form-label nzFor="email">手机号</nz-form-label>
+              <nz-form-control>
+                <input nz-input [(ngModel)]="vo.phoneNum" formControlName="phoneNum" placeholder="请输入老师手机号码">
+              </nz-form-control>
+            </nz-form-item>
+            <nz-form-item>
+              <nz-form-label nzFor="url">职称</nz-form-label>
+              <nz-form-control>
+                <input nz-input [(ngModel)]="vo.title" formControlName="title" placeholder="请输入职称">
+              </nz-form-control>
+            </nz-form-item>
+            <nz-form-item>
+              <nz-form-label nzFor="url">学历</nz-form-label>
+              <nz-form-control>
+                <nz-select [(ngModel)]="vo.schooling" [compareWith]="_util.myCompareFn" formControlName="schooling">
+                  <nz-option *ngFor="let option of _util._enum.schooling" [nzLabel]="option.name"
+                             [nzValue]="option.name"></nz-option>
+                </nz-select>
+              </nz-form-control>
+            </nz-form-item>
+            <nz-form-item>
+              <nz-form-label nzFor="url">政治面貌</nz-form-label>
+              <nz-form-control>
+                <nz-select [(ngModel)]="vo.politicalStatus" [compareWith]="_util.myCompareFn"
+                           formControlName="politicalStatus">
+                  <nz-option *ngFor="let option of _util._enum.politicalStatus" [nzLabel]="option.name"
+                             [nzValue]="option.name"></nz-option>
+                </nz-select>
+              </nz-form-control>
+            </nz-form-item>
+            <nz-form-item class="border-top-1 mt-md pt-md">
+              <nz-form-label nzFor="location">所在部门</nz-form-label>
+              <nz-form-control>
+                <input nz-input [(ngModel)]="vo.dept" formControlName="dept" placeholder="请输入所在部门">
+              </nz-form-control>
+            </nz-form-item>
+            <nz-form-item>
+              <nz-form-control>
+                <button nz-button [nzType]="'primary'" [disabled]="profileForm.invalid">保存</button>
+              </nz-form-control>
+            </nz-form-item>
+          </form>
+        </nz-col>
+        <nz-col [nzSpan]="8">
+          <h4>Profile picture</h4>
+          <img src="./assets/tmp/img/avatar.jpg" style="width: 100%;">
+          <nz-upload nzAction="https://jsonplaceholder.typicode.com/posts/" class="d-block mt-md text-center">
+            <button nz-button>Upload new picture</button>
+          </nz-upload>
+        </nz-col>
+      </nz-row>
+    </nz-card>
+
+    <nz-card nzTitle="修改密码" *ngIf="active===2">
+      <nz-row [nzGutter]="64">
+        <nz-col [nzSpan]="16">
+          <form nz-form [nzLayout]="'vertical'">
+            <nz-form-item>
+              <nz-form-label nzFor="old_password" nzRequired>请输入旧密码</nz-form-label>
+              <nz-form-control>
+                <input nz-input [(ngModel)]="pwd.old_password" name="old_password" id="old_password" type="password"
+                       required>
+              </nz-form-control>
+            </nz-form-item>
+            <nz-form-item>
+              <nz-form-label nzFor="new_password" nzRequired>请输入新密码</nz-form-label>
+              <nz-form-control>
+                <input nz-input [(ngModel)]="pwd.new_password" name="new_password" id="new_password" type="password"
+                       required>
+              </nz-form-control>
+            </nz-form-item>
+            <nz-form-item>
+              <nz-form-label nzRequired nzFor="confirm_new_password">请重新输入</nz-form-label>
+              <nz-form-control>
+                <input nz-input [(ngModel)]="pwd.confirm_new_password" name="confirm_new_password"
+                       id="confirm_new_password" type="password"
+                       required>
+              </nz-form-control>
+            </nz-form-item>
+            <nz-form-item>
+              <nz-form-control>
+                <button nz-button (click)="pwdSave()" [nzType]="'primary'" [disabled]="profileForm.invalid">保存</button>
+              </nz-form-control>
+            </nz-form-item>
+          </form>
+        </nz-col>
+      </nz-row>
+    </nz-card>
+
+    <nz-card nzTitle="所带班级" *ngIf="active===3">
+      <nz-card nzHoverable [nzActions]="[op1, op2]">
+        <ng-template #op1>
+          <a (click)="_msg.success('操作一：');">操作一</a>
+        </ng-template>
+        <ng-template #op2>
+          <a (click)="_msg.success('操作二：');">操作二</a>
+        </ng-template>
+        <nz-card-meta [nzTitle]="nzTitle" [nzDescription]="nzDescription">
+          <ng-template #nzTitle>
+            <a (click)="_msg.success('标题：');">计外一班</a>
+          </ng-template>
+          <ng-template #nzDescription>
+            <ellipsis>这里是描述信息把</ellipsis>
+          </ng-template>
+        </nz-card-meta>
+      </nz-card>
+    </nz-card>
+
+    <nz-card nzTitle="带班历程" *ngIf="active===4">
+      <nz-timeline>
+        <nz-timeline-item>
+          <nz-list-item [nzContent]="nzContent">
+            <nz-list-item-meta [nzTitle]="nzTitle" [nzDescription]="nzDescription">
+              <ng-template #nzTitle>
+                <a href="#" target="_blank">所带班级</a>
+              </ng-template>
+              <ng-template #nzDescription>
+                <nz-tag [nzColor]="'magenta'">计外一班</nz-tag>
+                <nz-tag [nzColor]="'red'">计外二班</nz-tag>
+                <nz-tag [nzColor]="'volcano'">计外三班</nz-tag>
+                <nz-tag [nzColor]="'orange'">计外四班</nz-tag>
+              </ng-template>
+            </nz-list-item-meta>
+            <ng-template #nzContent>
+              <div class="width-md">
+                <div class="d-flex text-grey-dark">
+                  <div class="flex-1">
+                    开始时间
+                    <p>2014-9-1</p>
+                  </div>
+                  <div class="text-right">
+                    结束时间
+                    <p>2018-7-1<!--{{item.createdAt | _date}}--></p>
+                  </div>
+                </div>
+                <nz-progress [nzPercent]="40" [nzStatus]="active" [nzStrokeWidth]="6"></nz-progress>
+              </div>
+            </ng-template>
+          </nz-list-item>
+          <nz-divider></nz-divider>
+        </nz-timeline-item>
+        <nz-timeline-item>Solve initial network problems 2015-09-01</nz-timeline-item>
+        <nz-timeline-item nzColor="red" [nzDot]="dotTemplate">Technical testing 2015-09-01</nz-timeline-item>
+        <nz-timeline-item>Network problems being solved 2015-09-01</nz-timeline-item>
+      </nz-timeline>
+      <ng-template #dotTemplate>
+        <i class="anticon anticon-clock-circle-o" style="font-size: 16px;"></i>
+      </ng-template>
+    </nz-card>
+  </nz-col>
+</nz-row>
