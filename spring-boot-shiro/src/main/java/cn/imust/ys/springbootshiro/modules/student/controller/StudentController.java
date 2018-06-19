@@ -1,8 +1,6 @@
 package cn.imust.ys.springbootshiro.modules.student.controller;
 
-import cn.imust.ys.springbootshiro.exception.CustomException;
 import cn.imust.ys.springbootshiro.modules.student.entity.Student;
-import cn.imust.ys.springbootshiro.modules.student.repository.StudentRepository;
 import cn.imust.ys.springbootshiro.modules.student.service.StudentService;
 import cn.imust.ys.springbootshiro.utils.ControllerUtils;
 import cn.imust.ys.springbootshiro.utils.ImportUtils;
@@ -63,5 +61,11 @@ public class StudentController {
         Integer classId = (Integer) paramsMap.get("classId");
         studentService.batchSave((List)data.get("listData"),classId);
         return ControllerUtils.getSuccessMap();
+    }
+
+    @PostMapping("filter")
+    public Map filter(@RequestBody String params){
+        List<Student> students = studentService.filter(params);
+        return ControllerUtils.getSuccessMap(students);
     }
 }

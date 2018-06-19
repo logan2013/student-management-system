@@ -1,6 +1,5 @@
 package cn.imust.ys.springbootshiro.modules.student.controller;
 
-import cn.imust.ys.springbootshiro.exception.CustomException;
 import cn.imust.ys.springbootshiro.modules.student.entity.Subsidize;
 import cn.imust.ys.springbootshiro.modules.student.repository.SubsidizeRepository;
 import cn.imust.ys.springbootshiro.modules.student.service.SubsidizeService;
@@ -61,6 +60,17 @@ public class SubsidizeController {
         Map data = (Map)SessionUtils.getSession().getAttribute("data");
         subsidizeService.batchSave((List)data.get("listData"));
         return ControllerUtils.getSuccessMap();
+    }
+
+    @GetMapping("groupStime")
+    public Map groupStime(){
+        return ControllerUtils.getSuccessMap(subsidizeRepository.groupStime());
+    }
+
+    @PostMapping("filter")
+    public Map filter(@RequestBody String params){
+        List<Subsidize> subsidizes = subsidizeService.filterc(params);
+        return ControllerUtils.getSuccessMap(subsidizes);
     }
 
 }

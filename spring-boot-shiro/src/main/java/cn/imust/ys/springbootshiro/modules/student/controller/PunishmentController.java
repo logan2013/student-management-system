@@ -1,6 +1,5 @@
 package cn.imust.ys.springbootshiro.modules.student.controller;
 
-import cn.imust.ys.springbootshiro.exception.CustomException;
 import cn.imust.ys.springbootshiro.modules.student.entity.Punishment;
 import cn.imust.ys.springbootshiro.modules.student.repository.PunishmentRepository;
 import cn.imust.ys.springbootshiro.modules.student.service.PunishmentService;
@@ -61,6 +60,17 @@ public class PunishmentController {
         Map data = (Map)SessionUtils.getSession().getAttribute("data");
         punishmentService.batchSave((List)data.get("listData"));
         return ControllerUtils.getSuccessMap();
+    }
+
+    @GetMapping("groupStime")
+    public Map groupStime(){
+        return ControllerUtils.getSuccessMap(punishmentRepository.groupStime());
+    }
+
+    @PostMapping("filter")
+    public Map filter(@RequestBody String params){
+        List<Punishment> punishments = punishmentService.filter(params);
+        return ControllerUtils.getSuccessMap(punishments);
     }
 
 }

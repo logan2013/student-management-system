@@ -1,14 +1,11 @@
 package cn.imust.ys.springbootshiro.modules.student.controller;
 
-import cn.imust.ys.springbootshiro.exception.CustomException;
 import cn.imust.ys.springbootshiro.modules.student.entity.Job;
 import cn.imust.ys.springbootshiro.modules.student.repository.JobRepository;
 import cn.imust.ys.springbootshiro.modules.student.service.JobService;
 import cn.imust.ys.springbootshiro.utils.ControllerUtils;
 import cn.imust.ys.springbootshiro.utils.ImportUtils;
 import cn.imust.ys.springbootshiro.utils.SessionUtils;
-import com.alibaba.fastjson.JSON;
-import com.alibaba.fastjson.JSONArray;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 
@@ -65,6 +62,12 @@ public class JobController {
         Map data = (Map) SessionUtils.getSession().getAttribute("data");
         jobService.batchSave((List) data.get("listData"));
         return ControllerUtils.getSuccessMap();
+    }
+
+    @PostMapping("filter")
+    public Map filter(@RequestBody String params){
+        List<Job> jobs = jobService.filter(params);
+        return ControllerUtils.getSuccessMap(jobs);
     }
 
 }

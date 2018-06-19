@@ -1,6 +1,5 @@
 package cn.imust.ys.springbootshiro.modules.student.controller;
 
-import cn.imust.ys.springbootshiro.exception.CustomException;
 import cn.imust.ys.springbootshiro.modules.student.entity.Award;
 import cn.imust.ys.springbootshiro.modules.student.repository.AwardRepository;
 import cn.imust.ys.springbootshiro.modules.student.service.AwardService;
@@ -64,6 +63,17 @@ public class AwardController {
         Map data = (Map) SessionUtils.getSession().getAttribute("data");
         awardService.batchSave((List) data.get("listData"));
         return ControllerUtils.getSuccessMap();
+    }
+
+    @GetMapping("groupStime")
+    public Map groupStime(){
+        return ControllerUtils.getSuccessMap(awardRepository.groupStime());
+    }
+
+    @PostMapping("filter")
+    public Map filter(@RequestBody String params){
+        List<Award> awards = awardService.filter(params);
+        return ControllerUtils.getSuccessMap(awards);
     }
 
 }
