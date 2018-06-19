@@ -1,0 +1,6 @@
+spring:
+  datasource:
+    username: sa
+    password: 1234
+    url: jdbc:sqlserver://localhost:1433;DatabaseName= xxxy_sms
+
