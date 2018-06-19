@@ -3,6 +3,8 @@ package cn.imust.ys.springbootshiro.modules.system.controller;
 import cn.imust.ys.springbootshiro.modules.system.entity.Grade;
 import cn.imust.ys.springbootshiro.modules.system.repository.GradeRepository;
 import cn.imust.ys.springbootshiro.utils.ControllerUtils;
+import com.alibaba.fastjson.JSON;
+import com.alibaba.fastjson.JSONArray;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
@@ -39,6 +41,17 @@ public class GradeController {
     @RequestMapping("findAll")
     public List<Grade> findAll(){
         return gradeRepository.findAll();
+    }
+
+    @PostMapping("findOne")
+    public Grade findOne(@RequestBody String params){
+        Map<String, Object> paramsMap = JSON.parseObject(params, Map.class);
+        Integer id = (Integer) paramsMap.get("id");
+        if(id != null){
+            return gradeRepository.findOne(id);
+        }else{
+            return null;
+        }
     }
 
 }
