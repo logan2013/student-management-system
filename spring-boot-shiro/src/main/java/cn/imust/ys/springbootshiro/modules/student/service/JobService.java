@@ -87,8 +87,8 @@ public class JobService {
         String status = (String) paramsMap.get("status");
         String jobMode = (String) paramsMap.get("jobMode");
 
-        student.setSno(sno);
-        student.setSname(sname);
+        student.setSno(sno != null ? sno.trim() : sno);
+        student.setSname(sname != null ? sname.trim() : sname);
         student.setStatus(status);
 
         Job job = new Job();

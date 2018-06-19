@@ -86,8 +86,8 @@ public class SubsidizeService {
         String stime = (String) paramsMap.get("stime");
         String slevel = (String) paramsMap.get("slevel");
 
-        student.setSno(sno);
-        student.setSname(sname);
+        student.setSno(sno != null ? sno.trim() : sno);
+        student.setSname(sname != null ? sname.trim() : sname);
 
         Subsidize subsidize = new Subsidize();
         subsidize.setStudent(student);

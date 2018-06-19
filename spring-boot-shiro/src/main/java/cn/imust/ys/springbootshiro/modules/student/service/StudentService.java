@@ -91,6 +91,10 @@ public class StudentService {
 
     public List<Student> filter(String params) {
 
+        if( "{}".equals(params)){
+            return studentRepository.findBySnoIsNotNull();
+        }
+
         Student student = new Student();
 
         Map<String, Object> paramsMap = JSON.parseObject(params, Map.class);
@@ -101,8 +105,8 @@ public class StudentService {
         String status = (String) paramsMap.get("status");
         String politicalStatus = (String) paramsMap.get("politicalStatus");
 
-        student.setSno(sno);
-        student.setSname(sname);
+        student.setSno(sno != null ? sno.trim() : sno);
+        student.setSname(sname != null ? sname.trim() : sname);
         student.setStatus(status);
         student.setPoliticalStatus(politicalStatus);
         Integer tid = (Integer) paramsMap.get("tid");

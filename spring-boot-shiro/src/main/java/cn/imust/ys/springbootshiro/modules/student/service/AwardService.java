@@ -79,8 +79,8 @@ public class AwardService {
         String status = (String) paramsMap.get("status");
         String awardTime = (String) paramsMap.get("awardTime");
 
-        student.setSno(sno);
-        student.setSname(sname);
+        student.setSno(sno != null ? sno.trim() : sno);
+        student.setSname(sname != null ? sname.trim() : sname);
         student.setStatus(status);
 
         Award award = new Award();

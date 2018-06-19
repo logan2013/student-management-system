@@ -86,8 +86,8 @@ public class PunishmentService {
         String ptype = (String) paramsMap.get("ptype");
         String ptime = (String) paramsMap.get("ptime");
 
-        student.setSno(sno);
-        student.setSname(sname);
+        student.setSno(sno != null ? sno.trim() : sno);
+        student.setSname(sname != null ? sname.trim() : sname);
         student.setStatus(status);
 
         Punishment punishment = new Punishment();
