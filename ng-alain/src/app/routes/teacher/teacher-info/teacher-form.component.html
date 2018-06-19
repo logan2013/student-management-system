@@ -24,7 +24,9 @@
         <nz-form-item>
           <nz-form-label>性别</nz-form-label>
           <nz-form-control>
-            <input nz-input [(ngModel)]="vo.gender" formControlName="gender" placeholder="联系电话">
+            <nz-select [(ngModel)]="vo.gender" [compareWith]="_util.myCompareFn" formControlName="gender">
+              <nz-option *ngFor="let option of _util._enum.gender" [nzLabel]="option.name" [nzValue]="option.name"></nz-option>
+            </nz-select>
           </nz-form-control>
         </nz-form-item>
       </nz-col>
@@ -32,7 +34,7 @@
     <nz-row nzGutter="16">
       <nz-col nzLg="6" nzMd="12" nzSm="24">
         <nz-form-item>
-          <nz-form-label>名族</nz-form-label>
+          <nz-form-label>民族</nz-form-label>
           <nz-form-control>
             <input nz-input [(ngModel)]="vo.nation" formControlName="nation" placeholder="请输入名族">
           </nz-form-control>
@@ -42,7 +44,9 @@
         <nz-form-item>
           <nz-form-label>政治面貌</nz-form-label>
           <nz-form-control>
-            <input nz-input [(ngModel)]="vo.politicalStatus" formControlName="politicalStatus" placeholder="请输入老师政治面貌">
+            <nz-select [(ngModel)]="vo.politicalStatus" [compareWith]="_util.myCompareFn" formControlName="politicalStatus">
+              <nz-option *ngFor="let option of _util._enum.politicalStatus" [nzLabel]="option.name" [nzValue]="option.name"></nz-option>
+            </nz-select>
           </nz-form-control>
         </nz-form-item>
       </nz-col>
@@ -50,7 +54,9 @@
         <nz-form-item>
           <nz-form-label>学历</nz-form-label>
           <nz-form-control>
-            <input nz-input [(ngModel)]="vo.schooling" formControlName="schooling" placeholder="请输入学历">
+            <nz-select [(ngModel)]="vo.schooling" [compareWith]="_util.myCompareFn" formControlName="schooling">
+              <nz-option *ngFor="let option of _util._enum.schooling" [nzLabel]="option.name" [nzValue]="option.name"></nz-option>
+            </nz-select>
           </nz-form-control>
         </nz-form-item>
       </nz-col>

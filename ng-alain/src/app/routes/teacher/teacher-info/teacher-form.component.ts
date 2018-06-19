@@ -3,6 +3,8 @@ import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { NzMessageService } from 'ng-zorro-antd';
 import { _HttpClient } from '@delon/theme';
 import { Router } from '@angular/router';
+import { UtilService } from '@shared/config/util-service';
+import { isMobile } from '@delon/util';
 
 @Component({
   selector: 'teacher-form',
@@ -17,7 +19,8 @@ export class TeacherFormComponent implements OnInit {
     private fb: FormBuilder,
     public _msg: NzMessageService,
     private _http: _HttpClient,
-    private router: Router
+    private router: Router,
+    public _util: UtilService
   ) {}
 
   ngOnInit(): void {
