@@ -23,7 +23,7 @@ export class ClassComponent implements OnInit {
   constructor(
     public _msg: NzMessageService,
     private _http: _HttpClient,
-    private _util: UtilService
+    public _util: UtilService
   ) {}
 
   ngOnInit(): void {
