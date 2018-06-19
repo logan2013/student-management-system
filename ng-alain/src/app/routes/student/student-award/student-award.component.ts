@@ -22,6 +22,7 @@ export class StudentAwardComponent implements OnInit {
   data = [];
   name = '学生获奖信息';
   moduleName = 'award';
+  total: number;
 
   constructor(
     private fb: FormBuilder,
@@ -44,12 +45,16 @@ export class StudentAwardComponent implements OnInit {
   ];
 
   ngOnInit() {
-    this.refreshData();
+    // this.refreshData();
     this.form = this.fb.group({
       studentNum: [null, [Validators.required]],
       awardTime: [null, [Validators.required]],
       info: [null, [Validators.required]]
     });
+  }
+
+  setTotal(){
+    this.total = this.data.length;
   }
 
   dataChange(data: SimpleTableData[]) {

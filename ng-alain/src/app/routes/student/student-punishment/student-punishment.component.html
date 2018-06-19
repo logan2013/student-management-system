@@ -1,8 +1,11 @@
 <page-header [title]="'学生违纪信息'"></page-header>
 
 <nz-card nzTitle="信息列表" [nzExtra]="extraRoleTemplate">
-  <simple-table #stc [data]="data" [columns]="columns" [scroll]="{ x: '1500px' }"
+  <data-filter name="punishment" [parentComponent]="this"></data-filter>
+  <simple-table #stc [data]="data" [total]="total" [columns]="columns" [scroll]="{ x: '1500px' }"
                 [preDataChange]="dataChange" [resReName]="{ list: 'data' }"
+                showPagination="true" pagePlacement="center" toTopInChange
+                showSizeChanger showQuickJumper showTotal isPageIndexReset
                 (checkboxChange)="checkboxChange($event)">
   </simple-table>
 </nz-card>

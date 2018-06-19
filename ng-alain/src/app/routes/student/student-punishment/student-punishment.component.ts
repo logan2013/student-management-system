@@ -22,6 +22,7 @@ export class StudentPunishmentComponent implements OnInit {
   data = [];
   name = '学生违纪信息';
   moduleName = 'punishment';
+  total: number;
 
   constructor(
     private fb: FormBuilder,
@@ -47,7 +48,7 @@ export class StudentPunishmentComponent implements OnInit {
   ];
 
   ngOnInit() {
-    this.refreshData();
+    // this.refreshData();
     this.form = this.fb.group({
       studentNum: [null, [Validators.required]],
       ptime: [null, [Validators.required]],
@@ -56,6 +57,10 @@ export class StudentPunishmentComponent implements OnInit {
       info: [null, [Validators.required]],
       removeTime: [null]
     });
+  }
+
+  setTotal(){
+    this.total = this.data.length;
   }
 
   dataChange(data: SimpleTableData[]) {

@@ -22,6 +22,7 @@ export class StudentJobComponent implements OnInit {
   data = [];
   name = '学生就业信息';
   moduleName = 'job';
+  total: number;
 
   constructor(
     private fb: FormBuilder,
@@ -54,7 +55,7 @@ export class StudentJobComponent implements OnInit {
   ];
 
   ngOnInit() {
-    this.refreshData();
+    // this.refreshData();
     this.form = this.fb.group({
       jobsno: [null, [Validators.required]],
       jtime: [null, [Validators.required]],
@@ -63,6 +64,10 @@ export class StudentJobComponent implements OnInit {
       jobwhere: [null, [Validators.required]],
       mode: [null, [Validators.required]],
     });
+  }
+
+  setTotal(){
+    this.total = this.data.length;
   }
 
   refreshData() {

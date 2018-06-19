@@ -22,6 +22,7 @@ export class StudentSubsidizeComponent implements OnInit {
   data = [];
   name = '学生资助信息';
   moduleName = 'subsidize';
+  total: number;
 
   constructor(
     private fb: FormBuilder,
@@ -46,7 +47,7 @@ export class StudentSubsidizeComponent implements OnInit {
   ];
 
   ngOnInit() {
-    this.refreshData();
+    // this.refreshData();
     this.form = this.fb.group({
       studentNum: [null, [Validators.required]],
       stime: [null, [Validators.required]],
@@ -54,6 +55,10 @@ export class StudentSubsidizeComponent implements OnInit {
       type: [null, [Validators.required]],
       level: [null, [Validators.required]]
     });
+  }
+
+  setTotal(){
+    this.total = this.data.length;
   }
 
   dataChange(data: SimpleTableData[]) {

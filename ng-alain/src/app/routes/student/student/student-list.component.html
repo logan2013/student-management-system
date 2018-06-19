@@ -1,8 +1,11 @@
 <page-header [title]="'学生信息列表'"></page-header>
 
 <nz-card [nzExtra]="extraRoleTemplate" *ngIf="view=='list'">
-  <simple-table #stc [data]="data" [columns]="columns" [scroll]="{ x: '1400px' }"
+  <data-filter name="student" [parentComponent]="this"></data-filter>
+  <simple-table #stc [data]="data" [total]="total" [columns]="columns" [scroll]="{ x: '1400px' }"
                 [preDataChange]="dataChange" [resReName]="{ list: 'data' }"
+                showPagination="true" pagePlacement="center" toTopInChange
+                showSizeChanger showQuickJumper showTotal isPageIndexReset
                 (checkboxChange)="checkboxChange($event)">
   </simple-table>
 </nz-card>

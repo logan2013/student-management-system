@@ -18,6 +18,7 @@ export class StudentListComponent implements OnInit {
   checkboxChangeList = [];
   name = '学生基本信息';
   moduleName = 'student';
+  total: number;
 
   constructor(
     private router: Router,
@@ -38,7 +39,11 @@ export class StudentListComponent implements OnInit {
   ];
 
   ngOnInit(): void {
-    this.refreshData();
+    // this.refreshData();
+  }
+
+  setTotal(){
+    this.total = this.data.length;
   }
 
   detail(data: any){
