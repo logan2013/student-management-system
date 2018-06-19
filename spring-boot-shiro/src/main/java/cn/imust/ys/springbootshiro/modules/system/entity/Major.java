@@ -16,7 +16,7 @@ public class Major {
 	
 	@Id @GeneratedValue
 	private Integer id;
-	@Column(columnDefinition=("varchar(100) default null comment '专业信息--> 专业名称'"))
+//	@Column(columnDefinition=("varchar(100) default null comment '专业信息--> 专业名称'"))
 	private String name;
 
 	@OneToMany(targetEntity=Grade.class,mappedBy="major")

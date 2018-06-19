@@ -16,11 +16,11 @@ public class Grade {
 	
 	@Id @GeneratedValue
 	private Integer id;
-	@Column(columnDefinition=("varchar(100) default null comment '年级信息--> 年级名称'"))
+//	@Column(columnDefinition=("varchar(100) default null comment '年级信息--> 年级名称'"))
 	private String name;
 
 	@ManyToOne
-	@JoinColumn(name="major_id",columnDefinition=("int default null comment '年级信息--> 添加专业外键列'"))
+	@JoinColumn(name="major_id")
 	private Major major;
 
 	@OneToMany(targetEntity=SysClass.class,mappedBy="grade")

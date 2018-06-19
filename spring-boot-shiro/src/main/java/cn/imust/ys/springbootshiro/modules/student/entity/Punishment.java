@@ -17,22 +17,22 @@ public class Punishment {
 	@Id @GeneratedValue
 	private Integer pid; // 处分信息表的主键 ID
 	
-	@Column(columnDefinition=("date default null comment '处分信息--> 处分时间'"))
+//	@Column(columnDefinition=("date default null comment '处分信息--> 处分时间'"))
 	private String ptime;
-	@Column(columnDefinition=("varchar(255) default null comment '处分信息--> 处分种类'"))
+//	@Column(columnDefinition=("varchar(255) default null comment '处分信息--> 处分种类'"))
 	private String ptype;
-	@Column(columnDefinition=("varchar(255) default null comment '处分信息--> 发文号'"))	
+//	@Column(columnDefinition=("varchar(255) default null comment '处分信息--> 发文号'"))
 	private String pno;
-	@Column(columnDefinition=("varchar(255) default null comment '处分信息--> 受处分原因描述'"))
+//	@Column(columnDefinition=("varchar(255) default null comment '处分信息--> 受处分原因描述'"))
 	private String info;
-	@Column(columnDefinition=("date default null comment '处分信息--> 解除处分时间'"))
+//	@Column(columnDefinition=("date default null comment '处分信息--> 解除处分时间'"))
 	private Date removeTime;
 
 	@Transient
 	private String studentNum;
 
 	@ManyToOne
-	@JoinColumn(name="student_id",columnDefinition=("int default null comment '处分信息--> 添加学生外键列'"))
+	@JoinColumn(name="student_id")
 	private Student student;
 
 	public Integer getPid() {

@@ -23,7 +23,8 @@ public class TeacherWithClass {
     private Date endTime;
 
     @ManyToOne(targetEntity=Teacher.class)
-    @JoinColumn(name="teacher_id",columnDefinition=("int default null comment '老师带班信息--> 添加老师外键列'"))
+    // ,columnDefinition=("int default null comment '老师带班信息--> 添加老师外键列'")
+    @JoinColumn(name="teacher_id")
     private Teacher teacher;
 
     @ManyToMany(fetch=FetchType.EAGER)

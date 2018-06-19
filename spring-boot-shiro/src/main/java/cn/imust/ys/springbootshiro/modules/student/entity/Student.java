@@ -11,41 +11,52 @@ import java.util.HashSet;
 import java.util.Set;
 
 @Entity
-@JsonIgnoreProperties(value={"sysClass"})
+@JsonIgnoreProperties(value={"sysClass","homes","awards","punishments","subsidizes","jobs"})
 public class Student {
     @Id @GeneratedValue
     private Integer id; // 学生表 ID
-    @Column(columnDefinition=("varchar(20) default null comment '学生信息--> 学号'"))
+    // columnDefinition=("varchar(20) default null comment '学生信息--> 学号'"),
+    @Column(name = "studentid")
     private String sno;
-    @Column(columnDefinition=("varchar(20) default null comment '学生信息--> 姓名'"))
+    // columnDefinition=("varchar(20) default null comment '学生信息--> 姓名'"),
+    @Column(name="studentname")
     private String sname;
-    @Column(columnDefinition=("varchar(5) default null comment '学生信息--> 性别'"))
+    // columnDefinition=("varchar(5) default null comment '学生信息--> 性别'"),
+    @Column(name="sex")
     private String gender;
-    @Column(columnDefinition=("varchar(50) default null comment '学生信息--> 宿舍号'"))
+    // columnDefinition=("varchar(50) default null comment '学生信息--> 宿舍号'"),
+    @Column(name="dorm")
     private String dorm;
-    @Column(columnDefinition=("varchar(11) default null comment '学生信息--> 联系电话'"))
+    // columnDefinition=("varchar(11) default null comment '学生信息--> 联系电话'"),
+    @Column(name="m_tel")
     private String phoneNum;
-    @Column(columnDefinition=("varchar(15) default null comment '学生信息--> qq'"))
+//    @Column(columnDefinition=("varchar(15) default null comment '学生信息--> qq'"))
     private String qqNum;
-    @Column(columnDefinition=("varchar(100) default null comment '学生信息--> 备注'"))
+    // columnDefinition=("varchar(100) default null comment '学生信息--> 备注'"),
+    @Column(name="remark")
     private String remark;
-    @Column(columnDefinition=("varchar(100) default null comment '学生信息--> 家庭详细地址'"))
+    // columnDefinition=("varchar(100) default null comment '学生信息--> 家庭详细地址'"),
+    @Column(name="address")
     private String address;
-    @Column(columnDefinition=("varchar(20) default null comment '学生信息--> 身份证号'"))
+    // columnDefinition=("varchar(20) default null comment '学生信息--> 身份证号'"),
+    @Column(name="idcard")
     private String idcard;
-    @Column(columnDefinition=("varchar(20) default null comment '学生信息--> 微信号'"))
+//    @Column(columnDefinition=("varchar(20) default null comment '学生信息--> 微信号'"))
     private String wechat;
-    @Column(columnDefinition=("date default null comment '学生信息--> 出生日期'"))
-    private Date birthday;
-    @Column(columnDefinition=("varchar(10) default null comment '学生信息--> 民族'"))
+    // columnDefinition=("date default null comment '学生信息--> 出生日期'"),
+    @Column(name="birth")
+    private String birthday;
+    // columnDefinition=("varchar(10) default null comment '学生信息--> 民族'"),
+    @Column(name="nation")
     private String nation;
-    @Column(columnDefinition=("varchar(20) default null comment '学生信息--> 状态 表示的是学生的学籍状态，有“在校”，“休学”，“退学”，“降级”'"))
+//    @Column(columnDefinition=("varchar(20) default null comment '学生信息--> 状态 表示的是学生的学籍状态，有“在校”，“休学”，“退学”，“降级”'"))
     private String status;// 状态 表示的是学生的学籍状态，有“在校”，“休学”，“退学”，“降级”
-    @Column(columnDefinition=("varchar(50) default null comment '学生信息--> 政治面貌'"))
+//    @Column(columnDefinition=("varchar(50) default null comment '学生信息--> 政治面貌'"))
     private String politicalStatus;
-    @Column(columnDefinition=("varchar(20) default null comment '学生信息--> 年级'"))
+    // columnDefinition=("varchar(20) default null comment '学生信息--> 年级'"),
+    @Column(name="gid")
     private String grade;
-    @Column(columnDefinition=("varchar(50) default null comment '学生信息--> 专业名称'"))
+//    @Column(columnDefinition=("varchar(50) default null comment '学生信息--> 专业名称'"))
     private String major;
 
     @OneToMany(targetEntity=Home.class,mappedBy="student")//指定一对多关系
@@ -155,11 +166,11 @@ public class Student {
         this.wechat = wechat;
     }
 
-    public Date getBirthday() {
+    public String getBirthday() {
         return birthday;
     }
 
-    public void setBirthday(Date birthday) {
+    public void setBirthday(String birthday) {
         this.birthday = birthday;
     }
 

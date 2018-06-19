@@ -13,22 +13,22 @@ public class Job {
     @Id @GeneratedValue
     private Integer jid; // 学生就业情况的主键 id
 
-    @Column(columnDefinition=("date default null comment '就业信息--> 就业的时间'"))
+//    @Column(columnDefinition=("date default null comment '就业信息--> 就业的时间'"))
     private Date jtime;
-    @Column(columnDefinition=("varchar(150) default null comment '就业信息--> 就业单位'"))
+//    @Column(columnDefinition=("varchar(150) default null comment '就业信息--> 就业单位'"))
     private String jobunit;
-    @Column(columnDefinition=("varchar(155) default null comment '就业信息--> 档案转递地址'"))
+//    @Column(columnDefinition=("varchar(155) default null comment '就业信息--> 档案转递地址'"))
     private String fileAddress;
-    @Column(columnDefinition=("varchar(155) default null comment '就业信息--> 就业去向'"))
+//    @Column(columnDefinition=("varchar(155) default null comment '就业信息--> 就业去向'"))
     private String jobwhere;
-    @Column(columnDefinition=("varchar(100) default null comment '就业信息--> 就业方式'"))
+//    @Column(columnDefinition=("varchar(100) default null comment '就业信息--> 就业方式'"))
     private String mode;
 
     @Transient
     private String jobsno;
 
     @ManyToOne
-    @JoinColumn(name="student_id",columnDefinition=("int default null comment '就业信息--> 添加学生外键列'"))
+    @JoinColumn(name="student_id")
     private Student student;
 
     public Integer getJid() {

@@ -16,16 +16,16 @@ public class Award {
 	
 	@Id @GeneratedValue
 	private Integer aid; // 表的主键 id
-	@Column(columnDefinition=("date default null comment '获奖信息--> 获奖时间'"))
+//	@Column(columnDefinition=("varchar(255) default null comment '获奖信息--> 获奖时间'"))
 	private String awardTime;
-	@Column(columnDefinition=("varchar(255) default null comment '获奖信息--> 获奖详情'"))
+//	@Column(columnDefinition=("varchar(255) default null comment '获奖信息--> 获奖详情'"))
 	private String info;
 
 	@Transient
 	private String studentNum;
 	
 	@ManyToOne
-	@JoinColumn(name="student_id",columnDefinition=("int default null comment '获奖信息--> 添加学生外键列'"))
+	@JoinColumn(name="student_id")
 	private Student student;
 
 	public Integer getAid() {

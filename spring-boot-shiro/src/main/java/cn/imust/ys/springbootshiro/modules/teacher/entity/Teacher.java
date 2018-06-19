@@ -4,45 +4,42 @@ import cn.imust.ys.springbootshiro.modules.system.entity.SysClass;
 
 import java.util.Date;
 
-import javax.persistence.Column;
-import javax.persistence.Entity;
-import javax.persistence.GeneratedValue;
-import javax.persistence.Id;
-import javax.persistence.JoinColumn;
-import javax.persistence.ManyToOne;
+import javax.persistence.*;
 
 /**
  * 老师信息
  * */
 @Entity
+@Table(name = "ys_teacher")
 public class Teacher {
 	@Id @GeneratedValue
 	private Integer tid; 
-	@Column(columnDefinition=("varchar(50) default null comment '老师信息--> 职工号'"))
+//	@Column(columnDefinition=("varchar(50) default null comment '老师信息--> 职工号'"))
 	private String tno;
-	@Column(columnDefinition=("varchar(50) default null comment '老师信息--> 姓名'"))
+//	@Column(columnDefinition=("varchar(50) default null comment '老师信息--> 姓名'"))
 	private String tname;
-	@Column(columnDefinition=("varchar(50) default null comment '老师信息--> 性别'"))
+//	@Column(columnDefinition=("varchar(50) default null comment '老师信息--> 性别'"))
 	private String gender;
-	@Column(columnDefinition=("varchar(255) default null comment '老师信息--> 名族'"))
+//	@Column(columnDefinition=("varchar(255) default null comment '老师信息--> 名族'"))
 	private String nation;
-	@Column(columnDefinition=("date default null comment '老师信息--> 出生年月'"))
+//	@Column(columnDefinition=("date default null comment '老师信息--> 出生年月'"))
 	private Date birthday;
-	@Column(columnDefinition=("varchar(100) default null comment '老师信息--> 政治面貌'"))
+//	@Column(columnDefinition=("varchar(100) default null comment '老师信息--> 政治面貌'"))
 	private String politicalStatus;
-	@Column(columnDefinition=("varchar(100) default null comment '老师信息--> 学历'"))
+//	@Column(columnDefinition=("varchar(100) default null comment '老师信息--> 学历'"))
 	private String schooling;
-	@Column(columnDefinition=("varchar(100) default null comment '老师信息--> 职称'"))
+//	@Column(columnDefinition=("varchar(100) default null comment '老师信息--> 职称'"))
 	private String title;
-	@Column(columnDefinition=("varchar(100) default null comment '老师信息--> 手机号'"))
+//	@Column(columnDefinition=("varchar(100) default null comment '老师信息--> 手机号'"))
 	private String phoneNum;
-	@Column(columnDefinition=("varchar(100) default null comment '老师信息--> 所在部门'"))
+//	@Column(columnDefinition=("varchar(100) default null comment '老师信息--> 所在部门'"))
 	private String dept;
-	@Column(columnDefinition=("date default null comment '老师信息--> 参加工作时间'"))
+//	@Column(columnDefinition=("date default null comment '老师信息--> 参加工作时间'"))
 	private Date inTime;
 
 	@ManyToOne(targetEntity=SysClass.class)
-	@JoinColumn(name="sysclass_id",columnDefinition=("int default null comment '老师信息--> 添加班级外键列'"))
+	// ,columnDefinition=("int default null comment '资助信息--> 添加学生外键列'")
+	@JoinColumn(name="sysclass_id")
 	private SysClass sysClass;
 	public Integer getTid() {
 		return tid;

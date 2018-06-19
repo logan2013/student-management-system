@@ -18,21 +18,21 @@ public class SysClass {
 	@Id @GeneratedValue
 	private Integer scid;
 	
-	@Column(columnDefinition=("varchar(50) default null comment '班级信息--> 班级名称'"))
+//	@Column(columnDefinition=("varchar(50) default null comment '班级信息--> 班级名称'"))
 	private String name;
 
-	@Column(columnDefinition=("varchar(50) default null comment '班级信息--> 班级全名称'"))
+//	@Column(columnDefinition=("varchar(50) default null comment '班级信息--> 班级全名称'"))
 	private String allName;
 	
 	@OneToMany(targetEntity=Student.class,mappedBy="sysClass")
 	private Set<Student> students = new HashSet<>(0);
 	
 	@ManyToOne
-	@JoinColumn(name="teacher_id",columnDefinition=("int default null comment '班级信息--> 添加老师外键列'"))
+	@JoinColumn(name="teacher_id")
 	private Teacher teacher;// 班级负责老师
 
 	@ManyToOne
-	@JoinColumn(name="grade_id",columnDefinition=("int default null comment '班级信息--> 添加年级外键列'"))
+	@JoinColumn(name="grade_id")
 	private Grade grade;
 
 	@ManyToMany(mappedBy = "sysClassSet")

@@ -17,20 +17,20 @@ public class Subsidize {
 	@Id @GeneratedValue
 	private Integer sid;  //资助情况主键 id
 	
-	@Column(columnDefinition=("date default null comment '资助信息--> 获得资助的时间'"))
+//	@Column(columnDefinition=("date default null comment '资助信息--> 获得资助的时间'"))
 	private String stime;
-	@Column(columnDefinition=("varchar(255) default null comment '资助信息--> 获得资助的详细情况'"))
+//	@Column(columnDefinition=("varchar(255) default null comment '资助信息--> 获得资助的详细情况'"))
 	private String info;
-	@Column(columnDefinition=("varchar(255) default null comment '资助信息--> 受助类型'"))
+//	@Column(columnDefinition=("varchar(255) default null comment '资助信息--> 受助类型'"))
 	private String type;
-	@Column(columnDefinition=("varchar(255) default null comment '资助信息--> 受助等级'"))
+//	@Column(columnDefinition=("varchar(255) default null comment '资助信息--> 受助等级'"))
 	private String level;
 
 	@Transient
 	private String studentNum;
 	
 	@ManyToOne
-	@JoinColumn(name="student_id",columnDefinition=("int default null comment '资助信息--> 添加学生外键列'"))
+	@JoinColumn(name="student_id")
 	private Student student;
 
 	public Subsidize() {
