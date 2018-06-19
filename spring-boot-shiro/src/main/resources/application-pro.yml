@@ -3,4 +3,7 @@ spring:
     username: sa
     password: 1234
     url: jdbc:sqlserver://localhost:1433;DatabaseName= xxxy_sms
-
+  jpa:
+    properties:
+      hibernate:
+        dialect: org.hibernate.dialect.SQLServer2008Dialect
