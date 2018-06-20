@@ -21,6 +21,9 @@ public class Student {
     // columnDefinition=("varchar(20) default null comment '学生信息--> 姓名'"),
     @Column(name="studentname")
     private String sname;
+
+    private String sid;
+    private String cid;
     // columnDefinition=("varchar(5) default null comment '学生信息--> 性别'"),
     @Column(name="sex")
     private String gender;
@@ -260,6 +263,22 @@ public class Student {
 
     public void setMajor(String major) {
         this.major = major;
+    }
+
+    public String getSid() {
+        return sid;
+    }
+
+    public void setSid(String sid) {
+        this.sid = sid;
+    }
+
+    public String getCid() {
+        return cid;
+    }
+
+    public void setCid(String cid) {
+        this.cid = cid;
     }
 
     public String getSysClassAllName(){
