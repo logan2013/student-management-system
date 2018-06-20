@@ -2,6 +2,8 @@ package cn.imust.ys.springbootshiro.modules.system.controller;
 
 import cn.imust.ys.springbootshiro.modules.system.entity.SysClass;
 import cn.imust.ys.springbootshiro.modules.system.repository.SysClassRepository;
+import cn.imust.ys.springbootshiro.modules.teacher.entity.TeacherWithClass;
+import cn.imust.ys.springbootshiro.modules.teacher.repository.TeacherWithClassRepository;
 import cn.imust.ys.springbootshiro.utils.ControllerUtils;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.PostMapping;
@@ -9,6 +11,7 @@ import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
+import java.util.List;
 import java.util.Map;
 
 @RestController
@@ -25,7 +28,7 @@ public class SysClassController {
 
     @PostMapping("delete")
     public Map delete(@RequestBody SysClass sysClass){
-        sysClassRepository.delete(sysClass);
+        sysClassRepository.delete(sysClassRepository.findOne(sysClass.getScid()));
         return ControllerUtils.getSuccessMap();
     }
 
@@ -36,7 +39,7 @@ public class SysClassController {
     }
 
     @RequestMapping("findAll")
-    public Map findAll(){
-        return ControllerUtils.getSuccessMap(sysClassRepository.findAll());
+    public List<SysClass> findAll(){
+        return sysClassRepository.findAll();
     }
 }

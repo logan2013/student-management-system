@@ -55,6 +55,7 @@ export class GradeComponent implements OnInit {
   }
 
   del(data){
+    data.sysClazz = [];
     this._http.post('grade/delete', { ...data }).subscribe((response: any) => {
       this._msg.success('删除成功');
       this.refreshData();
