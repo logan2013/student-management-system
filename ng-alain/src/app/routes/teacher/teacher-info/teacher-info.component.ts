@@ -23,7 +23,7 @@ export class TeacherInfoComponent implements OnInit {
 
   ngOnInit(): void {
     this._http.post('teacher/findAll').subscribe((response: any) => {
-      this.dataSet = response.data;
+      this.dataSet = response;
     });
   }
 
