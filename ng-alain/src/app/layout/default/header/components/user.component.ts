@@ -1,6 +1,6 @@
 import { Component, Inject, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
-import { SettingsService } from '@delon/theme';
+import { _HttpClient, SettingsService } from '@delon/theme';
 import { DA_SERVICE_TOKEN, ITokenService } from '@delon/auth';
 
 @Component({
@@ -23,6 +23,7 @@ export class HeaderUserComponent implements OnInit {
   constructor(
     public settings: SettingsService,
     private router: Router,
+    private _http: _HttpClient,
     @Inject(DA_SERVICE_TOKEN) private tokenService: ITokenService,
   ) {}
 
@@ -32,7 +33,8 @@ export class HeaderUserComponent implements OnInit {
         this.settings.setUser(res);
         this.settings.user.name = res.user.tname;
         this.settings.user.avatar = './assets/tmp/img/avatar.jpg';
-        this.settings.user.email = '1122@qq.com';
+        this.settings.user.email = res.user.tno;
+        this.settings.user.tno = res.user.tno;
       }
     });
     // mock
@@ -46,10 +48,11 @@ export class HeaderUserComponent implements OnInit {
   }
 
   account(){
-    this.router.navigate(['/extras/settings']);
+    this.router.navigate(['/teacher/teacher-setting']);
   }
 
   logout() {
+    this._http.get('user/logout');
     this.tokenService.clear();
     this.router.navigateByUrl(this.tokenService.login_url);
   }
