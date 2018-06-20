@@ -10,6 +10,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
 import javax.servlet.http.HttpSession;
+import java.util.List;
 import java.util.Map;
 
 @RestController
@@ -52,7 +53,7 @@ public class TeacherController {
     }
 
     @RequestMapping("findAll")
-    public Map findAll(){
-        return ControllerUtils.getSuccessMap(teacherRepository.findAll());
+    public List<Teacher> findAll(){
+        return teacherRepository.findAll();
     }
 }
