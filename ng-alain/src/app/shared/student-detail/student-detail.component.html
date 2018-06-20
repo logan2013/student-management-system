@@ -1,6 +1,6 @@
 <page-header [title]="'学号：' + student.sno">
   <ng-template #logo>
-    <img src="https://gw.alipayobjects.com/zos/rmsportal/nxkuOJlFJuAUhzlMTCEe.png">
+    <nz-avatar class="avatar" nzSrc="http://localhost:8080/{{ student.sno }}.jpg"></nz-avatar>
   </ng-template>
   <ng-template #action>
     <nz-button-group>
