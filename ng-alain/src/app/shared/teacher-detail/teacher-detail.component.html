@@ -45,12 +45,41 @@
   </desc-list>
 </page-header>
 
-<nz-card nzTitle="老师带班信息">
+<nz-card nzTitle="老师带班历程">
   <nz-timeline>
-    <nz-timeline-item>Create a services site 2015-09-01</nz-timeline-item>
-    <nz-timeline-item>Solve initial network problems 2015-09-01</nz-timeline-item>
-    <nz-timeline-item nzColor="red" [nzDot]="dotTemplate">Technical testing 2015-09-01</nz-timeline-item>
-    <nz-timeline-item>Network problems being solved 2015-09-01</nz-timeline-item>
+    <nz-timeline-item>
+      <nz-list [nzDataSource]="teacher.teacherWithClasses" [nzRenderItem]="item">
+        <ng-template #item let-item>
+          <nz-list-item [nzContent]="nzContent">
+            <nz-list-item-meta [nzTitle]="nzTitle" [nzDescription]="nzDescription">
+              <ng-template #nzTitle>
+                <a href="#" target="_blank">所带班级</a>
+              </ng-template>
+              <ng-template #nzDescription>
+                <nz-tag [nzColor]="'magenta'">{{ item.classAllName }}</nz-tag>
+              </ng-template>
+            </nz-list-item-meta>
+            <ng-template #nzContent>
+              <div class="width-md">
+                <div class="d-flex text-grey-dark">
+                  <div class="flex-1">
+                    开始时间
+                    <p>{{item.startTime | _date}}</p>
+                  </div>
+                  <div class="text-right">
+                    结束时间
+                    <p>{{item.endTime | _date}}</p>
+                  </div>
+                </div>
+                <nz-progress [nzPercent]="item.nzPercent" [nzStatus]="item.nzStatus"
+                             [nzStrokeWidth]="6"></nz-progress>
+              </div>
+            </ng-template>
+          </nz-list-item>
+        </ng-template>
+      </nz-list>
+      <nz-divider></nz-divider>
+    </nz-timeline-item>
   </nz-timeline>
   <ng-template #dotTemplate>
     <i class="anticon anticon-clock-circle-o" style="font-size: 16px;"></i>
