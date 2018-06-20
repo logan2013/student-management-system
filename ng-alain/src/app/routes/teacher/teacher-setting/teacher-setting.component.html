@@ -111,61 +111,72 @@
     </nz-card>
 
     <nz-card nzTitle="所带班级" *ngIf="active===3">
-      <nz-card nzHoverable [nzActions]="[op1, op2]">
-        <ng-template #op1>
-          <a (click)="_msg.success('操作一：');">操作一</a>
+      <nz-list [nzDataSource]="vo.sysClasses" [nzRenderItem]="item"
+               [nzGrid]="{gutter: 24, lg: 8, md: 12, sm: 24, xs: 24 }">
+
+        <ng-template #item let-item>
+          <nz-list-item>
+            <nz-card nzHoverable *ngIf="item !== null" [nzActions]="[op1, op2]">
+              <ng-template #op1>
+                <a (click)="_msg.success('操作一：');">中断带班</a>
+              </ng-template>
+              <ng-template #op2>
+                <a (click)="_msg.success('操作二：');">完成带班</a>
+              </ng-template>
+              <nz-card-meta [nzTitle]="nzTitle" [nzDescription]="nzDescription">
+                <ng-template #nzTitle>
+                  <a (click)="_msg.success('标题：');">{{ item.allName }}</a>
+                </ng-template>
+                <ng-template #nzDescription>
+                  <ellipsis>该班学生人数：{{ item.students.length }}</ellipsis>
+                </ng-template>
+              </nz-card-meta>
+            </nz-card>
+          </nz-list-item>
         </ng-template>
-        <ng-template #op2>
-          <a (click)="_msg.success('操作二：');">操作二</a>
-        </ng-template>
-        <nz-card-meta [nzTitle]="nzTitle" [nzDescription]="nzDescription">
-          <ng-template #nzTitle>
-            <a (click)="_msg.success('标题：');">计外一班</a>
-          </ng-template>
-          <ng-template #nzDescription>
-            <ellipsis>这里是描述信息把</ellipsis>
-          </ng-template>
-        </nz-card-meta>
-      </nz-card>
+      </nz-list>
     </nz-card>
 
     <nz-card nzTitle="带班历程" *ngIf="active===4">
       <nz-timeline>
         <nz-timeline-item>
-          <nz-list-item [nzContent]="nzContent">
-            <nz-list-item-meta [nzTitle]="nzTitle" [nzDescription]="nzDescription">
-              <ng-template #nzTitle>
-                <a href="#" target="_blank">所带班级</a>
-              </ng-template>
-              <ng-template #nzDescription>
-                <nz-tag [nzColor]="'magenta'">计外一班</nz-tag>
-              </ng-template>
-            </nz-list-item-meta>
-            <ng-template #nzContent>
-              <div class="width-md">
-                <div class="d-flex text-grey-dark">
-                  <div class="flex-1">
-                    开始时间
-                    <p>2014-9-1</p>
+          <nz-list [nzDataSource]="vo.teacherWithClasses" [nzRenderItem]="item">
+            <ng-template #item let-item>
+              <nz-list-item [nzContent]="nzContent">
+                <nz-list-item-meta [nzTitle]="nzTitle" [nzDescription]="nzDescription">
+                  <ng-template #nzTitle>
+                    <a href="#" target="_blank">所带班级</a>
+                  </ng-template>
+                  <ng-template #nzDescription>
+                    <nz-tag [nzColor]="'magenta'">{{ item.classAllName }}</nz-tag>
+                  </ng-template>
+                </nz-list-item-meta>
+                <ng-template #nzContent>
+                  <div class="width-md">
+                    <div class="d-flex text-grey-dark">
+                      <div class="flex-1">
+                        开始时间
+                        <p>{{item.startTime | _date}}</p>
+                      </div>
+                      <div class="text-right">
+                        结束时间
+                        <p>{{item.endTime | _date}}</p>
+                      </div>
+                    </div>
+                    <nz-progress [nzPercent]="item.nzPercent" [nzStatus]="item.nzStatus"
+                                 [nzStrokeWidth]="6"></nz-progress>
                   </div>
-                  <div class="text-right">
-                    结束时间
-                    <p>2018-7-1<!--{{item.createdAt | _date}}--></p>
-                  </div>
-                </div>
-                <nz-progress [nzPercent]="40" [nzStatus]="active" [nzStrokeWidth]="6"></nz-progress>
-              </div>
+                </ng-template>
+              </nz-list-item>
             </ng-template>
-          </nz-list-item>
+          </nz-list>
           <nz-divider></nz-divider>
         </nz-timeline-item>
-        <nz-timeline-item>Solve initial network problems 2015-09-01</nz-timeline-item>
-        <nz-timeline-item nzColor="red" [nzDot]="dotTemplate">Technical testing 2015-09-01</nz-timeline-item>
-        <nz-timeline-item>Network problems being solved 2015-09-01</nz-timeline-item>
       </nz-timeline>
       <ng-template #dotTemplate>
         <i class="anticon anticon-clock-circle-o" style="font-size: 16px;"></i>
       </ng-template>
     </nz-card>
+
   </nz-col>
 </nz-row>
