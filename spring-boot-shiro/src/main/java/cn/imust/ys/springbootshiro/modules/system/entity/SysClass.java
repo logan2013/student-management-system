@@ -35,8 +35,7 @@ public class SysClass {
 	@JoinColumn(name="grade_id")
 	private Grade grade;
 
-	@ManyToMany(mappedBy = "sysClassSet")
-	@Cascade(org.hibernate.annotations.CascadeType.SAVE_UPDATE)//使用hibernate注解级联保存和更新
+	@OneToMany(targetEntity=TeacherWithClass.class,mappedBy="sysClass")
 	private Set<TeacherWithClass> withClassSet = new HashSet<>(0);
 
 	public SysClass(Teacher teacher) {

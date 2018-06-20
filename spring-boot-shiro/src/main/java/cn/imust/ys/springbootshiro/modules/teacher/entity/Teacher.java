@@ -1,6 +1,7 @@
 package cn.imust.ys.springbootshiro.modules.teacher.entity;
 
 import cn.imust.ys.springbootshiro.modules.permission.entity.Role;
+import cn.imust.ys.springbootshiro.modules.student.entity.Subsidize;
 import cn.imust.ys.springbootshiro.modules.system.entity.SysClass;
 import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 import org.hibernate.annotations.Cascade;
@@ -54,10 +55,9 @@ public class Teacher implements Serializable {
 			inverseJoinColumns = {@JoinColumn(name = "role_id")})//inverseJoinColumns定义另一在中间表的主键映射
 	private Set<Role> roles = new HashSet<>();
 
-	@ManyToOne(targetEntity=SysClass.class)
-	// ,columnDefinition=("int default null comment '资助信息--> 添加学生外键列'")
-	@JoinColumn(name="sysclass_id")
-	private SysClass sysClass;
+	@OneToMany(targetEntity=TeacherWithClass.class,mappedBy="teacher")
+	private Set<TeacherWithClass> teacherWithClasses = new HashSet<>(0);
+
 	public Integer getTid() {
 		return tid;
 	}
@@ -130,12 +130,6 @@ public class Teacher implements Serializable {
 	public void setInTime(Date inTime) {
 		this.inTime = inTime;
 	}
-	public SysClass getSysClass() {
-		return sysClass;
-	}
-	public void setSysClass(SysClass sysClass) {
-		this.sysClass = sysClass;
-	}
 	public Teacher() {
 		super();
 	}
@@ -154,5 +148,13 @@ public class Teacher implements Serializable {
 
 	public void setRoles(Set<Role> roles) {
 		this.roles = roles;
+	}
+
+	public Set<TeacherWithClass> getTeacherWithClasses() {
+		return teacherWithClasses;
+	}
+
+	public void setTeacherWithClasses(Set<TeacherWithClass> teacherWithClasses) {
+		this.teacherWithClasses = teacherWithClasses;
 	}
 }
