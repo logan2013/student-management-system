@@ -6,12 +6,11 @@ import org.hibernate.annotations.Cascade;
 import org.hibernate.annotations.CascadeType;
 
 import javax.persistence.*;
-import java.util.Date;
 import java.util.HashSet;
 import java.util.Set;
 
 @Entity
-@JsonIgnoreProperties(value={"sysClass"})
+@JsonIgnoreProperties(value={"sysClass","homes","awards","punishments","subsidizes","jobs"})
 public class Student {
     @Id @GeneratedValue
     private Integer id; // 学生表 ID
