@@ -39,6 +39,8 @@ public class PunishmentService {
         if(bySno !=null){
             punishment.setStudent(bySno);
             punishmentRepository.saveAndFlush(punishment);
+        }else{
+            throw new CustomException("学号为：" + sno + " 的学生未找到!");
         }
     }
 

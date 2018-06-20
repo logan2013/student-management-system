@@ -40,6 +40,8 @@ public class AwardService {
         if(bySno !=null){
             award.setStudent(bySno);
             awardRepository.saveAndFlush(award);
+        }else{
+            throw new CustomException("学号为：" + sno + " 的学生未找到!");
         }
     }
 

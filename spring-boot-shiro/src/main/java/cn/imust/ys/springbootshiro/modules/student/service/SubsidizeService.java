@@ -41,6 +41,8 @@ public class SubsidizeService {
         if (bySno != null) {
             subsidize.setStudent(bySno);
             subsidizeRepository.saveAndFlush(subsidize);
+        }else{
+            throw new CustomException("学号为：" + sno + " 的学生未找到!");
         }
     }
 

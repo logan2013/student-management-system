@@ -29,10 +29,11 @@ public class JobService {
     public void save(Job job) {
         String sno = job.getJobsno();
         Student bySno = studentRepository.findBySno(sno);
-        // TODO 为子表的保存方法添加自定义异常
         if (bySno != null) {
             job.setStudent(bySno);
             jobRepository.save(job);
+        }else{
+            throw new CustomException("学号为：" + sno + " 的学生未找到!");
         }
     }
 
