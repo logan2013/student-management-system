@@ -2,6 +2,7 @@ package cn.imust.ys.springbootshiro.modules.teacher.entity;
 
 import cn.imust.ys.springbootshiro.modules.student.entity.Subsidize;
 import cn.imust.ys.springbootshiro.modules.system.entity.SysClass;
+import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 import org.hibernate.annotations.Cascade;
 
 import javax.persistence.*;
@@ -14,6 +15,7 @@ import java.util.Set;
  * 老师和班级的关联表，用于存储老师的带班记录
  * */
 @Entity
+@JsonIgnoreProperties(value={"teacher","sysClass"})
 public class TeacherWithClass implements Serializable {
 
     @Id @GeneratedValue
@@ -65,4 +67,33 @@ public class TeacherWithClass implements Serializable {
         this.teacher = teacher;
     }
 
+    public String getNzStatus() {
+        return nzStatus;
+    }
+
+    public void setNzStatus(String nzStatus) {
+        this.nzStatus = nzStatus;
+    }
+
+    public SysClass getSysClass() {
+        return sysClass;
+    }
+
+    public void setSysClass(SysClass sysClass) {
+        this.sysClass = sysClass;
+    }
+
+    public int getNzPercent(){
+        double all_between_days=(endTime.getTime() - startTime.getTime())/(1000*3600*24);
+        double new_between_days=(new Date().getTime() - startTime.getTime())/(1000*3600*24);
+        return Integer.parseInt(String.valueOf((int) Math.floor( new_between_days/all_between_days*100)));
+    }
+
+    public String getClassAllName(){
+        if( this.sysClass != null){
+            return sysClass.getAllName();
+        }else{
+            return "";
+        }
+    }
 }
