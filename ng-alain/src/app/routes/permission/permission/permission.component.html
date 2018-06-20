@@ -114,7 +114,10 @@
       <nz-form-item>
         <nz-form-label nzXs="24" nzSm="7" nzRequired nzFor="title">选择父级</nz-form-label>
         <nz-form-control nzXs="24" nzSm="12" nzMd="10">
-          <input nz-input [(ngModel)]="vo.pid" formControlName="pid" placeholder="请输入">
+          <nz-select [(ngModel)]="vo.pid" [compareWith]="_util.myCompareFn" formControlName="pid">
+            <nz-option *ngFor="let option of data" [nzLabel]="option.text"
+                       [nzValue]="option.id"></nz-option>
+          </nz-select>
         </nz-form-control>
       </nz-form-item>
 
