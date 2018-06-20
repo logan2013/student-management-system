@@ -1,6 +1,7 @@
 package cn.imust.ys.springbootshiro.modules.student.repository;
 
 import cn.imust.ys.springbootshiro.modules.student.entity.Punishment;
+import cn.imust.ys.springbootshiro.modules.student.entity.Student;
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.data.jpa.repository.Query;
 import org.springframework.stereotype.Repository;
@@ -12,5 +13,7 @@ public interface PunishmentRepository extends JpaRepository<Punishment, Integer>
 
     @Query("select ptime from Punishment group by ptime")
     List<String> groupStime();
+
+    List<Punishment> findByStudent(Student student);
 
 }

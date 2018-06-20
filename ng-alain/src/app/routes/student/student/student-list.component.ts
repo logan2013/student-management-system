@@ -50,9 +50,9 @@ export class StudentListComponent implements OnInit {
     console.log(data);
     // this.student = deepCopy(data);
     this._http.post('student/findOne',{ ...data }).subscribe((response: any) => {
-      this.student = response;
+      this.student = deepCopy(JSON.parse(response.data));
+      this.view = 'studentDetail';
     });
-    this.view = 'studentDetail';
   }
 
   back(){

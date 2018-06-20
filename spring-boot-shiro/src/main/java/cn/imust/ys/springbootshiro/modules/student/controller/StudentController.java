@@ -9,6 +9,7 @@ import cn.imust.ys.springbootshiro.utils.SessionUtils;
 import com.alibaba.fastjson.JSON;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
+import springfox.documentation.spring.web.json.Json;
 
 import java.util.List;
 import java.util.Map;
@@ -18,7 +19,6 @@ import java.util.Map;
 public class StudentController {
 
     @Autowired private StudentService studentService;
-    @Autowired private StudentRepository studentRepository;
 
     @PostMapping("save")
     public Map save(@RequestBody Student student){
@@ -72,8 +72,9 @@ public class StudentController {
     }
 
     @PostMapping("findOne")
-    public Student findOne(@RequestBody Student student){
-        Student one = studentRepository.findOne(student.getId());
-        return one;
+    public Map findOne(@RequestBody Student student){
+        Student one = studentService.findOne(student);
+        String s = JSON.toJSONString(one);
+        return ControllerUtils.getSuccessMap(s);
     }
 }

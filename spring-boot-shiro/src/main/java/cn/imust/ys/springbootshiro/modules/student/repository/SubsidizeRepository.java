@@ -1,5 +1,6 @@
 package cn.imust.ys.springbootshiro.modules.student.repository;
 
+import cn.imust.ys.springbootshiro.modules.student.entity.Student;
 import cn.imust.ys.springbootshiro.modules.student.entity.Subsidize;
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.data.jpa.repository.Query;
@@ -12,4 +13,6 @@ public interface SubsidizeRepository extends JpaRepository<Subsidize, Integer>{
 
     @Query("select stime from Subsidize group by stime")
     List<String> groupStime();
+
+    List<Subsidize> findByStudent(Student student);
 }

@@ -1,8 +1,8 @@
 package cn.imust.ys.springbootshiro.modules.student.service;
 
 import cn.imust.ys.springbootshiro.exception.CustomException;
-import cn.imust.ys.springbootshiro.modules.student.entity.Student;
-import cn.imust.ys.springbootshiro.modules.student.repository.StudentRepository;
+import cn.imust.ys.springbootshiro.modules.student.entity.*;
+import cn.imust.ys.springbootshiro.modules.student.repository.*;
 import cn.imust.ys.springbootshiro.modules.system.entity.SysClass;
 import cn.imust.ys.springbootshiro.modules.system.repository.SysClassRepository;
 import cn.imust.ys.springbootshiro.modules.teacher.entity.Teacher;
@@ -25,6 +25,11 @@ public class StudentService {
     @Autowired private SysClassRepository sysClassRepository;
     @Autowired private TeacherRepository teacherRepository;
     @Autowired private CommonService commonService;
+    @Autowired private AwardRepository awardRepository;
+    @Autowired private SubsidizeRepository subsidizeRepository;
+    @Autowired private HomeRepository homeRepository;
+    @Autowired private JobRepository jobRepository;
+    @Autowired private PunishmentRepository punishmentRepository;
 
     public void save(Student student){
         studentRepository.save(student);
@@ -122,6 +127,20 @@ public class StudentService {
         Example<Student> ex = Example.of(student,matcher);
         List<Student> all = studentRepository.findAll(ex);
         return all;
+    }
+
+    public Student findOne(Student student) {
+        List<Job> jobs = jobRepository.findByStudent(student);
+        student.getJobs().addAll(jobs);
+        List<Subsidize> subsidizes = subsidizeRepository.findByStudent(student);
+        student.getSubsidizes().addAll(subsidizes);
+        List<Punishment> punishments = punishmentRepository.findByStudent(student);
+        student.getPunishments().addAll(punishments);
+        List<Award> awards = awardRepository.findByStudent(student);
+        student.getAwards().addAll(awards);
+        List<Home> homes = homeRepository.findByStudent(student);
+        student.getHomes().addAll(homes);
+        return student;
     }
 }
 
