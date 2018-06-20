@@ -1,12 +1,13 @@
 <page-header [title]="'班级信息'"></page-header>
 
 <nz-card nzTitle="信息列表">
-  <nz-table #basicTable [nzData]="clazz" [nzShowPagination]="false">
+  <nz-table #basicTable [nzData]="clazz" [nzShowPagination]="true">
     <thead>
     <tr>
       <th>所属年级</th>
       <th>班级名称</th>
       <th>班级全名</th>
+      <th>负责老师</th>
       <th>操作</th>
     </tr>
     </thead>
@@ -15,6 +16,7 @@
       <td>{{ data.gradeName }}</td>
       <td>{{ data.name }}</td>
       <td>{{ data.allName }}</td>
+      <td>{{ data.teacherName }}</td>
       <td>
         <a (click)="edit(data)">编辑</a>
         <nz-divider nzType="vertical"></nz-divider>
@@ -51,6 +53,24 @@
         <span *ngIf="editStatus == 0" nz-form-control>
           <input nz-input type="hidden" [(ngModel)]="vo.scid">
           <input nz-input [(ngModel)]="vo.allName" disabled>
+        </span>
+      </td>
+      <td>
+        <span *ngIf="editStatus == 1">{{ vo.teacherName }}</span>
+        <span *ngIf="editStatus == 0" nz-form-control>
+          <nz-mention
+            [nzSuggestions]="teachers"
+            [nzValueWith]="valueWith"
+            (nzOnSelect)="onSelect($event)">
+            <input
+              nz-input
+              nzMentionTrigger
+              [(ngModel)]="vo.tid">
+            <ng-container *nzMentionSuggestion="let teacher">
+              <nz-avatar nzSrc="http://localhost:8080/{{ teacher.tno }}.jpg"></nz-avatar>
+              <span>&nbsp;&nbsp;{{ teacher.tname }}</span>
+            </ng-container>
+          </nz-mention>
         </span>
       </td>
       <td>

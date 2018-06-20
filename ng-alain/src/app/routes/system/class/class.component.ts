@@ -1,5 +1,5 @@
 import { Component, OnInit, ViewChild } from '@angular/core';
-import { NzMessageService } from 'ng-zorro-antd';
+import { MentionOnSearchTypes, NzMessageService } from 'ng-zorro-antd';
 import { _HttpClient } from '@delon/theme';
 import { UtilService } from '@shared/config/util-service';
 import { SimpleTableComponent } from '@delon/abc';
@@ -7,7 +7,15 @@ import { NzCascaderComponent } from 'ng-zorro-antd/src/cascader/nz-cascader.comp
 
 @Component({
   selector: 'system-class',
-  templateUrl: './class.component.html'
+  templateUrl: './class.component.html',
+  styles: [`
+    .ant-avatar.ant-avatar-sm {
+      width: 14px;
+      height: 14px;
+      margin-right: 8px;
+      position: relative
+    }
+  `]
 })
 
 export class ClassComponent implements OnInit {
@@ -19,6 +27,14 @@ export class ClassComponent implements OnInit {
   nzOptions = [];
   values: any;
   majorGrade;
+  loading = false;
+  teachers = [];
+/*  [
+    { name: 'React', type: 'JavaScript', icon: 'https://zos.alipayobjects.com/rmsportal/LFIeMPzdLcLnEUe.svg' },
+    { name: 'Angular', type: 'JavaScript', icon: 'https://zos.alipayobjects.com/rmsportal/PJTbxSvzYWjDZnJ.png' },
+    { name: 'Dva', type: 'Javascript', icon: 'https://zos.alipayobjects.com/rmsportal/EYPwSeEJKxDtVxI.png' },
+    { name: 'Flask', type: 'Python', icon: 'https://zos.alipayobjects.com/rmsportal/xaypBUijfnpAlXE.png' },
+  ];*/
 
   constructor(
     public _msg: NzMessageService,
@@ -28,10 +44,13 @@ export class ClassComponent implements OnInit {
 
   ngOnInit(): void {
     this._http.post('sysclass/findAll').subscribe((response: any) => {
-      this.clazz = response.data;
+      this.clazz = response;
     });
     this._http.post('major/classRef').subscribe((response: any) => {
       this.nzOptions = response;
+    });
+    this._http.post('teacher/findAll').subscribe((response: any) => {
+      this.teachers = response;
     });
   }
 
@@ -47,6 +66,7 @@ export class ClassComponent implements OnInit {
 
   save(){
     this.vo.classGradeId = this.vo.classGradeId[this.vo.classGradeId.length - 1];
+    this.vo.tid = this.vo.teacher.tid;
     this._http.post('sysclass/save', { ...this.vo }).subscribe((response: any) => {
       this._msg.success('保存成功');
       this.editStatus = -1;
@@ -56,11 +76,12 @@ export class ClassComponent implements OnInit {
 
   refreshData(){
     this._http.post('sysclass/findAll').subscribe((response: any) => {
-      this.clazz = response.data;
+      this.clazz = response;
     });
   }
 
   del(data){
+    data.classGradeId = '';
     this._http.post('sysclass/delete', { ...data }).subscribe((response: any) => {
       this._msg.success('删除成功');
       this.refreshData();
@@ -89,6 +110,12 @@ export class ClassComponent implements OnInit {
       this.majorGrade = response.majorName + '-' + response.name;
       this.vo.allName = this.majorGrade + '-' + (this.vo.name ? this.vo.name : '');
     });
+  }
+
+  valueWith = data => data.tname;
+
+  onSelect(value: any): void {
+    this.vo.teacher = value;
   }
 
 }
