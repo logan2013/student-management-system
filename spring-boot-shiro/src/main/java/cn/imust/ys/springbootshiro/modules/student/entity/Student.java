@@ -11,7 +11,7 @@ import java.util.HashSet;
 import java.util.Set;
 
 @Entity
-@JsonIgnoreProperties(value={"sysClass","homes","awards","punishments","subsidizes","jobs"})
+@JsonIgnoreProperties(value={"sysClass"})
 public class Student {
     @Id @GeneratedValue
     private Integer id; // 学生表 ID

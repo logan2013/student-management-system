@@ -1,6 +1,7 @@
 package cn.imust.ys.springbootshiro.modules.student.controller;
 
 import cn.imust.ys.springbootshiro.modules.student.entity.Student;
+import cn.imust.ys.springbootshiro.modules.student.repository.StudentRepository;
 import cn.imust.ys.springbootshiro.modules.student.service.StudentService;
 import cn.imust.ys.springbootshiro.utils.ControllerUtils;
 import cn.imust.ys.springbootshiro.utils.ImportUtils;
@@ -17,6 +18,7 @@ import java.util.Map;
 public class StudentController {
 
     @Autowired private StudentService studentService;
+    @Autowired private StudentRepository studentRepository;
 
     @PostMapping("save")
     public Map save(@RequestBody Student student){
@@ -67,5 +69,11 @@ public class StudentController {
     public Map filter(@RequestBody String params){
         List<Student> students = studentService.filter(params);
         return ControllerUtils.getSuccessMap(students);
+    }
+
+    @PostMapping("findOne")
+    public Student findOne(@RequestBody Student student){
+        Student one = studentRepository.findOne(student.getId());
+        return one;
     }
 }
