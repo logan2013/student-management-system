@@ -15,7 +15,7 @@ import javax.persistence.*;
 @Entity
 @JsonIgnoreProperties(value={"teacher","grade"})
 public class SysClass implements Serializable {
-	
+
 	@Id @GeneratedValue
 	private Integer scid;
 	
@@ -127,4 +127,20 @@ public class SysClass implements Serializable {
 		}
 		return arr;
 	}
+
+	public String getTeacherName(){
+		if(teacher !=null ){
+			return teacher.getTname();
+		}
+		return "";
+	}
+
+	public void setTid(int tid){
+		if(teacher == null){
+			Teacher teacher = new Teacher();
+			teacher.setTid(tid);
+			this.teacher = teacher;
+		}
+	}
+
 }
