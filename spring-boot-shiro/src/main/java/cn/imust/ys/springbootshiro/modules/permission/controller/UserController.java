@@ -3,6 +3,7 @@ package cn.imust.ys.springbootshiro.modules.permission.controller;
 import cn.imust.ys.springbootshiro.modules.permission.entity.User;
 import cn.imust.ys.springbootshiro.modules.permission.service.UserService;
 import cn.imust.ys.springbootshiro.modules.teacher.entity.Teacher;
+import cn.imust.ys.springbootshiro.modules.teacher.repository.TeacherRepository;
 import cn.imust.ys.springbootshiro.utils.ControllerUtils;
 import cn.imust.ys.springbootshiro.utils.SessionUtils;
 import com.alibaba.fastjson.JSON;
@@ -20,6 +21,8 @@ import java.util.Map;
 @RestController
 @RequestMapping("/user")
 public class UserController {
+
+    @Autowired private TeacherRepository teacherRepository;
 
     @RequestMapping("/login")
     public Map login(@RequestBody String params) {
@@ -62,7 +65,9 @@ public class UserController {
 
     @GetMapping("getUser")
     public Map getUser(HttpSession session){
-        return ControllerUtils.getSuccessMap(session.getAttribute("user"));
+        Teacher teacher = (Teacher) session.getAttribute("user");
+        Teacher one = teacherRepository.findOne(teacher.getTid());
+        return ControllerUtils.getSuccessMap(one);
     }
 
     @RequestMapping("unauthorized")
