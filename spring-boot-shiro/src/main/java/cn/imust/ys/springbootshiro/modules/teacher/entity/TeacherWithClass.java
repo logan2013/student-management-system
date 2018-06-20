@@ -5,6 +5,7 @@ import cn.imust.ys.springbootshiro.modules.system.entity.SysClass;
 import org.hibernate.annotations.Cascade;
 
 import javax.persistence.*;
+import java.io.Serializable;
 import java.util.Date;
 import java.util.HashSet;
 import java.util.Set;
@@ -13,7 +14,7 @@ import java.util.Set;
  * 老师和班级的关联表，用于存储老师的带班记录
  * */
 @Entity
-public class TeacherWithClass {
+public class TeacherWithClass implements Serializable {
 
     @Id @GeneratedValue
     private Integer id;

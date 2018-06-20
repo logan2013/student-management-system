@@ -3,6 +3,7 @@ package cn.imust.ys.springbootshiro.modules.system.entity;
 import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 
 import javax.persistence.*;
+import java.io.Serializable;
 import java.util.HashSet;
 import java.util.Set;
 
@@ -12,7 +13,7 @@ import java.util.Set;
 @Entity
 @Table(name = "sys_grade")
 @JsonIgnoreProperties(value={"major"})
-public class Grade {
+public class Grade implements Serializable {
 	
 	@Id @GeneratedValue
 	private Integer id;

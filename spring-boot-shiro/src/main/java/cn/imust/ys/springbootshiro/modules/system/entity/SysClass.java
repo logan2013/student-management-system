@@ -6,6 +6,7 @@ import cn.imust.ys.springbootshiro.modules.teacher.entity.TeacherWithClass;
 import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 import org.hibernate.annotations.Cascade;
 
+import java.io.Serializable;
 import java.util.HashSet;
 import java.util.Set;
 
@@ -13,7 +14,7 @@ import javax.persistence.*;
 
 @Entity
 @JsonIgnoreProperties(value={"teacher","grade"})
-public class SysClass {
+public class SysClass implements Serializable {
 	
 	@Id @GeneratedValue
 	private Integer scid;

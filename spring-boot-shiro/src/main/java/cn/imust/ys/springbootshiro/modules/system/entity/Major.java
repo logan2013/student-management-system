@@ -4,6 +4,7 @@ import cn.imust.ys.springbootshiro.modules.student.entity.Award;
 import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 
 import javax.persistence.*;
+import java.io.Serializable;
 import java.util.HashSet;
 import java.util.Set;
 
@@ -12,7 +13,7 @@ import java.util.Set;
  * */
 @Entity
 @Table(name="sys_major")
-public class Major {
+public class Major implements Serializable {
 	
 	@Id @GeneratedValue
 	private Integer id;
