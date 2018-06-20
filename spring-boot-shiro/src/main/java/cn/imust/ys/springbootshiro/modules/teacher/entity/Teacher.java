@@ -18,7 +18,7 @@ import javax.persistence.*;
  * */
 @Entity
 @Table(name = "ys_teacher")
-@JsonIgnoreProperties(value={"roles","teacherWithClasses"})
+@JsonIgnoreProperties(value={"roles"})
 public class Teacher implements Serializable {
 	@Id @GeneratedValue
 	private Integer tid; 
