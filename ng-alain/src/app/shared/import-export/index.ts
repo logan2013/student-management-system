@@ -84,7 +84,8 @@ export class ImportAndExportComponent implements OnInit{
           nzWidth: 1200,
           nzCancelText: '取消',
           nzOnOk: () => {
-            this._http.post(this.moduleName + '/saveImport',{ classId: this.classId[this.classId.length - 1]}).subscribe((response: any) => {
+
+            this._http.post(this.moduleName + '/saveImport',{ classId: this.classId ? this.classId[this.classId.length - 1] : ''}).subscribe((response: any) => {
               this.parentComponent.refreshData();
               this.isImport = false;
             });
