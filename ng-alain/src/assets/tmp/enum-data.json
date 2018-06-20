@@ -56,5 +56,10 @@
     {"id": 0, "name": "本科"},
     {"id": 1, "name": "硕士"},
     {"id": 2, "name": "博士"}
+  ],
+  "nzStatus": [
+    {"id": 0, "name": "完成","status": "success"},
+    {"id": 1, "name": "进行中","status": "active"},
+    {"id": 2, "name": "中断","status": "exception"}
   ]
 }
