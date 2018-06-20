@@ -18,7 +18,7 @@ import javax.persistence.*;
  * */
 @Entity
 @Table(name = "ys_teacher")
-@JsonIgnoreProperties(value={"roles","sysClass"})
+@JsonIgnoreProperties(value={"roles","teacherWithClasses"})
 public class Teacher implements Serializable {
 	@Id @GeneratedValue
 	private Integer tid; 
@@ -57,6 +57,9 @@ public class Teacher implements Serializable {
 
 	@OneToMany(targetEntity=TeacherWithClass.class,mappedBy="teacher")
 	private Set<TeacherWithClass> teacherWithClasses = new HashSet<>(0);
+
+	@OneToMany(targetEntity=SysClass.class,mappedBy="teacher")
+	private Set<SysClass> sysClasses = new HashSet<>(0);
 
 	public Integer getTid() {
 		return tid;
@@ -156,5 +159,13 @@ public class Teacher implements Serializable {
 
 	public void setTeacherWithClasses(Set<TeacherWithClass> teacherWithClasses) {
 		this.teacherWithClasses = teacherWithClasses;
+	}
+
+	public Set<SysClass> getSysClasses() {
+		return sysClasses;
+	}
+
+	public void setSysClasses(Set<SysClass> sysClasses) {
+		this.sysClasses = sysClasses;
 	}
 }
