@@ -4,7 +4,6 @@ import cn.imust.ys.springbootshiro.modules.system.entity.Grade;
 import cn.imust.ys.springbootshiro.modules.system.repository.GradeRepository;
 import cn.imust.ys.springbootshiro.utils.ControllerUtils;
 import com.alibaba.fastjson.JSON;
-import com.alibaba.fastjson.JSONArray;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
