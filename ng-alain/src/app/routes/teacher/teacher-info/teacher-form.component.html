@@ -105,6 +105,14 @@
         </nz-form-item>
       </nz-col>
       <nz-col [nzXl]="{span:8, offset:2}" [nzLg]="{span:10}" [nzMd]="{span:24}" nzSm="24">
+        <nz-form-item>
+          <nz-form-label>角色</nz-form-label>
+          <nz-form-control>
+            <nz-select [(ngModel)]="vo.trole" [compareWith]="_util.myCompareFn" formControlName="trole">
+              <nz-option *ngFor="let option of roles" [nzLabel]="option.rname" [nzValue]="option.rid"></nz-option>
+            </nz-select>
+          </nz-form-control>
+        </nz-form-item>
       </nz-col>
     </nz-row>
   </nz-card>

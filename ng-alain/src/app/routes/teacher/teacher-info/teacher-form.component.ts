@@ -14,6 +14,7 @@ import { isMobile } from '@delon/util';
 export class TeacherFormComponent implements OnInit {
   form: FormGroup;
   vo = this.newVO();
+  roles = [];
 
   constructor(
     private fb: FormBuilder,
@@ -24,6 +25,9 @@ export class TeacherFormComponent implements OnInit {
   ) {}
 
   ngOnInit(): void {
+    this._http.get('role/findAll').subscribe((response: any) => {
+      this.roles = response.data;
+    });
     this.form = this.fb.group({
       tno: [null,[Validators.required]],
       tname: [null,[Validators.required]],
@@ -35,7 +39,8 @@ export class TeacherFormComponent implements OnInit {
       title: [null,[Validators.required]],
       phoneNum: [null,[Validators.required]],
       dept: [null],
-      inTime: [null,[Validators.required]]
+      inTime: [null,[Validators.required]],
+      trole: [null]
     });
   }
 

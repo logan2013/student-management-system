@@ -168,4 +168,10 @@ public class Teacher implements Serializable {
 	public void setSysClasses(Set<SysClass> sysClasses) {
 		this.sysClasses = sysClasses;
 	}
+
+	public void setTrole(int tid){
+		Role role = new Role();
+		role.setRid(tid);
+		roles.add(role);
+	}
 }
