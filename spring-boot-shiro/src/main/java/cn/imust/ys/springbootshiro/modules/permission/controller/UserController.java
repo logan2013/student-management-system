@@ -60,6 +60,11 @@ public class UserController {
         return map;
     }
 
+    @GetMapping("getUser")
+    public Map getUser(HttpSession session){
+        return ControllerUtils.getSuccessMap(session.getAttribute("user"));
+    }
+
     @RequestMapping("unauthorized")
     public Map unauthorized(HttpServletResponse response) {
         response.setStatus(403);
