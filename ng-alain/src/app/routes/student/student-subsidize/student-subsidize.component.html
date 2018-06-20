@@ -45,13 +45,19 @@
       <nz-form-item>
         <nz-form-label nzXs="24" nzSm="7" nzRequired nzFor="title">受助类型</nz-form-label>
         <nz-form-control nzXs="24" nzSm="12" nzMd="10">
-          <input nz-input [(ngModel)]="vo.type" formControlName="type" placeholder="请输入">
+          <nz-select [compareWith]="_util.myCompareFn" [(ngModel)]="vo.type" formControlName="type">
+            <nz-option *ngFor="let option of _util._enum.stype"
+                       [nzLabel]="option.name" [nzValue]="option.name"></nz-option>
+          </nz-select>
         </nz-form-control>
       </nz-form-item>
       <nz-form-item>
         <nz-form-label nzXs="24" nzSm="7" nzRequired nzFor="title">受助等级</nz-form-label>
         <nz-form-control nzXs="24" nzSm="12" nzMd="10">
-          <input nz-input [(ngModel)]="vo.level" formControlName="level" placeholder="请输入">
+          <nz-select [compareWith]="_util.myCompareFn" [(ngModel)]="vo.level" formControlName="level">
+            <nz-option *ngFor="let option of _util._enum.slevel"
+                       [nzLabel]="option.name" [nzValue]="option.name"></nz-option>
+          </nz-select>
         </nz-form-control>
       </nz-form-item>
     </form>
