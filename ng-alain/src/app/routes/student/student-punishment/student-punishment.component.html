@@ -39,7 +39,10 @@
       <nz-form-item>
         <nz-form-label nzXs="24" nzSm="7" nzRequired nzFor="title">处分种类</nz-form-label>
         <nz-form-control nzXs="24" nzSm="12" nzMd="10">
-          <input nz-input [(ngModel)]="vo.ptype" formControlName="ptype" placeholder="请输入">
+          <nz-select [compareWith]="_util.myCompareFn" [(ngModel)]="vo.ptype" formControlName="ptype">
+            <nz-option *ngFor="let option of _util._enum.ptype"
+                       [nzLabel]="option.name" [nzValue]="option.name"></nz-option>
+          </nz-select>
         </nz-form-control>
       </nz-form-item>
       <nz-form-item>
