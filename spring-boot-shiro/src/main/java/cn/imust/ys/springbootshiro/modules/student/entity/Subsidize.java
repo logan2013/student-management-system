@@ -94,7 +94,7 @@ public class Subsidize {
 	}
 
 	public String getSysClassName(){
-		if(student !=null){
+		if(student !=null && this.student.getSysClass() != null){
 			return this.student.getSysClass().getName();
 		}
 		return "";
