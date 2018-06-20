@@ -36,7 +36,8 @@ export function delonAuthConfig(): DelonAuthConfig {
   return Object.assign(new DelonAuthConfig(), <DelonAuthConfig>{
     login_url: '/passport/login',
     ignores:[ /permission\//,/\/login/, /assets\//,/login/,
-      /https:\/\/at.alicdn.com\/t\/font_148784_v4ggb6wrjmkotj4i/
+      /https:\/\/at.alicdn.com\/t\/font_148784_v4ggb6wrjmkotj4i/,
+      /https:\/\/localhost:8080\//
     ]
   });
 }
