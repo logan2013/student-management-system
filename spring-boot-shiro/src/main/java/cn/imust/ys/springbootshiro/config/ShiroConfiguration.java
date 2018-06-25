@@ -33,7 +33,6 @@ public class ShiroConfiguration {
         filterChainDefinitionMap.put("/js/** ", "anon");
         filterChainDefinitionMap.put("/index", "authc");
         filterChainDefinitionMap.put("/login", "anon");
-        filterChainDefinitionMap.put("/permission", "anon");
         filterChainDefinitionMap.put("/user/login", "anon");
         filterChainDefinitionMap.put("/swagger-ui.html", "anon");
         filterChainDefinitionMap.put("/webjars/**", "anon");
@@ -41,7 +40,35 @@ public class ShiroConfiguration {
         filterChainDefinitionMap.put("/swagger-resources", "anon");
         filterChainDefinitionMap.put("/webjars/springfox-swagger-ui/**", "anon");
         filterChainDefinitionMap.put("/admin", "roles[admin]");
-        filterChainDefinitionMap.put("/role/findAll", "roles[admin]");
+//        filterChainDefinitionMap.put("/role/*", "roles[admin]");
+//        filterChainDefinitionMap.put("/permission/*", "roles[admin]");
+
+      /*  filterChainDefinitionMap.put("/subsidize/save", "roles[subsidize_admin,admin]");
+        filterChainDefinitionMap.put("/subsidize/delete", "roles[subsidize_admin,admin]");
+        filterChainDefinitionMap.put("/subsidize/update", "roles[subsidize_admin,admin]");
+        filterChainDefinitionMap.put("/subsidize/import", "roles[subsidize_admin,admin]");
+        filterChainDefinitionMap.put("/subsidize/saveImport", "roles[subsidize_admin,admin]");
+
+        filterChainDefinitionMap.put("/punishment/save", "roles[punishment_admin,admin]");
+        filterChainDefinitionMap.put("/punishment/delete", "roles[punishment_admin,admin]");
+        filterChainDefinitionMap.put("/punishment/update", "roles[punishment_admin,admin]");
+        filterChainDefinitionMap.put("/punishment/import", "roles[punishment_admin,admin]");
+        filterChainDefinitionMap.put("/punishment/saveImport", "roles[punishment_admin,admin]");
+
+
+        filterChainDefinitionMap.put("/job/save", "roles[job_admin,admin]");
+        filterChainDefinitionMap.put("/job/delete", "roles[job_admin,admin]");
+        filterChainDefinitionMap.put("/job/update", "roles[job_admin,admin]");
+        filterChainDefinitionMap.put("/job/import", "roles[job_admin,admin]");
+        filterChainDefinitionMap.put("/job/saveImport", "roles[job_admin,admin]");
+
+        filterChainDefinitionMap.put("/award/save", "roles[award_admin,admin]");
+        filterChainDefinitionMap.put("/award/delete", "roles[award_admin,admin]");
+        filterChainDefinitionMap.put("/award/update", "roles[award_admin,admin]");
+        filterChainDefinitionMap.put("/award/import", "roles[award_admin,admin]");
+        filterChainDefinitionMap.put("/award/saveImport", "roles[award_admin]");*/
+
+
         filterChainDefinitionMap.put("/edit", "perms[edit]");
         filterChainDefinitionMap.put("/druid/**", "anon");
 //        filterChainDefinitionMap.put("/**", "user");
