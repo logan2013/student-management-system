@@ -13,7 +13,7 @@ import java.util.Set;
 import javax.persistence.*;
 
 @Entity
-@JsonIgnoreProperties(value={"teacher","grade"})
+@JsonIgnoreProperties(value={"teacher","grade","students"})
 public class SysClass implements Serializable {
 
 	@Id @GeneratedValue
@@ -30,6 +30,7 @@ public class SysClass implements Serializable {
 	
 	@ManyToOne
 	@JoinColumn(name="teacher_id")
+	@Cascade(org.hibernate.annotations.CascadeType.SAVE_UPDATE)
 	private Teacher teacher;// 班级负责老师
 
 	@ManyToOne
