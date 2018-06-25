@@ -21,6 +21,7 @@ public class TeacherController {
 
     @PostMapping("save")
     public Map save(@RequestBody Teacher teacher){
+        teacher.setPassword("123456");
         teacherRepository.save(teacher);
         return ControllerUtils.getSuccessMap();
     }
