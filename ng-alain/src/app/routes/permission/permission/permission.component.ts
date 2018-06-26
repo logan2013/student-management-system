@@ -152,11 +152,11 @@ export class PermissionComponent implements OnInit {
       }
     });
     // this.menuService.add(res.menu);
-    this._http.get('permission/menu').subscribe((res: any) => {
+/*    this._http.get('permission/menu').subscribe((res: any) => {
       this.menuService.clear();
       this.menuService.add(res.menu);
       this.menuService.resume();
-    });
+    });*/
   }
 
 
